@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import Header from '../../composants/Header'
 import { Col, Container, Row } from 'react-bootstrap'
-import { Button, Divider } from '@mui/material'
+import { Alert, AlertTitle, Button, CircularProgress, Divider } from '@mui/material'
 //import { modules } from '../../utils/data'
 import { useNavigate } from 'react-router-dom'
 import { modules } from '../../utils/data/index.ts'
@@ -9,165 +9,136 @@ import Footer from '../../composants/Footer/index.jsx'
 import HeaderContent from '../../composants/HeaderContent/index.jsx'
 import './dashboardCSS.css';
 import { AppContext } from '../../context/index.jsx'
+import { useFetch } from '../../utils/hooks/FetchData/index.jsx'
 
 
 export default function Dashboard() {
     const { isOnline, language, setUser, user } = useContext(AppContext);
+    const { isLoading, data, error } = useFetch(("/etudiant/dashboard/" + ((user) ? user.id : 0)), "GET")
+    console.log("data dashboard", data)
     const navigation = useNavigate();
+    var isfrench = (language === 'FR');
     return (
         <>
 
             <Container fluid style={{ width: '100vw', margin: 0, padding: 0 }} >
                 <Header />
                 <HeaderContent />
-                {/* <div
-                    style={{
-                        margin: 0,
-                        height: "50vh",
-                        width: '100%',
-                        border: '0px solid black',
-                        borderRadius: 5,
-                        backgroundImage: `url(entrepreneurbureau.png)`,
-                        backgroundSize: 'cover',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center',
-                        backgroundColor: 'rgba(0,0,0,0.9)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        color: '#fff',
-                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-                    }}
-                >
 
-                    <div
-                        style={{
-                            backgroundColor: 'rgba(0,0,0,0.4)',
-                            minHeight: "50vh",
-                            width: '100%',
-                            fontSize: 25,
-                            fontWeight: "bold",
-                            display: "flex",
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            textAlign: 'center',
-                            justifyContent: "space-evenly"
-                        }}
-
-                    >
-                        <div style={{
-                            display: "flex",
-                            flexDirection: 'column',
-                            alignItems: 'center'
-                        }}>
-                            <span>Programe LeaderShip</span>
-                            <span>Formation de 1000 Entrepreuneurs sur toute l'etendu du territoire national</span>
-                        </div>
-
-                        <div style={{
-                            display: "flex",
-                            flexDirection: 'column',
-                            alignItems: 'center'
-                        }}>
-                            <span style={{ fontSize: 17 }}>Théme: <span style={{ fontSize: 22, }}>RENTABILITE ET FONCTIONNEMENT</span></span>
-                        </div>
-
-                        <div style={{
-                            display: "flex",
-                            flexDirection: 'column',
-                            alignItems: 'center'
-                        }}>
-                            <span>Obtenez une Attestation á la suite de votre formation</span>
-                            <span>Formation reconue par le MINJEC</span>
-                        </div>
-                    </div>
-
-                </div> */}
 
                 <div style={{ marginTop: 10, textAlign: "center", fontWeight: 'bold' }}>
                     Explorez nos Modules de Formation: Plongez dans notre programme de formation complet! Découvrez des modules spécialement conçus pour vous aider à maîtriser les compétences essentielles en matière de rentabilité et de fonctionnement. Que vous soyez un novice ou un entrepreneur chevronné, ces modules vous guideront vers le succès.
                 </div>
 
-                <Row style={{ borderRadius: 5, margin: 20, marginTop: 30, padding: 10 }}>
-                    <div style={{ margin: '5px', fontWeight: 'blod', }}>Tableau de bord</div>
-                    <Col style={{ margin: 10 }}>
-                        <div className='statItemDashbord' style={{ backgroundColor: '#FFEEE8' }}>
-                            <div className='icnDashbord'></div>
-                            <div className='texteStatDashbord'>
-                                <span className='numberStatDashboard'>10</span>
-                                <span className='texteStatDashboard'>Cour deja lu</span>
-                            </div>
-                        </div>
-                    </Col>
-                    <Col style={{ margin: 10 }}>
-                        <div className='statItemDashbord' style={{ backgroundColor: '#EBEBFF' }}>
-                            <div className='icnDashbord'></div>
-                            <div className='texteStatDashbord'>
-                                <span className='numberStatDashboard'>30</span>
-                                <span className='texteStatDashboard'>QCM Validés</span>
-                            </div>
-                        </div>
-                    </Col>
-                    <Col style={{ margin: 10 }}>
-                        <div className='statItemDashbord' style={{ backgroundColor: '#E1F7E3' }}>
-                            <div className='icnDashbord'></div>
-                            <div className='texteStatDashbord'>
-                                <span className='numberStatDashboard'>1</span>
-                                <span className='texteStatDashboard'>Module accessible</span>
-                            </div>
-                        </div>
-                    </Col>
-                    <Col style={{ margin: 10 }}>
-                        <div className='statItemDashbord' style={{ backgroundColor: '#FFEEE8' }}>
-                            <div className='icnDashbord'></div>
-                            <div className='texteStatDashbord'>
-                                <span className='numberStatDashboard'>25</span>
-                                <span className='texteStatDashboard'>Cour deja lu</span>
-                            </div>
-                        </div>
-                    </Col>
-                </Row>
 
+                {isLoading ?
+                    <div style={{ marginLeft: '40%', marginBottom: '40%' }} >
+                        <CircularProgress size={70} />
+                    </div>
+                    :
 
-                <Row style={{ borderRadius: 5, margin: 20, marginTop: 30, padding: 10 }}>
-                    {modules.map((module, index) => (
-                        <Col style={{ margin: 8, minHeight: '200px', backgroundColor: "white", padding: 5, borderRadius: 5, boxShadow: '0 0 5px rgba(0, 0, 0, 0.5)' }}>
-                            <div style={{ minWidth: '250px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                                <div className='imageCourDashboard'>
-                                    <img className='imageLogoFooter' src='/images/lecteurcour.png' />
-                                </div>
-                                <div name='titre' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 50, textAlign: 'center' }}>
-                                    <span style={{ fontWeight: '600' }}>{module.titre}</span>
-                                </div>
-                                <Divider style={{ marginTop: 10, marginBottom: 10 }} />
-                                <div name='description' style={{ padding: 5, }}>
-                                    {module.description.map((point, index01) => (
-                                        <div style={{ marginBottom: 10 }}>
-                                            <span>
-                                                <span style={{ fontWeight: "bold", fontStyle: "italic" }}>{point.titre ? point.titre + ' :' : ''}</span>
-                                                {point.texte}
-                                            </span>
+                    error ?
+
+                        <div style={{ width: '100%', marginBottom: '5px', }}>
+                            <Alert severity="error">
+                                <AlertTitle>{isfrench ? "Erreur" : "Error"}</AlertTitle>
+                                {isOnline ?
+                                    <span>{language === 'FR' ? "Probleme avec le serveur...!" : "Problem with the server...!"}</span>
+                                    :
+                                    <span>{language === 'FR' ? "Vous êtes hors connexion, controler votre connexion internet" : "You are offline, check your internet connection"}</span>
+
+                                }
+                            </Alert>
+                        </div>
+
+                        :
+                        <>
+                            <Row style={{ borderRadius: 5, margin: 20, marginTop: 30, padding: 10 }}>
+                                <div style={{ margin: '5px', fontWeight: 'blod', fontSize: 20, fontWeight: 700 }}>Récapitulatiif de vos activités</div>
+                                <Col style={{ margin: 10 }}>
+                                    <div className='statItemDashbord' style={{ backgroundColor: '#ffeee8' }}>
+                                        <div className='icnDashbord'></div>
+                                        <div className='texteStatDashbord'>
+                                            <span className='numberStatDashboard'>{data.courLu} sur {data.chapitreTotal}</span>
+                                            <span className='texteStatDashboard'>Cour deja lu</span>
                                         </div>
-                                    ))}
-                                </div>
-                                <div>
-                                    <Divider style={{ marginTop: 10, marginBottom: 10 }} />
-                                    <div name='nombreChapitre' style={{ textAlign: 'center' }}>
-                                        <span><spam>{module.nombreChapitre}</spam> Chapitres</span>
                                     </div>
-                                    <Divider style={{ marginTop: 10, marginBottom: 10 }} />
-                                    <div name='accessible' style={{ textAlign: 'center', height: '90px' }}>
-                                        {module.isOk ?
-                                            <Button onClick={() => { navigation('/module/' + (module.idModule)) }} variant='contained' color='success' sx={{ width: '100%', height: '100%', borderRadius: 0 }} >Commener avec ce module</Button>
-                                            :
-                                            <Button variant='contained' color='error' sx={{ width: '100%', height: '100%' }} >Module Verrouiller</Button>
+                                </Col>
+                                <Col style={{ margin: 10 }}>
+                                    <div className='statItemDashbord' style={{ backgroundColor: '#ebebff' }}>
+                                        <div className='icnDashbord'></div>
+                                        <div className='texteStatDashbord'>
+                                            <span className='numberStatDashboard'>{data.qcmvalide} sur {data.qcmTotal}</span>
+                                            <span className='texteStatDashboard'>QCM Validés</span>
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col style={{ margin: 10 }}>
+                                    <div className='statItemDashbord' style={{ backgroundColor: '#e1f7e3' }}>
+                                        <div className='icnDashbord'></div>
+                                        <div className='texteStatDashbord'>
+                                            <span className='numberStatDashboard'>{data.moduleAccessible} sur {data.moduleTotal}</span>
+                                            <span className='texteStatDashboard'>Module accessible</span>
+                                        </div>
+                                    </div>
+                                </Col>
+                                <Col style={{ margin: 10 }}>
+                                    <div className='statItemDashbord' style={{ backgroundColor: '#FFEEE8' }}>
+                                        <div className='icnDashbord'></div>
+                                        <div className='texteStatDashbord'>
+                                            <span className='numberStatDashboard'>{data.questionPose ? data.questionPose : 0}</span>
+                                            <span className='texteStatDashboard'>Vos questions</span>
+                                        </div>
+                                    </div>
+                                </Col>
+                            </Row>
 
-                                        }
-                                    </div>
-                                </div>
-                            </div>
-                        </Col>
-                    ))}
-                </Row>
+
+                            <Row style={{ borderRadius: 5, margin: 20, marginTop: 30, padding: 10 }}>
+                                {data.modules.map((module, index) => (
+                                    <Col style={{ margin: 8, minHeight: '200px', backgroundColor: "white", padding: 5, borderRadius: 5, boxShadow: '0 0 5px rgba(0, 0, 0, 0.5)' }}>
+                                        <div style={{ minWidth: '250px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                                            <div className='imageCourDashboard'>
+                                                <img className='imageLogoFooter' src='/images/lecteurcour.png' />
+                                            </div>
+                                            <div name='titre' style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 50, textAlign: 'center' }}>
+                                                <span style={{ fontWeight: '600' }}>{isfrench ? module.titre : module.titreEn}</span>
+                                            </div>
+                                            <Divider style={{ marginTop: 10, marginBottom: 0 }} />
+                                            {/* <div name='description' style={{ padding: 5, }}>
+                                                {module.libelles.map((point, index01) => (
+                                                    <div style={{ marginBottom: 10 }}>
+                                                        <span>
+                                                            <span style={{ fontWeight: "bold", fontStyle: "italic" }}>{(isfrench ? point.titre : point.titreEn)} : </span>
+                                                            {isfrench ? point.texte : point.texteEn}
+                                                        </span>
+                                                    </div>
+                                                ))}
+                                            </div> */}
+                                            <div>
+                                                <Divider style={{ marginTop: 5, marginBottom: 10 }} />
+                                                <div name='nombreChapitre' style={{ textAlign: 'center' }}>
+                                                    <span><spam>{module.nombreChapitre}</spam> Chapitres</span>
+                                                </div>
+                                                <Divider style={{ marginTop: 10, marginBottom: 10 }} />
+                                                <div name='accessible' style={{ textAlign: 'center', height: '45px' }}>
+                                                    {module.isAccessible ?
+                                                        <Button onClick={() => { navigation('/module/' + (module.idModule)) }} variant='contained' color='success' sx={{ width: '100%', height: '100%', borderRadius: 0 }} >Commencer avec ce module</Button>
+                                                        :
+                                                        <Button variant='contained' color='error' sx={{ width: '100%', height: '100%' }} >Module Verrouiller</Button>
+
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </Col>
+                                ))}
+                            </Row>
+                        </>
+
+                }
+
+
 
                 {/* <Row style={{ borderRadius: 5, margin: 20, marginTop: 30, padding: 10 }}>
                     <div style={{ fontWeight: 'bold', fontSize: 19, textAlign: 'center' }}>Module de formation</div>

@@ -1,4 +1,27 @@
+.itemListDiv:hover {
+    background-color: #f1524f;
+    color: white;
+    transition: 0.5s;
+
+}
+
+.itemListDiv:active {
+    background-color: #1008f3;
+    color: white;
+    transition: 0.5s;
+}
+
+.activeItemMenu {
+    background-color: #f7221f;
+    color: white;
+}
+
+
 @media (min-width: 769px) {
+    .mainDivHeader {
+        height: 60px;
+        font-size: 0.8rem;
+    }
 
     /* Styles pour les tablettes */
     .bouttonhead {
@@ -14,12 +37,25 @@
         width: 100px
     }
 
+    .smallScreanList {
+        display: none;
+    }
 
+    .largeScreanList {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        cursor: default;
+    }
 }
 
 
 /* Styles pour les smartphones */
 @media (max-width: 768px) {
+    .mainDivHeader {
+        height: 40px;
+    }
 
     /* Styles pour les smartphones */
     .bouttonhead {
@@ -33,5 +69,50 @@
 
     .logo {
         width: 60px
+    }
+
+    .smallScreanList {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        cursor: default;
+    }
+
+    .largeScreanList {
+        display: none;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* just for text size
+@media (min-width: 1200px) {
+    .mainDivHeader {
+        font-size: 1.2rem;
+    }
+} */
+
+
+@media (min-width: 1000px) {
+    .mainDivHeader {
+        font-size: 1.1rem;
     }
 }

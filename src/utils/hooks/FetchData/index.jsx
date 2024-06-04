@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 
 export function useFetch(url, method, body, param, update, isMultipart) {
     const serveur = "http://localhost:9006/elearningapi";
+    //"https://api2.streenge.tech/elearningapi";
+    //"https://api.streenge.tech/iri"
+    // "http://localhost:9006/elearningapi";
     const [data, setData] = useState({});
     const [isLoading, setLoading] = useState(true);
     const [error, setError] = useState(false);

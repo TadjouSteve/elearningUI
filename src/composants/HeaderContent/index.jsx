@@ -21,7 +21,7 @@ function HeaderContent() {
                             </div>
                         </div>
                         <div className='buttonAction'>
-                            <Button variant='outlined' color='error' onClick={() => { navigation().Back() }} >{language == 'FR' ? 'Page precedente' : 'Preview page'}</Button>
+                            <Button variant='outlined' color='error' onClick={() => { navigation(-1) }} >{language == 'FR' ? 'Page precedente' : 'Preview page'}</Button>
                         </div>
                     </div>
                     <div className='navigationHeaderContent'>

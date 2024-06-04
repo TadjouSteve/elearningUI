@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { isMobile } from 'react-device-detect';
 //Bootstrap and jQuery libraries
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -7,46 +7,127 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './../../composants/Header/index';
 import './homeCSS.css';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SignInSignUp from '../../composants/SignInSignUp';
+import { AppContext } from '../../context';
+import { removeUserCookie } from '../../utils/fonctions';
 
 const Home = () => {
+    const { language, setLanguage, setUser, user } = useContext(AppContext);
+    const navigation = useNavigate();
+    let isFrench = language === 'FR';
+    const deconnexion = () => {
+        setUser(null);
+        removeUserCookie();
+        navigation('/');
+    }
+
     return (
 
         <>
             <Header />
             <div className='divTitre' style={{ display: 'flex', flexDirection: 'column', gap: 15, padding: isMobile ? 10 : 30 }}>
                 <div style={{ textAlign: isMobile ? 'center' : 'left' }}>
-                    <span className={'spantitle1'}  >
-                        Apprendre une <span style={{ color: '#FDA811' }}>nouvelle compétence</span> nouvelle compétence
-                        Tous les jours, à tout moment et en tout lieu
-                    </span>
+                    <h3 className={'spantitle1'}  >
+                        Programme de massification <span style={{ color: '#FDA811' }}>entrepreneurial</span>
+                    </h3>
                 </div>
                 <div className='divSoustexte' style={{ textAlign: isMobile ? 'center' : 'left' }}>
                     <span>
-                        <span style={{ fontWeight: '700' }}>Plus de 1000 cours </span> couvrant tous les domaines technologiques pour vous permettre d'apprendre et d'explorer de nouvelles opportunités. Apprenez auprès d'experts du secteur et décrochez le job de vos rêves.<Link to={'/apropos'} style={{ textDecorationLine: 'none', }}> <span style={{ color: 'red', }}>En savoir plus...</span></Link>
+                        <span style={{ fontWeight: '700' }}>Plus de 1000 jeunes </span> formés aux notions elementaires de l'entrepreurnariat, de la gestion d'entreprise et de l'autorentabilité.<Link to={'/apropos'} style={{ textDecorationLine: 'none', }}> <span style={{ color: 'red', }}>En savoir plus...</span></Link>
                     </span>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'row', gap: isMobile ? 5 : 25, flexWrap: 'wrap', justifyContent: isMobile ? 'space-evenly' : 'flex-start' }}>
-                    <SignInSignUp signIn={true} classButtom='boutton01' variantButton='contained' />
-                    <SignInSignUp signIn={false} classButtom='boutton01' variantButton='outlined' />
-                    {/*<Button className='boutton01' variant='contained' color='error'>S'inscrire</Button>
-                    <Button className='boutton01' variant='outlined' color='error'>Se connecter</Button>*/}
+
+                    {!user ?
+                        <>
+                            <SignInSignUp signIn={false} classButtom='boutton01' variantButton='contained' />
+                            <SignInSignUp signIn={true} classButtom='boutton01' variantButton='outlined' />
+                        </>
+                        :
+                        <div className='buttonAction'>
+                            <Button variant='outlined' color='error' onClick={() => deconnexion()} >{isFrench ? 'Deconnexion' : 'LogOut'}</Button>
+                        </div>
+                    }
+
+
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'row', gap: 50, rowGap: 5, flexWrap: 'wrap', }}>
-                    <div style={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap', fontWeight: '700', }}>
-                        <span style={{ color: '#8D4AA7', fontSize: 40, lineHeight: '56px' }}>1000+</span>
-                        <span style={{ fontSize: 20, lineHeight: '28px' }}>Vue</span>
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap', fontWeight: '700', }}>
-                        <span style={{ color: '#50b954', fontSize: 40, lineHeight: '56px' }}>5000+</span>
-                        <span style={{ fontSize: 20, lineHeight: '28px' }}>Etudiant Formés</span>
-                    </div>
-                    <div style={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap', fontWeight: '700', }}>
-                        <span style={{ color: '#fda811', fontSize: 40, lineHeight: '56px' }}>200+</span>
-                        <span style={{ fontSize: 20, lineHeight: '28px' }}>Professionels formateur</span>
-                    </div>
+
+
+                <div style={{ marginBottom: 15 }}>
+                    <h3>Presentation</h3>
+                    <p name="texte de presentation du Programme de Massification Entrepreneuriale">
+                        Le<span style={{ fontWeight: 700 }}>Programme de Massification Entrepreneuriale</span> est une initiative ambitieuse visant à promouvoir l'esprit d'entreprise et
+                        les compétences en leadership au sein de divers groupes socio-économiques au Cameroun.
+                        Ce programme a pour objectif de doter les individus des connaissances, des outils et du soutien nécessaires pour créer,
+                        développer et pérenniser des entreprises compétitives, contribuant ainsi à la croissance économique du pays,
+                        à la création d'emplois et à la prospérité à long terme.
+                    </p>
                 </div>
+                <div style={{ marginBottom: 15 }}>
+                    <h3>Objectifs du programme</h3>
+                    <p>
+                        Le <span style={{ fontWeight: 700 }}>Programme de Massification Entrepreneuriale</span> poursuit un objectif pluridimensionnel :
+                        <ul>
+                            <li>
+                                <span style={{ fontWeight: 700 }}>Renforcer les compétences en leadership et en entrepreneuriat </span>
+                                chez les jeunes, les étudiants, les enseignants et les familles d'entrepreneurs.
+                            </li>
+                            <li>
+                                <span style={{ fontWeight: 700 }}>Soutenir les projets à fort potentiel </span>
+                                chez les jeunes, les étudiants, les enseignants et les familles d'entrepreneurs.
+                            </li>
+                            <li>
+                                <span style={{ fontWeight: 700 }}>Equiper les investisseurs </span>
+                                des compétences nécessaires pour intégrer des capitaux dans des entreprises viables et guider les projets matures dans la mise en place de conseils d'administration efficaces.
+                            </li>
+                        </ul>
+                    </p>
+                </div>
+                <div style={{ marginBottom: 15 }}>
+                    <h3>Public cible</h3>
+                    <p>
+                        Le <span style={{ fontWeight: 700 }}>Programme de Massification Entrepreneuriale</span> cible stratégiquement des bénéficiaires clés :
+                        <ul>
+                            <li>
+                                <span style={{ fontWeight: 700 }}>Jeunes porteurs de projets :</span> Equiper les aspirants entrepreneurs des fondamentaux du leadership et du sens des affaires, leur permettant de lancer et de développer des entreprises compétitives.
+                            </li>
+
+                            <li>
+                                <span style={{ fontWeight: 700 }}>Jeunesse en général : </span>
+                                Au-delà des porteurs de projets, le programme diagnostique le potentiel entrepreneurial des jeunes individus et les intègre dans des programmes de formation au leadership et aux compétences pour renforcer leur employabilité.
+                            </li>
+                            <li>
+                                <span style={{ fontWeight: 700 }}>Etudiants et élèves  : </span>
+                                Favoriser l'esprit d'entreprise et le leadership chez les étudiants et les élèves, en les préparant à de futures initiatives entrepreneuriales.
+                            </li>
+
+                            <li>
+                                <span style={{ fontWeight: 700 }}>Educateurs  :  </span>
+                                Offrir aux éducateurs une formation spécialisée en pédagogie entrepreneuriale, les habilitant à intégrer efficacement des outils de renforcement des compétences entrepreneuriales dans leurs programmes d'enseignement.
+                            </li>
+
+                            <li>
+                                <span style={{ fontWeight: 700 }}>Projets à fort potentiel  : </span>
+                                Proposer un mentorat et un soutien ciblés aux projets prometteurs, en améliorant leurs perspectives d'emploi et leur viabilité financière à long terme.
+                            </li>
+
+                            <li>
+                                <span style={{ fontWeight: 700 }}>Familles d'entrepreneurs  : </span>
+                                Sensibiliser les familles à l'esprit d'entreprise, encourager leur implication et fournir des outils pour identifier les talents entrepreneuriaux. De plus, le programme plaide pour une culture de consommation des produits camerounais.
+                            </li>
+                            <li>
+                                <span style={{ fontWeight: 700 }}>Investisseurs  : </span>
+                                Organiser des ateliers pour les investisseurs, les dotant des connaissances et des compétences nécessaires pour intégrer efficacement des capitaux dans les entreprises.
+                            </li>
+
+                        </ul>
+
+                        En autonomisant ces groupes divers, le<span style={{ fontWeight: 700 }}>Programme de Massification Entrepreneuriale</span> vise à stimuler la transformation économique et le développement durable au Cameroun.
+                    </p>
+                </div>
+
+
 
             </div>
             {/* <img className='imageFille' src="/images/fille01.png" alt="une jeune ecoliere" /> */}

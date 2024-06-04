@@ -11,7 +11,7 @@ function Footer() {
                         <img className='imageLogoFooter' src='/images/logo02.png' />
                     </div>
 
-                    <span>Leardship@programe.com</span>
+                    <span>Leardship@programe.com </span>
                     <span>+237 6956 568 123 </span>
                     <span>Omnisport, Yaoundé</span>
                 </div>

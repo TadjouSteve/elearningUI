@@ -1,4 +1,8 @@
 /* Styles pour les tablettes et ordinateur */
+li {
+    margin-top: 10px;
+    text-align: justify;
+}
 
 @media (min-width: 769px) {
 
@@ -34,14 +38,7 @@
         color: #000000;
     }
 
-    .boutton01 {
-        width: 200px;
-        height: 60px;
 
-        gap: 0px;
-        opacity: 0px;
-        box-shadow: 0px 4px 4px 0px #F7262140;
-    }
 
     .footerHome {
         height: 150px;
@@ -57,7 +54,7 @@
         width: 40%;
         height: 720px;
         background-size: cover;
-        position: absolute;
+        position: fixed;
         right: 0px;
         top: 0px;
         background-repeat: no-repeat;
@@ -103,20 +100,11 @@
         color: #000000;
     }
 
-    .boutton01 {
-        width: 150px;
-        height: 50px;
-
-        gap: 0px;
-        opacity: 0px;
-        box-shadow: 0px 4px 4px 0px #F7262140;
-    }
-
     .footerHome {
         height: 95px;
         width: 100%;
         position: absolute;
-        bottom: 0;
+        /* bottom: 0; */
         background-size: cover;
         /* Ajustez le dimensionnement de l'image */
         background-repeat: no-repeat;
@@ -124,14 +112,14 @@
     }
 
     .imageFille {
-        width: 40%;
+        /* width: 40%;
         height: 25px;
         background-size: cover;
-        position: absolute;
+        position: fixed;
         right: 0px;
         bottom: 0px;
         background-repeat: no-repeat;
-        z-index: 1;
+        z-index: 1; */
         display: none;
     }
 }

@@ -1,4 +1,51 @@
-.App {
+.mainDiv {
+
+  margin-left: 250px;
+  margin-top: 50px;
+  padding: 0px 0px;
+  /* border-top: 4px solid green; */
+  /*background: #f5f7f7;*/
+  /*background: #cdd1d1; avant c'etait ca*/
+  background: #e1e4e4;
+  transition: 800ms;
+  position: relative;
+  bottom: 0px;
+  background-color: #e1e4e4;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+}
+
+.mainDiv.large {
+  transition: 1100ms;
+  margin-left: 0px;
+}
+
+.mainDiv .headerPage {
+  /* padding-right: 260px; */
+  align-items: center;
+  transition: 800ms;
+  width: 100%;
+}
+
+.mainDiv.large .headerPage {
+  padding-right: 10px;
+  transition: 1100ms;
+  width: 100%;
+}
+
+.dff {
+  color: #17bd085d;
+}
+
+
+
+
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +82,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
