@@ -10,7 +10,7 @@ export default function ShowRubrique() {
     const navigation = useNavigate();
     const [update, setUpdate] = useState(false)
     const { isLoading, data, error } = useFetch(`/media/rubrique/${idRubrique}`, 'GET', null, null, update)
-    console.log("data rubrique == ", data)
+    //console.log("data rubrique == ", data)
 
     const handleModifierClick = () => {
         // Logique pour gérer le clic sur le bouton "Modifier"
@@ -20,10 +20,10 @@ export default function ShowRubrique() {
         <>
             <div className="headerPage" style={{ backgroundColor: '#17bd08cc', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }} >
                 <div id="Links" style={{ display: "flex", flexDirection: "column", fontWeight: "500", color: 'white' }}>
-                    <span>Rubrique <span>{(data && data.nom) ? (`Mr/Mm. ${data.nom}`) : null}</span></span>
+                    <span>Rubrique <span>{(data && data.nom) ? (`${data.nom}`) : null}</span></span>
                     <span style={{ fontWeight: "normal", }}>
                         <Link to={'/rubrique'} style={{ textDecorationLine: 'underline', color: 'white' }} >   Professeurs  </Link><span style={{ margin: '3px' }}> / </span>
-                        <Link to={'/rubrique/' + idRubrique} style={{ textDecorationLine: 'underline', color: 'white' }} > {(data && data.nom) ? (`Mr/Mm. ${data.nom}`) : null} </Link>
+                        <Link to={'/rubrique/' + idRubrique} style={{ textDecorationLine: 'underline', color: 'white' }} > {(data && data.nom) ? (`${data.nom}`) : null} </Link>
                     </span>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
@@ -33,22 +33,29 @@ export default function ShowRubrique() {
             </div>
 
             <Container fluid >
-                <Row>
-                    <Col>
-                        <div style={{ backgroundColor: 'white', display: 'flex', flexDirection: 'column', padding: 10, borderRadius: 5 }}>
-                            <h3>Informations générales</h3>
-                            <span>Nom: {data.nom}</span>
-                            <span>Categorie: {data.categorie}</span>
-                            <span>Orde / Positionnement: {data.ordre}</span>
-                            <span>description: {data.description}</span>
-                            <span>Nombre Article: {data.nombreArticle}</span>
-                        </div>
-                    </Col>
-                </Row>
-
-                <Row style={{ marginTop: 10 }}>
-
-                </Row>
+                {isLoading ?
+                    <div style={{ marginLeft: '40%' }} >
+                        <CircularProgress size={40} />
+                    </div>
+                    : error ?
+                        <MessageErrorServeur />
+                        :
+                        <>
+                            <Row>
+                                <Col>
+                                    <div style={{ backgroundColor: 'white', display: 'flex', flexDirection: 'column', padding: 10, borderRadius: 5 }}>
+                                        <h3>Informations générales</h3>
+                                        <span>Nom: {data.nom}</span>
+                                        <span>Categorie: {data.categorie}</span>
+                                        <span>Orde / Positionnement: {data.ordre}</span>
+                                        <span>description: {data.description}</span>
+                                        <span>Nombre Article: {data.nombreArticle}</span>
+                                    </div>
+                                </Col>
+                            </Row>
+                            <ListArticleRubrique idRubrique={data.id} />
+                        </>
+                }
             </Container>
         </>
     )
@@ -58,7 +65,7 @@ export default function ShowRubrique() {
 const ListArticleRubrique = ({ idRubrique }) => {
     const [pageNumber, setPageNumber] = useState(0)
     const { isLoading, data, error } = useFetch(`/media/listarticlerubrique/${idRubrique}/${pageNumber}`, 'GET', null, null)
-    console.log("data artices de la rubrique == ", data)
+    //console.log("data artices de la rubrique == ", data)
     return (
         <>
             <Row style={{ marginTop: 10 }}>

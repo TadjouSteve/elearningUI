@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { MessageErrorServeur } from '../../../../../composants/MessageComponent'
 import SaveComponent from '../../../../../composants/SaveComponent'
-import { FormRubrique } from '../FormRubrique';
 import { Button } from '@mui/material';
+import FormArticle from '../FormArticle';
 
-export default function CreateRubrique() {
-    const requestURL = '/admin/media/rubrique/';
-    const [formRubrique, setFormRubrique] = useState({})
+export default function CreateArticle() {
+    const requestURL = '/admin/media/article/';
+    const [formArticle, setFormArticle] = useState({})
+    const [idModule, setIdModule] = useState(-1)
     const [save, setSave] = useState(false)
     const [errorServeur, setErrorServeur] = useState(false)
     const [error, setError] = useState({
@@ -15,7 +16,7 @@ export default function CreateRubrique() {
     })
 
     const navigation = useNavigate();
-    const ajoutRubrique = () => {
+    const ajoutArticle = () => {
         setError(prev => ({ ...prev, textError: null }))
         setErrorServeur(false)
         setSave(true)
@@ -25,14 +26,14 @@ export default function CreateRubrique() {
         <>
             <div className="headerPage" style={{ backgroundColor: '#17bd08cc', display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }} >
                 <div id="Links" style={{ display: "flex", flexDirection: "column", fontWeight: "500", color: 'white' }}>
-                    <span>Ajout d'une rubrique</span>
+                    <span>Ajout d'un article</span>
                     <span style={{ fontWeight: "normal", }}>
-                        <Link to={'/rubrique'} style={{ textDecorationLine: 'underline', color: 'white' }} >   Rubriques  </Link><span style={{ margin: '3px' }}> / </span>
-                        <Link to={'/rubrique/creer'} style={{ textDecorationLine: 'underline', color: 'white' }} > ajout d'une rubrique </Link>
+                        <Link to={'/article'} style={{ textDecorationLine: 'underline', color: 'white' }} >   Articles  </Link><span style={{ margin: '3px' }}> / </span>
+                        <Link to={'/article/creer'} style={{ textDecorationLine: 'underline', color: 'white' }} > ajout d'un article </Link>
                     </span>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'row', gap: 5 }}>
-                    <Button variant='contained' onClick={() => ajoutRubrique()} color='success'>Enregistrer</Button>
+                    <Button variant='contained' onClick={() => ajoutArticle()} color='success'>Enregistrer</Button>
                     <Button variant='contained' onClick={() => { navigation(-1) }} color='error'>Annuler</Button>
                 </div>
             </div>
@@ -42,9 +43,9 @@ export default function CreateRubrique() {
                     setSave={setSave}
                     save={save}
                     requestURL={requestURL}
-                    requestBody={formRubrique}
+                    requestBody={formArticle}
                     requestMethode={'POST'}
-                    requestParam={null}
+                    requestParam={idModule}
                     setErrorServeur={setErrorServeur}
                     setError={setError}
                     redirected={true}
@@ -56,9 +57,7 @@ export default function CreateRubrique() {
                 </div>
             }
 
-            <FormRubrique form={formRubrique} setForm={setFormRubrique} requestMethode='POST' />
+            <FormArticle form={formArticle} setForm={setFormArticle} setIdModule={setIdModule} requestMethode='POST' />
         </>
     )
 }
-
-

@@ -23,6 +23,8 @@ import CreateProfesseur from './pages/AdminPages/Professeur/CreateProfesseur';
 import Rubrique from './pages/AdminPages/Media/Rubrique';
 import CreateRubrique from './pages/AdminPages/Media/Rubrique/CreateRubrique';
 import ShowRubrique from './pages/AdminPages/Media/Rubrique/ShowRubrique';
+import Article from './pages/AdminPages/Media/Article';
+import CreateArticle from './pages/AdminPages/Media/Article/CreateArticle';
 //const AppContext = createContext();
 
 function App() {
@@ -73,14 +75,20 @@ function App() {
                 <Route path="/etudiants" element={<Etudiant />}></Route>
                 <Route path="/statetudiant" element={<StatEtudiant />}></Route>
                 <Route path="/etudiant/:matriculeEtudiant" element={<ShowEtudiant />}></Route>
+
                 <Route path="/professeur" element={<Professeur />}></Route>
                 <Route path="/professeurs" element={<Professeur />}></Route>
                 <Route path="/professeur/ajouter" element={<CreateProfesseur />}></Route>
                 <Route path="/professeur/creer" element={<CreateProfesseur />}></Route>
                 <Route path="/professeur/:matricule" element={<ShowProfesseur />}></Route>
+
                 <Route path="/rubrique/" element={<Rubrique />}></Route>
                 <Route path="/rubrique/creer" element={<CreateRubrique />}></Route>
                 <Route path="/rubrique/:idRubrique" element={<ShowRubrique />}></Route>
+
+                <Route path="/article/" element={<Article />}></Route>
+                <Route path="/article/creer" element={<CreateArticle />}></Route>
+                <Route path="/article/:idArticle" element={<ShowRubrique />}></Route>
 
               </>
             }

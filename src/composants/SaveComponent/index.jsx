@@ -13,7 +13,8 @@ export default function SaveComponent({ setErrorServeur, setSave, setOpen, setEr
     const { isOnline, language, setUser } = useContext(AppContext);
     const { isLoading, data, error } = useFetch(requestURL, requestMethode, requestBody, requestParam)
     const navigation = useNavigate();
-
+    console.log("donner retour == ", data)
+    console.log("isRedirected? == ", redirected)
     if (isLoading) {
         return (
             <div style={{ marginLeft: '40%' }} >
@@ -35,16 +36,19 @@ export default function SaveComponent({ setErrorServeur, setSave, setOpen, setEr
             setError((prevError) => ({ ...prevError, textError: data.message }))
             setSave(false)
         } else {
-            if (setUpdate) {
-                setUpdate(prevUpdate => !prevUpdate)
 
-            }
-            if (setOpen) {
-                setOpen(false)
-            }
-
-            if (redirected && data && data.url) {
+            if (redirected == true) {
+                console.log("Redirected url == ", data.url)
                 navigation(data.url)
+            } else {
+                if (setUpdate) {
+                    setUpdate(prevUpdate => !prevUpdate)
+
+                }
+                if (setOpen) {
+                    setOpen(false)
+                }
+
             }
             //navigation('/professeur/' + data.matricule)
         }

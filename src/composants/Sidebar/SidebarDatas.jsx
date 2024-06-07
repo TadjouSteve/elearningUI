@@ -127,8 +127,14 @@ export const SidebarDatas = [
         subMenu: [
             {
                 userLevel: 0,
-                title: 'Rubrique',
+                title: 'Rubriques',
                 path: '/rubrique',
+                cName: 'submenu-text',
+            },
+            {
+                userLevel: 0,
+                title: 'Articles',
+                path: '/article',
                 cName: 'submenu-text',
             },
             {
