@@ -13,7 +13,7 @@ export default function ShowArticle() {
     //console.log("data rubrique == ", data)
 
     const handleModifierClick = () => {
-        // Logique pour gérer le clic sur le bouton "Modifier"
+        // Logique pour gérer le clic sur le bouton "Modifier" suppert3jhgS
     }
     return (
         <>
