@@ -1,0 +1,45 @@
+/* Styles pour les tablettes et ordinateur */
+
+@media (min-width: 769px) {
+
+    /* Styles pour les tablettes */
+
+    .imgApropos {
+        height: 150px;
+        width: 100%;
+
+        background-size: cover;
+        /* Ajustez le dimensionnement de l'image */
+        background-repeat: no-repeat;
+        /* background-color: red; */
+    }
+
+}
+
+
+/* Styles pour les smartphones */
+@media (max-width: 768px) {
+
+    /* Styles pour les smartphones */
+
+    .imgApropos {
+        height: 95px;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        background-size: cover;
+        /* Ajustez le dimensionnement de l'image */
+        background-repeat: no-repeat;
+        /* background-color: red; */
+    }
+
+}
+
+.imgApropos {
+    background-image: url(/public/images/footerImage.png);
+    display: flex;
+    justify-content: center
+}
+
+
+

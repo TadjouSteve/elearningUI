@@ -1,0 +1,145 @@
+.mainHaderContent {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    width: 100%;
+
+    background-size: cover;
+    /* Ajustez le dimensionnement de l'image */
+    background-repeat: no-repeat;
+    justify-content: center;
+    margin-bottom: 50px;
+    position: relative;
+
+    font-size: 17px;
+    font-weight: 500;
+    line-height: 22px;
+    cursor: pointer;
+}
+
+.subDivHeaderContent {
+    width: 80%;
+    left: 10%;
+    height: 150px;
+    position: absolute;
+    bottom: -40px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #fa9500;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+
+
+    /* overflow-y: hidden; */
+
+}
+
+.userProfilButtonAction {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    /* background-color: palevioletred; */
+}
+
+.navigationHeaderContent {
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* background-color: yellow; */
+    gap: 15%;
+    border-top: 2px solid #fa9500;
+}
+
+.itemNavigationHeaderContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    /* background-color: violet; */
+    min-width: 20%;
+    font-weight: bold;
+    padding: 3px;
+    border-bottom: 3px solid rgb(101, 95, 95);
+    cursor: pointer;
+}
+
+.selectedNav {
+    background-color: rgba(238, 129, 57, 0.936);
+    border-bottom: 3px solid #fa9500;
+    color: white;
+    border-radius: 3px;
+}
+
+
+.userProfil {
+    min-width: 25%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.profil {
+    width: 70px;
+    height: 70px;
+    background-color: gray;
+    border-radius: 50%;
+
+}
+
+.infoUser {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+.nomCompletHedercontent {
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    letter-spacing: -0.01em;
+    text-align: left;
+}
+
+.metierHedercontent {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+
+    /* Styles pour les smartphones */
+    .nomCompletHedercontent {
+        font-size: 17px;
+        font-weight: 600;
+        line-height: 25px;
+        letter-spacing: -0.01em;
+        text-align: left;
+    }
+
+    .metierHedercontent {
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 19px;
+        text-align: left;
+        font-style: italic;
+    }
+
+    .itemNavigationHeaderContent {
+        font-size: 15px;
+    }
+}

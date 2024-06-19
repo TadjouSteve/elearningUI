@@ -1,0 +1,118 @@
+.itemListDiv:hover {
+    background-color: #f1524f;
+    color: white;
+    transition: 0.5s;
+
+}
+
+.itemListDiv:active {
+    background-color: #1008f3;
+    color: white;
+    transition: 0.5s;
+}
+
+.activeItemMenu {
+    background-color: #f7221f;
+    color: white;
+}
+
+
+@media (min-width: 769px) {
+    .mainDivHeader {
+        height: 60px;
+        font-size: 0.8rem;
+    }
+
+    /* Styles pour les tablettes */
+    .bouttonhead {
+        width: 200px;
+        height: 60px;
+        gap: 0px;
+        opacity: 0px;
+        box-shadow: 0px 4px 4px 0px #F7262140;
+        margin-right: 10px;
+    }
+
+    .logo {
+        width: 100px
+    }
+
+    .smallScreanList {
+        display: none;
+    }
+
+    .largeScreanList {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        cursor: default;
+    }
+}
+
+
+/* Styles pour les smartphones */
+@media (max-width: 768px) {
+    .mainDivHeader {
+        height: 40px;
+    }
+
+    /* Styles pour les smartphones */
+    .bouttonhead {
+        width: 130px;
+        height: 30px;
+        margin-right: 10px;
+        gap: 0px;
+        opacity: 0px;
+        box-shadow: 0px 4px 4px 0px #F7262140;
+    }
+
+    .logo {
+        width: 60px
+    }
+
+    .smallScreanList {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        cursor: default;
+    }
+
+    .largeScreanList {
+        display: none;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* just for text size
+@media (min-width: 1200px) {
+    .mainDivHeader {
+        font-size: 1.2rem;
+    }
+} */
+
+
+@media (min-width: 1000px) {
+    .mainDivHeader {
+        font-size: 1.1rem;
+    }
+}

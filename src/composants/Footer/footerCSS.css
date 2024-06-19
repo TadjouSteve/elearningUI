@@ -1,0 +1,70 @@
+.mainDivFooter {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: 3px solid #F7262140;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+
+    font-size: 19px;
+    line-height: 27px;
+    color: #262626;
+}
+
+
+.footerImageFooter {
+    height: 150px;
+    width: 100%;
+
+    background-size: cover;
+    /* Ajustez le dimensionnement de l'image */
+    background-repeat: no-repeat;
+    /* background-color: red; */
+}
+
+
+.containDivFooter {
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+.subContainDivFooter {
+    width: 20%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.imageLogoFooter {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+/* Styles pour les Tablette et ordinateur */
+@media (min-width: 769px) {
+    /* Styles pour les Tablette et ordinateur */
+
+}
+
+/* Styles pour les smartphones */
+@media (max-width: 768px) {
+    /* Styles pour les smartphones */
+
+    .containDivFooter {
+        flex-direction: column;
+    }
+
+    .subContainDivFooter {
+        width: 100%;
+    }
+
+}
