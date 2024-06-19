@@ -9,13 +9,7 @@ export default function ShowRubrique() {
    const { idRubrique } = useParams();
    const navigation = useNavigate();
    const [update, setUpdate] = useState(false);
-   const { isLoading, data, error } = useFetch(
-      `/media/rubrique/${idRubrique}`,
-      "GET",
-      null,
-      null,
-      update
-   );
+   const { isLoading, data, error } = useFetch(`/media/rubrique/${idRubrique}`, "GET", null, null, update);
    //console.log("data rubrique == ", data)
 
    const handleModifierClick = () => {
@@ -43,33 +37,22 @@ export default function ShowRubrique() {
                }}
             >
                <span>
-                  Rubrique{" "}
-                  <span>{data && data.nom ? `${data.nom}` : null}</span>
+                  Rubrique <span>{data && data.nom ? `${data.nom}` : null}</span>
                </span>
                <span style={{ fontWeight: "normal" }}>
-                  <Link
-                     to={"/rubrique"}
-                     style={{ textDecorationLine: "underline", color: "white" }}
-                  >
+                  <Link to={"/rubrique"} style={{ textDecorationLine: "underline", color: "white" }}>
                      {" "}
                      Rubriques{" "}
                   </Link>
                   <span style={{ margin: "3px" }}> / </span>
-                  <Link
-                     to={"/rubrique/" + idRubrique}
-                     style={{ textDecorationLine: "underline", color: "white" }}
-                  >
+                  <Link to={"/rubrique/" + idRubrique} style={{ textDecorationLine: "underline", color: "white" }}>
                      {" "}
                      {data && data.nom ? `${data.nom}` : null}{" "}
                   </Link>
                </span>
             </div>
             <div style={{ display: "flex", flexDirection: "row", gap: 5 }}>
-               <Button
-                  variant="contained"
-                  onClick={handleModifierClick}
-                  color="success"
-               >
+               <Button variant="contained" onClick={handleModifierClick} color="success">
                   Modifier
                </Button>
                <Button
@@ -144,12 +127,7 @@ const ListArticleRubrique = ({ idRubrique }) => {
                <MessageErrorServeur />
             ) : data && data.content && data.content.length > 0 ? (
                <Col>
-                  <Table
-                     width={"100%"}
-                     hover
-                     size="sm"
-                     style={{ marginBottom: "0px" }}
-                  >
+                  <Table width={"100%"} hover size="sm" style={{ marginBottom: "0px" }}>
                      <thead
                         className="header"
                         style={{
@@ -171,14 +149,11 @@ const ListArticleRubrique = ({ idRubrique }) => {
                               <td>{index + 1}</td>
                               <td>{article.titre}</td>
                               <td className="body_tr">
-                                 {new Date(article.date).toLocaleDateString(
-                                    "fr-FR",
-                                    {
-                                       day: "numeric",
-                                       month: "long",
-                                       year: "numeric",
-                                    }
-                                 )}{" "}
+                                 {new Date(article.date).toLocaleDateString("fr-FR", {
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric",
+                                 })}{" "}
                               </td>
                               <td>{article.statut}</td>
                            </tr>

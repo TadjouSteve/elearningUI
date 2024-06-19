@@ -20,10 +20,7 @@ export function useFetch(url, method, body, param, update, isMultipart) {
       setLoading(true);
       setError(false);
       var myHeaders = new Headers();
-      myHeaders.append(
-         "Content-Type",
-         isMultipart ? "multipart/form-data" : "application/json"
-      );
+      myHeaders.append("Content-Type", isMultipart ? "multipart/form-data" : "application/json");
       myHeaders.append("Connection", "Keep-alive");
 
       const username = "admin";

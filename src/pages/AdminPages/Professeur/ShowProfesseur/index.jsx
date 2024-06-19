@@ -2,15 +2,7 @@ import React, { useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { MessageErrorServeur } from "../../../../composants/MessageComponent";
-import {
-   Checkbox,
-   CircularProgress,
-   Dialog,
-   DialogContent,
-   DialogTitle,
-   Button,
-   DialogActions,
-} from "@mui/material";
+import { Checkbox, CircularProgress, Dialog, DialogContent, DialogTitle, Button, DialogActions } from "@mui/material";
 import { useFetch } from "../../../../utils/hooks/FetchData";
 import SaveComponent from "../../../../composants/SaveComponent";
 
@@ -20,13 +12,7 @@ export default function ShowProfesseur() {
    const [filter, setFilter] = useState(null);
    //const { isOnline, language } = useContext(AppContext);
    const [update, setUpdate] = useState(false);
-   const { isLoading, data, error } = useFetch(
-      `/admin/professeur/${matricule}`,
-      "GET",
-      null,
-      filter,
-      update
-   );
+   const { isLoading, data, error } = useFetch(`/admin/professeur/${matricule}`, "GET", null, filter, update);
    console.log("data prof == ", data);
    return (
       <>
@@ -49,30 +35,17 @@ export default function ShowProfesseur() {
                }}
             >
                <span>
-                  Compte Professeur{" "}
-                  <span>
-                     {data && data.professeur
-                        ? `Mr/Mm. ${data.professeur.nom}`
-                        : null}
-                  </span>
+                  Compte Professeur <span>{data && data.professeur ? `Mr/Mm. ${data.professeur.nom}` : null}</span>
                </span>
                <span style={{ fontWeight: "normal" }}>
-                  <Link
-                     to={"/professeurs"}
-                     style={{ textDecorationLine: "underline", color: "white" }}
-                  >
+                  <Link to={"/professeurs"} style={{ textDecorationLine: "underline", color: "white" }}>
                      {" "}
                      Professeurs{" "}
                   </Link>
                   <span style={{ margin: "3px" }}> / </span>
-                  <Link
-                     to={"/professeur/" + matricule}
-                     style={{ textDecorationLine: "underline", color: "white" }}
-                  >
+                  <Link to={"/professeur/" + matricule} style={{ textDecorationLine: "underline", color: "white" }}>
                      {" "}
-                     {data && data.professeur
-                        ? `Mr/Mm. ${data.professeur.nom}`
-                        : null}{" "}
+                     {data && data.professeur ? `Mr/Mm. ${data.professeur.nom}` : null}{" "}
                   </Link>
                </span>
             </div>
@@ -117,28 +90,15 @@ export default function ShowProfesseur() {
                                     }}
                                  >
                                     <h3>Informations générales</h3>
-                                    <span>
-                                       Matricule : {data.professeur.matricule}
-                                    </span>
+                                    <span>Matricule : {data.professeur.matricule}</span>
                                     <span>Nom : {data.professeur.nom}</span>
-                                    <span>
-                                       Prénom : {data.professeur.prenom}
-                                    </span>
+                                    <span>Prénom : {data.professeur.prenom}</span>
                                     <span>Email : {data.professeur.email}</span>
-                                    <span>
-                                       Date d'inscription :{" "}
-                                       {data.professeur.dateInscription}
-                                    </span>
-                                    <span>
-                                       Profession : {data.professeur.profession}
-                                    </span>
-                                    <span>
-                                       Region : {data.professeur.region}
-                                    </span>
+                                    <span>Date d'inscription : {data.professeur.dateInscription}</span>
+                                    <span>Profession : {data.professeur.profession}</span>
+                                    <span>Region : {data.professeur.region}</span>
                                     <span>Age : {data.professeur.age}</span>
-                                    <span>
-                                       Statut : {data.professeur.statut}
-                                    </span>
+                                    <span>Statut : {data.professeur.statut}</span>
                                  </div>
                               </Col>
                            </Row>
@@ -155,22 +115,11 @@ export default function ShowProfesseur() {
                                     }}
                                  >
                                     <h3>Modules associer a ce professeur</h3>
-                                    <AjoutModuleToProf
-                                       formProf={data}
-                                       setUpdate={setUpdate}
-                                       update={update}
-                                    />
+                                    <AjoutModuleToProf formProf={data} setUpdate={setUpdate} update={update} />
                                     {data.moduleSimpleForms.length === 0 ? (
-                                       <span style={{ fontSize: 17 }}>
-                                          Aucun module Associer a ce professeur
-                                       </span>
+                                       <span style={{ fontSize: 17 }}>Aucun module Associer a ce professeur</span>
                                     ) : (
-                                       <Table
-                                          width={"100%"}
-                                          hover
-                                          size="sm"
-                                          style={{ marginBottom: "0px" }}
-                                       >
+                                       <Table width={"100%"} hover size="sm" style={{ marginBottom: "0px" }}>
                                           <thead
                                              className="header"
                                              style={{
@@ -186,20 +135,13 @@ export default function ShowProfesseur() {
                                              </tr>
                                           </thead>
                                           <tbody>
-                                             {data.moduleSimpleForms.map(
-                                                (module, index) => (
-                                                   <tr
-                                                      key={module.id}
-                                                      style={{ height: "40px" }}
-                                                   >
-                                                      <td>{index + 1}</td>
-                                                      <td>{module.titre}</td>
-                                                      <td>
-                                                         {module.nbrChapitre}
-                                                      </td>
-                                                   </tr>
-                                                )
-                                             )}
+                                             {data.moduleSimpleForms.map((module, index) => (
+                                                <tr key={module.id} style={{ height: "40px" }}>
+                                                   <td>{index + 1}</td>
+                                                   <td>{module.titre}</td>
+                                                   <td>{module.nbrChapitre}</td>
+                                                </tr>
+                                             ))}
                                           </tbody>
                                        </Table>
                                     )}
@@ -277,19 +219,11 @@ const AjoutModuleToProf = ({ formProf, setUpdate, update }) => {
          <Button variant="contained" onClick={handleClickOpen} color="success">
             Associer ou dissocier un module
          </Button>
-         <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="form-dialog-title"
-         >
-            <DialogTitle id="form-dialog-title">
-               Ajout d'un module au professur {formProf.professeur.nom}
-            </DialogTitle>
+         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <DialogTitle id="form-dialog-title">Ajout d'un module au professur {formProf.professeur.nom}</DialogTitle>
             <DialogContent>
                <div>
-                  <span>
-                     Selectionner les modules a associer a ce professeur
-                  </span>
+                  <span>Selectionner les modules a associer a ce professeur</span>
                   <br />
                   {errorServeur && <MessageErrorServeur />}
                   {save && (
@@ -299,11 +233,7 @@ const AjoutModuleToProf = ({ formProf, setUpdate, update }) => {
                         requestURL={requestURL}
                         requestBody={formLink}
                         requestMethode={"POST"}
-                        requestParam={
-                           formProf && formProf.professeur
-                              ? formProf.professeur.matricule
-                              : null
-                        }
+                        requestParam={formProf && formProf.professeur ? formProf.professeur.matricule : null}
                         setErrorServeur={setErrorServeur}
                         setError={setError}
                         setUpdate={setUpdate}
@@ -345,9 +275,7 @@ const AjoutModuleToProf = ({ formProf, setUpdate, update }) => {
                                 defaultChecked={formProf.moduleSimpleForms.some(
                                    (item2) => item2.idModule === item.idModule
                                 )}
-                                onChange={(event) =>
-                                   handleLinkModule(event, item.idModule)
-                                }
+                                onChange={(event) => handleLinkModule(event, item.idModule)}
                              />
                           </div>
                        ))
