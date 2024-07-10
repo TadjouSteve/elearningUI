@@ -56,7 +56,7 @@
     border-top: #131212 solid 5px;
 }
 
-span {
+.navbar span {
     margin-left: 16px;
     margin-right: auto;
 }

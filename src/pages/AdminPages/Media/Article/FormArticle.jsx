@@ -1,21 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { CircularProgress, FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { Col, Container, Row } from "react-bootstrap";
 import { MessageErrorServeur } from "../../../../composants/MessageComponent";
 import { useFetch } from "../../../../utils/hooks/FetchData";
+import SaveComponent from "../../../../composants/SaveComponent";
 
-export default function FormArticle({ form, setForm, setIdModule }) {
+export default function FormArticle({ initialForm, setErrorServeur, setError, setSave, save, requestMethode }) {
+   const requestURL = "/admin/media/article/";
+   const [idModule, setIdModule] = useState(initialForm ? (initialForm.rubrique ? initialForm.rubrique.id : -1) : -1);
+   const [form, setForm] = useState(initialForm ? initialForm : {});
+
    const { isLoading, data, error } = useFetch(`/metadata/rubriques/`, "GET", null);
-   console.log("Meta data == ", data);
+   //console.log("Meta data == ", data);
    const handleSelectChange = (event) => {
       const rubrique = data.find((rubrique) => rubrique.nom === event.target.value);
       console.log("rubrique", rubrique);
       setIdModule(rubrique.id);
-      setForm({ ...form, rubrique });
+      setForm({ ...form, rubrique: rubrique });
    };
 
    return (
-      <>
+      <Container fluid>
+         {save && (
+            <SaveComponent
+               setSave={setSave}
+               requestURL={requestURL}
+               requestBody={form}
+               requestMethode={requestMethode ? requestMethode : "POST"}
+               requestParam={idModule}
+               setErrorServeur={setErrorServeur}
+               setError={setError}
+               redirected={true}
+            />
+         )}
          {isLoading ? (
             <div style={{ marginLeft: "40%" }}>
                <CircularProgress size={40} />
@@ -23,7 +40,7 @@ export default function FormArticle({ form, setForm, setIdModule }) {
          ) : error ? (
             <MessageErrorServeur />
          ) : (
-            <Container fluid>
+            <>
                <Row style={{ backgroundColor: "white", borderRadius: 5, margin: 10, padding: 10 }}>
                   <div style={{ display: "flex", flexDirection: "row", gap: 10, marginBottom: 20, marginTop: 10 }}>
                      <FormControl fullWidth>
@@ -47,9 +64,24 @@ export default function FormArticle({ form, setForm, setIdModule }) {
                   <div style={{ display: "flex", flexDirection: "row", gap: 10, marginBottom: 10 }}>
                      <Col>
                         <TextField
+                           label="Sur titre"
+                           placeholder="Ex: Nouvelle entreprise crée au cameroun"
+                           fullWidth
+                           value={form.surTitre}
+                           onChange={(e) => {
+                              setForm({ ...form, surTitre: e.target.value });
+                           }}
+                        />
+                     </Col>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "row", gap: 10, marginBottom: 10 }}>
+                     <Col>
+                        <TextField
                            label="Titre de l'article"
                            placeholder="Ex: Nouvelle entreprise crée au cameroun"
                            fullWidth
+                           multiline
+                           rows={2}
                            value={form.titre}
                            onChange={(e) => {
                               setForm({ ...form, titre: e.target.value });
@@ -63,6 +95,8 @@ export default function FormArticle({ form, setForm, setIdModule }) {
                            label="Sous Titre"
                            placeholder="Ex: L'essort des nouvelles entreprise au cameroun"
                            fullWidth
+                           multiline
+                           rows={5}
                            value={form.sousTitre}
                            onChange={(e) => {
                               setForm({ ...form, sousTitre: e.target.value });
@@ -77,7 +111,7 @@ export default function FormArticle({ form, setForm, setIdModule }) {
                            label="Contenue textuel de l'article"
                            placeholder="le texte de l'article ici...."
                            multiline
-                           rows={8}
+                           rows={20}
                            fullWidth
                            value={form.texte}
                            onChange={(e) => {
@@ -111,8 +145,8 @@ export default function FormArticle({ form, setForm, setIdModule }) {
                      </Col>
                   </div>
                </Row>
-            </Container>
+            </>
          )}
-      </>
+      </Container>
    );
 }

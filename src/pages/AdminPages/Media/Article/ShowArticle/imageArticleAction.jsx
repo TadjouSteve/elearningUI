@@ -145,8 +145,13 @@ export function DisplayImage({ idImage, idArticle, setUpdate, update }) {
    }, [action, update, imgurl]);
 
    return (
-      <div style={{ padding: "0px", maxWidth: "100%", width: "100%" }}>
-         <Image ref={imageRef} id="myImg" rounded style={{ maxWidth: "100%", width: "100%" }} />
+      <div style={{ padding: "0px", maxWidth: "100%", width: "100%", height: "100%" }}>
+         <Image
+            ref={imageRef}
+            id="myImg"
+            rounded
+            style={{ maxWidth: "100%", width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
+         />
       </div>
    );
 }

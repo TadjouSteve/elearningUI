@@ -1,10 +1,24 @@
+.rubriqueselected01{
+    transition: 200ms;
+    background-color: #f1524f;
+    color: #ffffff;
+}
+
+.rubriqueselected01:hover{
+    transition: 200ms;
+    transform: scale(1.05);
+    background-color: #f1524f;
+
+}
+
+
 .mediablocArticle{
     transition: 250ms;
     width: 350px;
-    height: 300px;
+    height: 375px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 5;
     border-radius: 5px;
 
     box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
@@ -15,3 +29,56 @@
     transform: scale(1.05); /* Agrandit légèrement */
     box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.2); /* Ombre plus prononcée */
 }
+
+.mediablocArticleImanage{
+    width: 100%;
+    height: 63%;
+    background-color:rgba(81, 88, 118, 0.285); 
+}
+
+
+.mediablocArticleSurTitreDiv{
+    width: 100%;
+    height: 7%;
+    /* background-color: #27f056; */
+}
+
+.mediablocArticleTitreDiv{
+    padding: 5px;
+    height: 21%;
+}
+
+.mediablocArticleSurTitreDivTexte{
+    font-size:13px ;
+    color: white;
+    font-weight: 700;
+    display: inline-block;
+    margin-left: 2px;
+    padding: 2px;
+    padding-left: 3px;
+    min-width: 70px;
+    background-color: #f1524f;
+    letter-spacing: 0.1cap;
+}
+
+.mediablocArticleTitreTexte{
+     margin: 0; 
+    font-size: 15;
+    font-weight:bold;
+}
+
+.mediablocArticleDateDiv01{
+    padding: 5px;
+    height: 9%;
+    /* background-color: red; */
+}
+
+.mediablocArticleDateTexte01{
+    color: grey;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0;
+    font-style: italic;
+
+}
+

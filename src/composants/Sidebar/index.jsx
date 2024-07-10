@@ -91,7 +91,7 @@ function Sidebar({ setLarge, large }) {
                               className={indexMenuSelected === item.order ? "nav-selected" : null}
                            >
                               {item.icon}
-                              <span>{item.title}</span>
+                              <span style={{ margin: 16 }}>{item.title}</span>
                               {item.subMenu ? (
                                  indexMenuSelected === item.order ? (
                                     <FaIcons.FaAngleUp />

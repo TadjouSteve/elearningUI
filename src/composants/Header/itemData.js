@@ -17,17 +17,17 @@ export const itemData = [
     //     nomEn: 'Our courses',
     //     lien: '/formation'
     // },
-    {
-        id: 4,
-        nom: 'Forum',
-        nomEn: 'Forum',
-        lien: '/forum'
-    },
+    // {
+    //     id: 4,
+    //     nom: 'Forum',
+    //     nomEn: 'Forum',
+    //     lien: '/forum'
+    // },
     {
         id: 5,
-        nom: 'Articles',
-        nomEn: 'Articles',
-        lien: '/articles'
+        nom: 'Medias',
+        nomEn: 'Medias',
+        lien: '/medias'
     },
     // {
     //     id: 6,
@@ -113,16 +113,4 @@ export const settingsProfil = [
     }
 ];
 
-<<<<<<< HEAD
-=======
 
-{/* <div>
-    {itemData.map(item => (
-        <div className='itemListDiv' key={item.id}>
-            <span className='itemList' onClick={() => navigation(item.lien)}>
-                {isFrench ? item.nom : item.nomEn}
-            </span>
-        </div>
-    ))}
-</div> */}
->>>>>>> 4f0d1ddf3cdb1257a6b4ba2b46751deaaae68b9e

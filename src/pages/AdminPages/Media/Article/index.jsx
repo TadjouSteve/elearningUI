@@ -66,6 +66,7 @@ export default function Article() {
                                  <th>Titre</th>
                                  <th>Rubrique</th>
                                  <th>Date</th>
+                                 <th>Nbr vue(s)</th>
                                  <th>Statut</th>
                                  <th>Action</th>
                               </tr>
@@ -74,12 +75,32 @@ export default function Article() {
                               {data.content.map((article, index) => (
                                  <tr
                                     key={article.id + "idarticle"}
-                                    style={{ height: "40px" }}
+                                    style={{
+                                       height: "40px",
+                                       backgroundColor:
+                                          article.statut === "PUBLIER"
+                                             ? "litegreen"
+                                             : article.statut === "SUSPENDU"
+                                             ? "red"
+                                             : "red",
+                                    }}
                                     onClick={() => {
                                        navigation(`/article/${article.id}`);
                                     }}
                                  >
-                                    <td className="body_tr">{index + 1} </td>
+                                    <td
+                                       className="body_tr"
+                                       style={{
+                                          backgroundColor:
+                                             article.statut === "PUBLIER"
+                                                ? "green"
+                                                : article.statut === "SUSPENDU"
+                                                ? "red"
+                                                : "#fff",
+                                       }}
+                                    >
+                                       {index + 1}{" "}
+                                    </td>
                                     <td className="body_tr">{article.titre}</td>
                                     <td className="body_tr">{article.rubrique ? article.rubrique.nom : "---"}</td>
                                     <td className="body_tr">
@@ -89,7 +110,25 @@ export default function Article() {
                                           year: "numeric",
                                        })}{" "}
                                     </td>
-                                    <td className="body_tr">{article.statut}.</td>
+                                    <td className="body_tr">
+                                       {article.etat} {article.etat > 1 ? " vues" : " vue"}
+                                    </td>
+                                    <td
+                                       className="body_tr"
+                                       style={{
+                                          backgroundColor:
+                                             article.statut === "PUBLIER"
+                                                ? "green"
+                                                : article.statut === "SUSPENDU"
+                                                ? "red"
+                                                : "#fff",
+                                          fontWeight: 700,
+                                          color: article.statut === "EN_ATTENTE" ? "black" : "white",
+                                          textAlign: "center",
+                                       }}
+                                    >
+                                       {article.statut}
+                                    </td>
                                     <td className="body_tr">
                                        <div style={{ display: "flex", flexDirection: "row", gap: 5 }}>
                                           <Button

@@ -14,6 +14,7 @@ export default function ShowRubrique() {
 
    const handleModifierClick = () => {
       // Logique pour gérer le clic sur le bouton "Modifier"
+      navigation(`/rubrique/alter/${idRubrique}`);
    };
 
    return (
@@ -140,6 +141,7 @@ const ListArticleRubrique = ({ idRubrique }) => {
                            <th>N°</th>
                            <th>Titre</th>
                            <th>Date creation</th>
+                           <th>Nbr vues</th>
                            <th>Statut</th>
                         </tr>
                      </thead>
@@ -155,7 +157,24 @@ const ListArticleRubrique = ({ idRubrique }) => {
                                     year: "numeric",
                                  })}{" "}
                               </td>
-                              <td>{article.statut}</td>
+                              <td>
+                                 {article.etat} {article.etat > 1 ? " vues" : " vue"}
+                              </td>
+                              <td
+                                 style={{
+                                    backgroundColor:
+                                       article.statut === "PUBLIER"
+                                          ? "green"
+                                          : article.statut === "SUSPENDU"
+                                          ? "red"
+                                          : "#fff",
+                                    fontWeight: 700,
+                                    color: article.statut === "EN_ATTENTE" ? "black" : "white",
+                                    textAlign: "center",
+                                 }}
+                              >
+                                 {article.statut}
+                              </td>
                            </tr>
                         ))}
                      </tbody>

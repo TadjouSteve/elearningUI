@@ -266,7 +266,7 @@ const AjoutModuleToProf = ({ formProf, setUpdate, update }) => {
                                 alignItems: "center",
                              }}
                           >
-                             <span>{item.titre}</span>
+                             <span style={{ flex: 4 }}>{item.titre}</span>
                              <Checkbox
                                 color="primary"
                                 inputProps={{
@@ -276,6 +276,7 @@ const AjoutModuleToProf = ({ formProf, setUpdate, update }) => {
                                    (item2) => item2.idModule === item.idModule
                                 )}
                                 onChange={(event) => handleLinkModule(event, item.idModule)}
+                                style={{ flex: 1 }}
                              />
                           </div>
                        ))

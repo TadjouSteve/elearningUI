@@ -1,0 +1,146 @@
+
+
+/* .rubriqueselected0218{
+    background-color: white;
+    color: black;
+} */
+
+.rubriqueselected0218:hover{
+    transform: scale(1.05);
+    transition: 500ms;
+    white-space: pre-wrap;
+    background-color: #f1524f;
+    color: white;
+}
+
+
+
+.corpsArticle{
+    white-space: pre-wrap;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+    padding-bottom: 5px;
+    border-bottom: 10px solid #ccc; /* Couleur de la bordure */
+}
+
+.surTitreDiv{
+    width: max-content;
+    background-color: #f1524f;
+    min-width: 200px;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.surTitreTexte{
+    /* display: inline-block; */
+    /* min-width: 200px; */
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+}
+
+.titreArticle{
+    white-space: pre-wrap;
+    font-weight: 800;
+    font-size: 2.4rem;
+    color: #202427;
+}
+
+.sousTitre{
+    white-space: pre-wrap;
+    font-weight: 400;
+    max-width: none;
+    line-height: 1.7;
+    font-size: 18px;
+    font-family: Roboto, sans-serif;
+
+}
+
+.dateArticleTexte{
+    white-space: pre-wrap;
+    margin: 0;
+    font-size: 13px;
+    color: #616972;
+    font-family: Roboto, sans-serif;
+}
+
+
+.titreImageTexte{
+    margin: 0;
+    font-size: 13px;
+    color: #616972;
+    font-weight: 500;
+    font-family: Roboto, sans-serif; 
+}
+
+.texteAllLien{
+    font-size: 13.5px;
+}
+.lienPosition{
+    text-decoration: none;
+    margin-left: 3px;
+    color: #202427;
+}
+
+.lienPosition:hover{
+    color: blue;
+    transform: scale(1.05);
+}
+
+
+.blocTexteArticle{
+    white-space: pre-wrap;
+}
+
+.corpsArticle a{
+    text-decoration: none;
+    font-weight: 500;
+    color: #f32e2a;
+}
+
+.corpsArticle a:hover{
+    transition: 100ms;
+    transform: scale(2.05);
+    color: #f30a06;
+}
+
+@media (min-width: 769px) {
+
+    .corpsArticle{
+        max-width: 850px;
+        min-width: 700px;
+    } 
+}
+
+
+/* Styles pour les smartphones */
+@media (max-width: 768px) {
+    .corpsArticle{
+        min-width: 300px;
+        /* max-width: 450px; */
+    }
+
+    .titreArticle{
+        font-weight: 800;
+        font-size: 1.5rem;
+        color: #202427;
+    }
+
+    .surTitreDiv{
+        min-width: 120px;
+        min-height: 30px;
+        max-width: 100%;
+    }
+
+    .surTitreTexte{
+        font-size: 1rem;
+    }
+}
+

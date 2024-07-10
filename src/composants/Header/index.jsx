@@ -1,12 +1,14 @@
 import React, { useContext, useState } from "react";
 import { AppContext } from "../../context";
 import "./headerCSS.css";
+import * as FaIcons from "react-icons/fa";
 import { Avatar, Button, IconButton, Menu, MenuItem, Tooltip, Typography } from "@mui/material";
 import SignInSignUp from "../SignInSignUp";
 import { useNavigate, useLocation } from "react-router-dom";
 import { itemData, itemDataAdmin, settingsProfil } from "./itemData";
 //import { AccountCircle } from "@mui/icons-material";
 import { userProfile } from "../../utils/data";
+import Cookies from "js-cookie";
 //import { removeUserCookie } from "../../utils/fonctions";
 
 export default function Header() {
@@ -16,6 +18,7 @@ export default function Header() {
 const HeaderComponent = () => {
    const { language, setLanguage, setUser, user } = useContext(AppContext);
    const [openMenuProfil, setOpenMenuProfil] = useState(false);
+   const [openVerticalMenu, setOpenVerticalMenu] = useState(false);
    const navigation = useNavigate();
    const location = useLocation();
 
@@ -24,6 +27,7 @@ const HeaderComponent = () => {
    let isFrench = language === "FR";
    const deconnexion = () => {
       setUser(null);
+      Cookies.remove("user");
       navigation("/");
    };
 
@@ -172,21 +176,75 @@ const HeaderComponent = () => {
                      flexDirection: "row",
                      alignItems: "center",
                      gap: 5,
+                     position: "relative",
                   }}
                >
-                  {user ? (
-                     <div className="buttonAction">
-                        <Button variant="outlined" color="error" onClick={() => deconnexion()}>
-                           {isFrench ? "Deconnexion" : "LogOut"}
+                  <FaIcons.FaBars
+                     size={30}
+                     onClick={() => {
+                        setOpenVerticalMenu((prev) => !prev);
+                     }}
+                  />
+                  {/* <FaIcons.FaLock
+                     size={30}
+                     onClick={() => {
+                        setOpenVerticalMenu((prev) => !prev);
+                     }}
+                  /> */}
+                  {openVerticalMenu && (
+                     <div className="verticalMenu">
+                        {itemDataFilter.map((item) => (
+                           <div
+                              className={"itemListDiv " + (location.pathname === item.lien ? " activeItemMenu" : "")}
+                              style={{
+                                 flex: 1,
+                                 height: "40px",
+                                 display: "flex",
+                                 flexDirection: "row",
+                                 alignItems: "center",
+                                 justifyContent: "center",
+                              }}
+                              key={item.id + "headerItem"}
+                              onClick={() => navigation(item.lien)}
+                           >
+                              <span className="itemList">{isFrench ? item.nom : item.nomEn}</span>
+                           </div>
+                        ))}
+                        {user ? (
+                           <div className="buttonAction">
+                              <Button variant="outlined" color="error" onClick={() => deconnexion()} fullWidth>
+                                 {isFrench ? "Deconnexion" : "LogOut"}
+                              </Button>
+                           </div>
+                        ) : (
+                           <div style={{ textAlign: "center" }}>
+                              <SignInSignUp signIn={false} fullWidth={true} />
+                           </div>
+                        )}
+
+                        <select
+                           id="language-select"
+                           value={language}
+                           style={{ textAlign: "center", minHeight: "40px", marginBottom: 10 }}
+                           onChange={handleLanguageChange}
+                        >
+                           <option value="EN">{"Francais"}</option>
+                           <option value="FR">{"English"}</option>
+                        </select>
+
+                        <Button
+                           variant="outlined"
+                           color="error"
+                           fullWidth
+                           style={{ marginBottom: 10 }}
+                           onClick={() => {
+                              setOpenVerticalMenu((prev) => !prev);
+                           }}
+                        >
+                           Fermer
                         </Button>
                      </div>
-                  ) : (
-                     <SignInSignUp signIn={false} />
                   )}
-                  <select id="language-select" value={language} onChange={handleLanguageChange}>
-                     <option value="EN">{"EN"}</option>
-                     <option value="FR">{"FR"}</option>
-                  </select>
                </div>
             </div>
          </div>

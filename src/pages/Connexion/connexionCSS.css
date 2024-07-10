@@ -1,0 +1,32 @@
+.mainDivConnexion{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80vh;
+    /* background-color: aquamarine; */
+
+    border-radius: 5px;
+
+    box-shadow: 4px 8px 16px 8px rgba(0,0,0,0.2);
+}
+
+@media (min-width: 769px) {
+    .mainDivConnexion{
+        /* min-width: 750px; */
+        max-width: 800px;
+    }
+}
+
+
+
+/* Styles pour les smartphones */
+@media (max-width: 768px) {
+    .mainDivConnexion{
+        min-width: 90%;
+        max-width: 90%;
+    }
+}
+
+
+/* css qui etait dans */

@@ -27,6 +27,7 @@ export default function ShowArticle() {
 
    const handleModifierClick = () => {
       // Logique pour gérer le clic sur le bouton "Modifier" suppert3jhgS
+      navigation(`/article/alter/${idArticle}/`);
    };
    return (
       <>
@@ -224,6 +225,30 @@ export default function ShowArticle() {
                               )}
                            </div>
 
+                           <span className="arcticleLabel1">Sur titre:</span>
+                           <div
+                              style={{
+                                 marginBottom: 10,
+                                 height: 40,
+                                 display: "flex",
+                                 alignItems: "center",
+                              }}
+                           >
+                              <span
+                                 style={{
+                                    color: "white",
+                                    fontSize: 22,
+                                    fontWeight: 800,
+                                    display: "inline-block",
+                                    minWidth: "250px",
+                                    padding: 2,
+                                    backgroundColor: "red",
+                                 }}
+                              >
+                                 {data.surTitre}
+                              </span>
+                           </div>
+
                            <span className="arcticleLabel1">Titre de l'article:</span>
                            <div name="titreDiv" style={{ marginBottom: 10 }}>
                               <span className="arcticleTitre">{data.titre}</span>
@@ -287,11 +312,11 @@ export default function ShowArticle() {
                                  borderRadius: 10,
                               }}
                            >
-                              <span>{getFullUrlWithSuffix(`/media/${data.lien}`)}</span>
+                              <span>{getFullUrlWithSuffix(`/article/${data.lien}`)}</span>
                               <button
                                  style={{ marginLeft: 20 }}
                                  onClick={() => {
-                                    copyToClipboard(getFullUrlWithSuffix(`/media/${data.lien}`));
+                                    copyToClipboard(getFullUrlWithSuffix(`/article/${data.lien}`));
                                  }}
                               >
                                  Copier

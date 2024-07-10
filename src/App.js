@@ -8,7 +8,9 @@ import { AppContext } from './context';
 import Module from './pages/Module';
 import Apropos from './pages/Apropos';
 import Transition from './pages/Transition';
-import Header from './composants/Header';
+import Cookies from "js-cookie";
+
+// import Header from './composants/Header';
 import { userProfile } from './utils/data';
 import AdminDashboard from './pages/AdminPages/AdminDashboard';
 import Etudiant from './pages/AdminPages/Etudiant';
@@ -26,7 +28,23 @@ import ShowRubrique from './pages/AdminPages/Media/Rubrique/ShowRubrique';
 import Article from './pages/AdminPages/Media/Article';
 import CreateArticle from './pages/AdminPages/Media/Article/CreateArticle';
 import ShowArticle from './pages/AdminPages/Media/Article/ShowArticle';
-import Media from './pages/Media';
+import Media, { MediaWithDefaultIdRubrique } from './pages/Media';
+import ArticlePublic from './pages/Media/Article';
+import 'typeface-roboto';
+import AlterRubrique from './pages/AdminPages/Media/Rubrique/AlterRubrique';
+import AlterArticle from './pages/AdminPages/Media/Article/AlterArticle';
+import Inscription from './pages/Inscription';
+import Connexion from './pages/Connexion';
+import ModuleAdmin from './pages/AdminPages/ContenuFormation/ModuleAdmin';
+import ShowModuleAdmin from './pages/AdminPages/ContenuFormation/ModuleAdmin/ShowModuleAdmin';
+import CreateModuleAdmin from './pages/AdminPages/ContenuFormation/ModuleAdmin/CreateModuleAdmin';
+import AlterModuleAdmin from './pages/AdminPages/ContenuFormation/ModuleAdmin/AlterModuleAdmin';
+import CourAdmin from './pages/AdminPages/ContenuFormation/CourAdmin';
+import ShowCourAdmin from './pages/AdminPages/ContenuFormation/CourAdmin/ShowCourAdmin';
+import CreateCourAdmin from './pages/AdminPages/ContenuFormation/CourAdmin/CreateCourAdmin';
+import AlterCourAdmin from './pages/AdminPages/ContenuFormation/CourAdmin/AletrCourAdmin';
+//import AlterRubrique from './pages/AdminPages/Media/Rubrique/AlterRubrique';
+
 //const AppContext = createContext();
 
 function App() {
@@ -36,6 +54,13 @@ function App() {
   const [large, setLarge] = useState(false);
   //const serveurURL = "https://api.programmeleadership.net/elearningapi"; // before build
   const serveurURL = "http://localhost:9006/elearningapi";
+
+  useEffect(() => {
+      const intervalId = setInterval(checkUserOnCookies(user, setUser), 4000);
+      // Nettoyage de l'intervalle lorsque le composant est démonté
+      return () => clearInterval(intervalId);
+  }, [user,setUser]);
+
   return (
 
     <AppContext.Provider value={{ language, setLanguage, user, setUser, isOnline, setIsOnline,serveurURL }}>
@@ -51,13 +76,28 @@ function App() {
 
             <Route path="/" element={<Home />}></Route>
             <Route path="/home" element={<Home />}></Route>
-            <Route path="/articles" element={<Media />}></Route>
-            <Route path="/media" element={<Media />}></Route>
+            <Route path="/inscription" element={<Inscription />}></Route>
+            <Route path="/registration" element={<Inscription />}></Route>
+            <Route path="/signup" element={<Inscription />}></Route>
+            <Route path="/connexion" element={<Connexion />}></Route>
+            <Route path="/signin" element={<Connexion />}></Route>
+
             <Route path="/apropos" element={<Apropos />}></Route>
             <Route path="/about" element={<Apropos />}></Route>
             <Route path="/transition" element={<Transition />}></Route>
 
 
+
+            {(!user || user.profil !== userProfile.ADMIN_USER) &&
+            <>
+            <Route path="/articles" element={<Media />}></Route>
+            <Route path="/medias" element={<Media />}></Route>
+            <Route path="/medias/rubrique/:idRubrique" element={<MediaWithDefaultIdRubrique />}></Route>
+            <Route path="/medias/rubrique/:nomRubrique/:idRubrique" element={<MediaWithDefaultIdRubrique />}></Route>
+            <Route path="/article/:lienArticle" element={<ArticlePublic />}></Route>
+            </>
+            }
+            
             {(user && user.profil === userProfile.ETUDIANT_USER) &&
               <>
                 <Route path="/dashboard" element={<Dashboard />}></Route>
@@ -87,12 +127,27 @@ function App() {
                 <Route path="/professeur/creer" element={<CreateProfesseur />}></Route>
                 <Route path="/professeur/:matricule" element={<ShowProfesseur />}></Route>
 
+                <Route path="/modules" element={<ModuleAdmin />}></Route>
+                <Route path="/module/creer" element={<CreateModuleAdmin />}></Route>
+                <Route path="/module/ajouter" element={<CreateModuleAdmin />}></Route>
+                <Route path="/module/alter/:idModule" element={<AlterModuleAdmin />}></Route>
+                <Route path="/module/:idModule" element={<ShowModuleAdmin />}></Route>
+
+
+                <Route path="/cours" element={<CourAdmin />}></Route>
+                <Route path="/cour/ajouter" element={<CreateCourAdmin />}></Route>
+                <Route path="/cour/alter/:idChapitre" element={<AlterCourAdmin />}></Route>
+                <Route path="/cour/:idChapitre" element={<ShowCourAdmin />}></Route>
+
+
                 <Route path="/rubrique/" element={<Rubrique />}></Route>
                 <Route path="/rubrique/creer" element={<CreateRubrique />}></Route>
+                <Route path="/rubrique/alter/:idRubrique" element={<AlterRubrique />}></Route>
                 <Route path="/rubrique/:idRubrique" element={<ShowRubrique />}></Route>
 
                 <Route path="/article/" element={<Article />}></Route>
                 <Route path="/article/creer" element={<CreateArticle />}></Route>
+                <Route path="/article/alter/:idArticle" element={<AlterArticle />}></Route>
                 <Route path="/article/:idArticle" element={<ShowArticle />}></Route>
 
               </>
@@ -141,5 +196,18 @@ function CheckInternetConnection({ isOnline, setIsOnline }) {
 
 
 const checkUserOnCookies = (user, setUser) => {
+  const userCookie = Cookies.get("user");
 
+  if (userCookie) {
+    const parsedUser = JSON.parse(userCookie);
+    if (JSON.stringify(parsedUser) !== JSON.stringify(user)) {
+        // Les utilisateurs sont différents, mettons à jour l'état
+        setUser(parsedUser);
+    }
+    // Sinon, ils sont identiques, aucune action nécessaire
+  } else if (user !== null) {
+    // Le cookie "user" n'existe pas, mais l'argument user n'est pas null
+    // Sauvegardons le cookie
+    Cookies.set("user", JSON.stringify(user));
+  }
 }

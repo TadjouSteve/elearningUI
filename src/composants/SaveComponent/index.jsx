@@ -9,6 +9,7 @@ export default function SaveComponent({
    setSave,
    setOpen,
    setError,
+   setActiveStep,
    requestBody,
    requestMethode,
    setUpdate,
@@ -16,6 +17,7 @@ export default function SaveComponent({
    requestParam,
    redirected,
    isMultipart,
+   functionToExcecuteAfterGoodOperation,
 }) {
    requestMethode = requestMethode ? requestMethode : "POST";
    requestURL = requestURL ? requestURL : "URL_non_defini";
@@ -55,19 +57,37 @@ export default function SaveComponent({
       setSave(false);
    } else if (!isLoading && !error) {
       if (data.errorAPI) {
-         setError((prevError) => ({ ...prevError, textError: data.message }));
+         setError((prevError) => ({ ...prevError, step: data.index, textError: data.message }));
+         if (setActiveStep) {
+            try {
+               setActiveStep(data.index);
+            } catch (error) {
+               console.log("Impossible d'initialise activeStep via SetActiveStep, saveComponent  ==", error);
+            }
+         }
          setSave(false);
       } else {
          if (redirected === true) {
             console.log("Redirected url == ", data.url);
             navigation(data.url);
          } else {
-            if (setUpdate) {
-               setUpdate((prevUpdate) => !prevUpdate);
+            if (functionToExcecuteAfterGoodOperation) {
+               try {
+                  functionToExcecuteAfterGoodOperation(data);
+               } catch (error) {
+                  console.log(
+                     "Impossible d'executer la fonction apres succes d'une opreation fecth, saveComponent  ==",
+                     error
+                  );
+               }
             }
-            if (setOpen) {
-               setOpen(false);
-            }
+         }
+
+         if (setUpdate) {
+            setUpdate((prevUpdate) => !prevUpdate);
+         }
+         if (setOpen) {
+            setOpen(false);
          }
          //navigation('/professeur/' + data.matricule)
       }

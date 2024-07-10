@@ -17,6 +17,22 @@
 }
 
 
+.verticalMenu{
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    position: absolute;
+    top: 40px;
+    right: 0px;
+    background-color: rgb(248, 250, 248);
+    z-index: 10;
+    width: 100vw;
+    padding-left: 25px;
+    /* height: 100vh; */
+    min-height: 400px; 
+}
+
+
 @media (min-width: 769px) {
     .mainDivHeader {
         height: 60px;
