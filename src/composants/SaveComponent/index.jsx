@@ -90,6 +90,7 @@ export default function SaveComponent({
             setOpen(false);
          }
          //navigation('/professeur/' + data.matricule)
+         setSave(false);
       }
    }
 }

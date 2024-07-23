@@ -151,7 +151,7 @@ function FormInscription({
    const setProfileStudent = (gammeEtudiant) => {
       setFormInscription((prevForm) => ({ ...prevForm, gammeEtudiant: gammeEtudiant }));
       // setFormInscription({ ...formInscription, gammeEtudiant: gammeEtudiant });
-      console.log("gamme selected == ", gammeEtudiant);
+      //console.log("gamme selected == ", gammeEtudiant);
 
       handleNext();
    };
@@ -261,37 +261,39 @@ function FormInscription({
                      />
                   </div>
                </div>
-
-               <div name="date_lieu_naissane" className="divChamp">
-                  <div className="subDivChamp">
-                     <label className="labelSignIn">Date de Naisance{etoileSpanRed}</label>
-                     <input
-                        className="inputSignIn"
-                        type="date"
-                        required
-                        placeholder="..."
-                        value={formInscription.dateNaissance}
-                        onChange={(e) =>
-                           setFormInscription((prevForm) => ({ ...prevForm, dateNaissance: e.target.value }))
-                        }
-                     />
+               {formInscription?.gammeEtudiant?.code === "C004" ? (
+                  ""
+               ) : (
+                  <div name="date_lieu_naissane" className="divChamp">
+                     <div className="subDivChamp">
+                        <label className="labelSignIn">Date de Naisance{etoileSpanRed}</label>
+                        <input
+                           className="inputSignIn"
+                           type="date"
+                           required
+                           placeholder="..."
+                           value={formInscription.dateNaissance}
+                           onChange={(e) =>
+                              setFormInscription((prevForm) => ({ ...prevForm, dateNaissance: e.target.value }))
+                           }
+                        />
+                     </div>
+                     <div className="subDivChamp maginLeft">
+                        <label className="labelSignIn">Lieu de naissance{etoileSpanRed}</label>
+                        <input
+                           className="inputSignIn"
+                           type="text"
+                           maxLength={60}
+                           required
+                           placeholder="..."
+                           value={formInscription.lieuNaissance}
+                           onChange={(e) =>
+                              setFormInscription((prevForm) => ({ ...prevForm, lieuNaissance: e.target.value }))
+                           }
+                        />
+                     </div>
                   </div>
-                  <div className="subDivChamp maginLeft">
-                     <label className="labelSignIn">Lieu de naissance{etoileSpanRed}</label>
-                     <input
-                        className="inputSignIn"
-                        type="text"
-                        maxLength={60}
-                        required
-                        placeholder="..."
-                        value={formInscription.lieuNaissance}
-                        onChange={(e) =>
-                           setFormInscription((prevForm) => ({ ...prevForm, lieuNaissance: e.target.value }))
-                        }
-                     />
-                  </div>
-               </div>
-
+               )}
                <div name="date_lieu_naissane" className="divChamp">
                   <div className="subDivChamp">
                      <label className="labelSignIn">Telephone{etoileSpanRed}</label>
@@ -333,62 +335,123 @@ function FormInscription({
                   <span style={{ color: "red", fontWeight: 700, fontSize: 17 }}>{error.textError}</span>
                )}
 
-               <div name="non_profession" className="divChamp">
-                  <div className="subDivChamp">
-                     <label className="labelSignIn">
-                        Profession<span style={{ color: "red" }}> *</span>
-                     </label>
-                     <input
-                        className="inputSignIn"
-                        type="text"
-                        maxLength={60}
-                        required
-                        placeholder="Entrez votre Profession"
-                        value={formInscription.profession}
-                        onChange={(event) =>
-                           setFormInscription((prevForm) => ({ ...prevForm, profession: event.target.value }))
-                        }
-                     />
-                  </div>
-               </div>
+               {formInscription?.gammeEtudiant?.code === "C004" ? (
+                  <>
+                     <div name="non_profession" className="divChamp">
+                        <div className="subDivChamp">
+                           <label className="labelSignIn">Université d'attache / Etablissement</label>
+                           <input
+                              className="inputSignIn"
+                              type="text"
+                              maxLength={60}
+                              required
+                              placeholder="Ex: Université de yaounde 1 "
+                              value={formInscription.Universite}
+                              onChange={(event) =>
+                                 setFormInscription((prevForm) => ({ ...prevForm, Universite: event.target.value }))
+                              }
+                           />
+                        </div>
+                     </div>
+                     <div name="non_profession" className="divChamp">
+                        <div className="subDivChamp">
+                           <label className="labelSignIn">Matière dispensée</label>
+                           <input
+                              className="inputSignIn"
+                              type="text"
+                              maxLength={60}
+                              required
+                              placeholder="Ex: Physique"
+                              value={formInscription.matiere}
+                              onChange={(event) =>
+                                 setFormInscription((prevForm) => ({ ...prevForm, matiere: event.target.value }))
+                              }
+                           />
+                        </div>
+                     </div>
+                     <div name="garde" className="divChamp">
+                        <div className="subDivChamp">
+                           <label className="labelSignIn">Grade Universitaire</label>
+                           <select
+                              id="region-select"
+                              className="inputSignIn"
+                              onChange={(event) =>
+                                 setFormInscription((prevForm) => ({ ...prevForm, grade: event.target.value }))
+                              }
+                              value={formInscription.grade || ""}
+                           >
+                              <option value="">-- Choisissez une grade --</option>
 
-               <div name="nonEntreprise" className="divChamp">
-                  <div className="subDivChamp">
-                     <label className="labelSignIn">Nom de l'entreprise </label>
-                     <input
-                        className="inputSignIn"
-                        type="text"
-                        maxLength={60}
-                        required
-                        placeholder="..."
-                        value={formInscription.nomEntreprise}
-                        onChange={(event) =>
-                           setFormInscription((prevForm) => ({ ...prevForm, nomEntreprise: event.target.value }))
-                        }
-                     />
-                  </div>
-               </div>
+                              <option value={"doctorant"}>{"Doctorant"}</option>
+                              <option value={"docteur"}>{"Docteur"}</option>
+                              <option value={"professeur"}>{"Professeur"}</option>
+                              <option value={"autre"}>{"autre"}</option>
+                           </select>
+                        </div>
+                     </div>
+                  </>
+               ) : (
+                  <>
+                     <div name="non_profession" className="divChamp">
+                        <div className="subDivChamp">
+                           <label className="labelSignIn">
+                              Profession<span style={{ color: "red" }}> *</span>
+                           </label>
+                           <input
+                              className="inputSignIn"
+                              type="text"
+                              maxLength={60}
+                              required
+                              placeholder="Entrez votre Profession"
+                              value={formInscription.profession}
+                              onChange={(event) =>
+                                 setFormInscription((prevForm) => ({ ...prevForm, profession: event.target.value }))
+                              }
+                           />
+                        </div>
+                     </div>
 
-               <div name="Chiffre_affaire" className="divChamp">
-                  <div className="subDivChamp">
-                     <label className="labelSignIn">Chiffre d'affaire </label>
-                     <input
-                        className="inputSignIn"
-                        type="text"
-                        maxLength={60}
-                        required
-                        placeholder="..."
-                        value={formInscription.chiffreAffaire}
-                        onChange={(event) =>
-                           setFormInscription((prevForm) => ({ ...prevForm, chiffreAffaire: event.target.value }))
-                        }
-                     />
-                  </div>
-               </div>
+                     <div name="nonEntreprise" className="divChamp">
+                        <div className="subDivChamp">
+                           <label className="labelSignIn">Nom de l'entreprise </label>
+                           <input
+                              className="inputSignIn"
+                              type="text"
+                              maxLength={60}
+                              required
+                              placeholder="..."
+                              value={formInscription.nomEntreprise}
+                              onChange={(event) =>
+                                 setFormInscription((prevForm) => ({ ...prevForm, nomEntreprise: event.target.value }))
+                              }
+                           />
+                        </div>
+                     </div>
+
+                     <div name="Chiffre_affaire" className="divChamp">
+                        <div className="subDivChamp">
+                           <label className="labelSignIn">Chiffre d'affaire </label>
+                           <input
+                              className="inputSignIn"
+                              type="text"
+                              maxLength={60}
+                              required
+                              placeholder="..."
+                              value={formInscription.chiffreAffaire}
+                              onChange={(event) =>
+                                 setFormInscription((prevForm) => ({ ...prevForm, chiffreAffaire: event.target.value }))
+                              }
+                           />
+                        </div>
+                     </div>
+                  </>
+               )}
 
                <div name="Region" className="divChamp">
                   <div className="subDivChamp">
-                     <label className="labelSignIn">Region de residence </label>
+                     <label className="labelSignIn">
+                        Region de residence <span style={{ color: "red" }}> *</span>{" "}
+                     </label>
                      <select
                         id="region-select"
                         className="inputSignIn"

@@ -2,14 +2,25 @@ import React from "react";
 import Header from "../../composants/Header";
 import "./AproposCSS.css";
 import SignInSignUp from "../../composants/SignInSignUp";
-import { Col, Container, Image, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../../composants/Footer";
 
 const Apropos = () => {
    return (
       <>
          <Header />
-         <div className="imgTransition">
+         <div
+            className=""
+            style={{
+               backgroundImage: "url(/images/footerImage.png)",
+               backgroundSize: "cover",
+               width: "100vw",
+               display: "flex",
+               flexDirection: "row",
+               justifyContent: "center",
+               padding: 20,
+            }}
+         >
             <div
                style={{
                   marginLeft: "5%",
@@ -17,39 +28,40 @@ const Apropos = () => {
                   display: "flex",
                   backgroundColor: "white",
                   padding: "10px",
-                  borderBottom: "3px solid red",
-                  height: "15%",
-                  width: "100%",
+                  //border: "1px solid gray",
+                  border: "3px solid red",
+                  borderRadius: 5,
+                  height: "80%",
+                  width: "90%",
                }}
             >
                <div
                   style={{
                      marginRight: "5%",
-                     alignItems: "center",
-                     flexDirection: "column",
                      width: "100%",
-                     padding: "30px",
-                     paddingTop: "5%",
+                     display: "flex",
+                     flexDirection: "column",
+                     justifyContent: "center",
+                     alignContent: "center",
                   }}
                >
-                  <span style={{ color: "black", fontSize: "20px" }}>
+                  <span className="quisommenous">
                      <strong>Qui Sommes-nous?</strong>
                   </span>{" "}
-                  <br />
-                  <span style={{ color: "Red", fontSize: "40px", lineHeight: "28px" }}>LE PROGRAMME LEADERSHIP</span>
+                  <span className="programmeLeadership">LE PROGRAMME LEADERSHIP</span>
                </div>
                <div>
                   <img
                      src="images/hero.png"
                      alt="Hero"
-                     style={{ width: "100%", maxWidth: "374px", height: "auto", paddingTop: "0%" }}
+                     style={{ width: "100%", maxHeight: "150px", paddingTop: "0%" }}
                   />
                </div>
             </div>
          </div>
 
          <div style={{ borderBottom: "3px solid red" }}>
-            <Container>
+            <Container fluid>
                <Row>
                   <Col xs={12}>
                      <div className="apropos-titre">
@@ -70,10 +82,11 @@ const Apropos = () => {
             </Container>
          </div>
 
-         <div style={{ marginLeft: "200px", marginRight: "200px", paddingTop: "100px" }}>
+         <div style={{ padding: 40, maxWidth: "100vw" }}>
             <div>
-               <div style={{ display: "flex", alignItems: "flex-end", paddingLeft: "150px" }}>
+               <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "center", width: "75%" }}>
                   <img
+                     alt="imageilustrative de l'entrepreneuriat"
                      className="toto"
                      src="images/toto.jpg"
                      style={{
@@ -81,31 +94,52 @@ const Apropos = () => {
                         height: "227px",
                         marginRight: "20px",
                         maxWidth: "30vw",
-                        marginRight: "20px",
                      }}
                   />
                   <img
-                     className="toto1"
+                     alt="imageilustrative de l'entrepreneuriat"
+                     className="toto"
                      src="images/toto1.jpg"
                      style={{ width: "355px", height: "264px", marginRight: "20px" }}
                   />
-                  <img className="toto2" src="images/toto2.jpg" style={{ width: "137px", height: "185px" }} />
-               </div>
-               <div style={{ alignItems: "flex-end", display: "flex", alignItems: "flex-start", paddingTop: "10px" }}>
                   <img
-                     className="toto3"
+                     alt="imageilustrative de l'entrepreneuriat"
+                     className="displayNoneonphone"
+                     src="images/toto2.jpg"
+                     style={{ width: "137px", height: "185px" }}
+                  />
+               </div>
+               <div
+                  style={{
+                     alignItems: "flex-end",
+                     display: "flex",
+                     alignItems: "flex-start",
+                     paddingTop: "10px",
+                     justifyContent: "center",
+                  }}
+               >
+                  <img
+                     alt="imageilustrative de l'entrepreneuriat"
+                     className="displayNoneonphone"
                      src="images/toto3.jpg"
                      style={{ width: "254.22px", height: "299.61px", marginRight: "20px" }}
                   />
                   <img
-                     className="toto4"
+                     alt="imageilustrative de l'entrepreneuriat"
+                     className="toto"
                      src="images/toto4.jpg"
                      style={{ width: "481.2px", height: "354.09px", marginRight: "20px" }}
                   />
                   <div>
-                     <img className="toto6" src="images/toto6.jpg" style={{ width: "372px", height: "200.58px" }} />
                      <img
-                        className="toto5"
+                        alt="imageilustrative de l'entrepreneuriat"
+                        className="displayNoneonphone"
+                        src="images/toto6.jpg"
+                        style={{ width: "372px", height: "200.58px" }}
+                     />
+                     <img
+                        alt="imageilustrative de l'entrepreneuriat"
+                        className="displayNoneonphone"
                         src="images/toto5.jpg"
                         style={{ width: "140.73px", height: "155px", paddingTop: "10px" }}
                      />

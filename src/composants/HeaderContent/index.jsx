@@ -29,6 +29,8 @@ function HeaderContent() {
                         onClick={() => {
                            navigation(-1);
                         }}
+                        className="buttonPrecedentHeaderContent"
+                        //style={{ width: 100, fontSize: 9 }}
                      >
                         {language == "FR" ? "Page precedente" : "Preview page"}
                      </Button>
@@ -38,6 +40,7 @@ function HeaderContent() {
                   <div
                      onClick={() => {
                         setSelectedNav(1);
+                        navigation("/dashboard");
                      }}
                      className={"itemNavigationHeaderContent" + (selectedNav === 1 ? " selectedNav" : "")}
                   >

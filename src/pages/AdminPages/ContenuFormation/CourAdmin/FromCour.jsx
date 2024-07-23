@@ -112,6 +112,18 @@ export default function FormCour({ initialForm, setErrorServeur, setError, setSa
                            }}
                         />
                      </div>
+
+                     <div style={{ display: "flex", flexDirection: "row", gap: 10, marginBottom: 10 }}>
+                        <TextField
+                           label="Ordre dans dans le module (positionnement)"
+                           fullWidth
+                           type="number"
+                           value={form.ordre}
+                           onChange={(e) => {
+                              setForm({ ...form, ordre: e.target.value });
+                           }}
+                        />
+                     </div>
                   </Row>
 
                   <Row style={{ backgroundColor: "white", borderRadius: 5, margin: 10, padding: 10 }}>

@@ -130,7 +130,7 @@ const InformationGeneral = ({ formModule }) => {
                   </span>
 
                   <span style={{ marginTop: 10, color: "green" }}>
-                     <span style={{ fontWeight: 600 }}>Nom de l'image desciptive : </span>
+                     <span style={{ fontWeight: 600 }}>Lien (url) de l'image desciptive : </span>
                      {module.nomImage}
                   </span>
                </div>
@@ -341,7 +341,10 @@ const AjoutGammeEtudiantToModule = ({ formModule, setUpdate }) => {
 };
 
 const ListCourModule = ({ formModule }) => {
-   let chapitres = formModule ? formModule.chapitres : [];
+   const navigation = useNavigate();
+
+   let chapitres =
+      formModule && formModule?.chapitres.length > 0 ? formModule.chapitres.sort((a, b) => a.ordre - b.ordre) : [];
    return (
       <Row style={{ margin: 10, padding: 5 }}>
          <div
@@ -372,14 +375,22 @@ const ListCourModule = ({ formModule }) => {
                         <th>N°</th>
                         <th>titre</th>
                         <th>Nbrs QCM</th>
+                        <th>Ordre</th>
                      </tr>
                   </thead>
                   <tbody>
                      {chapitres.map((chapitre, index) => (
-                        <tr key={chapitre.idChapitre} style={{ height: "40px" }}>
+                        <tr
+                           key={chapitre.idChapitre}
+                           onClick={() => {
+                              navigation("/cour/" + chapitre.idChapitre);
+                           }}
+                           style={{ height: "40px" }}
+                        >
                            <td>{index + 1}</td>
                            <td>{chapitre.titre}</td>
                            <td>{chapitre.totalQcm}</td>
+                           <td>{chapitre.ordre}</td>
                         </tr>
                      ))}
                   </tbody>

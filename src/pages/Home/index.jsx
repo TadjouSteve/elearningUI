@@ -63,6 +63,14 @@ const Home = () => {
                      <Button variant="outlined" color="error" onClick={() => deconnexion()}>
                         {isFrench ? "Deconnexion" : "LogOut"}
                      </Button>
+                     <Button
+                        variant="contained"
+                        color="error"
+                        style={{ marginLeft: 10 }}
+                        onClick={() => navigation("/dashboard")}
+                     >
+                        {isFrench ? "Tableau de bord" : "Dashboard"}
+                     </Button>
                   </div>
                )}
             </div>

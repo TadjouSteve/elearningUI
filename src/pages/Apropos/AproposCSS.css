@@ -16,6 +16,17 @@
 
 }
 
+.quisommenous{
+    color: black;
+     font-size: 20px
+}
+
+.programmeLeadership{
+    color: Red;
+     font-size: 40px; 
+     line-height: 28px
+}
+
 
 /* Styles pour les smartphones */
 @media (max-width: 768px) {
@@ -32,6 +43,23 @@
         background-repeat: no-repeat;
         /* background-color: red; */
     }
+
+
+    .quisommenous{
+        color: black;
+         font-size: 0.7rem
+    }
+    
+    .programmeLeadership{
+        color: Red;
+         font-size: 1.2rem; 
+         line-height:17px
+    }
+
+    .displayNoneonphone{
+        display: none;
+    }
+    
 
 }
 

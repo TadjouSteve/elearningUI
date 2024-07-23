@@ -1,25 +1,61 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./footerCSS.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AppContext } from "../../context";
+import Cookies from "js-cookie";
+
 function Footer() {
+   const { language, setLanguage, setUser, user } = useContext(AppContext);
+   const navigation = useNavigate();
+   const location = useLocation();
+
+   let isFrench = language === "FR";
+   const deconnexion = () => {
+      setUser(null);
+      Cookies.remove("user");
+      navigation("/");
+   };
+
    return (
       <div className="mainDivFooter">
-         <div className="containDivFooter">
-            <div className="subContainDivFooter" style={{ fontWeight: "700" }}>
+         <div className="containDivFooter" style={{ cursor: "pointer" }}>
+            <div className="subContainDivFooter" style={{ fontWeight: "600" }}>
                <div>
                   <img className="imageLogoFooter" src="/images/logo02.png" alt="logo programme leadership cameroun" />
                </div>
 
-               <span>contact@programmeleadership.net </span>
-               <span style={{ fontSize: 14, fontWeight: 700 }}>+237 697 84 83 20 / +237 699 94 71 95 </span>
-               <span>Sous prefecture Tsinga, Ancien immeuble Afrique media</span>
+               <span>contact@programmeleadership.org </span>
+               <span style={{ fontSize: 15, fontWeight: 600 }}>+237 697 84 03 20 / +237 699 94 71 95 </span>
+               <span>Palais de Congrès, Bastos Golf, Yaoundé Cameroun</span>
             </div>
+
             <div className="subContainDivFooter">
                <span className="sousTitreFooter" style={{ fontWeight: "bold" }}>
                   Compte
                </span>
-               <span className="subItemContaindivFooter">Tableau de board</span>
-               <span className="subItemContaindivFooter">Deconexion</span>
+               {!user ? (
+                  <>
+                     <Link style={{ textDecoration: "none" }} to={"/connexion"}>
+                        <span className="subItemContaindivFooter" style={{ color: "red" }}>
+                           Connexion
+                        </span>
+                     </Link>
+                     <Link style={{ textDecoration: "none" }} to={"/inscription"}>
+                        <span className="subItemContaindivFooter" style={{ color: "red" }}>
+                           S'inscrire pour suivre une formation
+                        </span>
+                     </Link>
+                  </>
+               ) : (
+                  <>
+                     <span className="subItemContaindivFooter" onClick={() => navigation("/dashboard")}>
+                        Tableau de board
+                     </span>
+                     <span className="subItemContaindivFooter" onClick={() => deconnexion()} style={{ color: "red" }}>
+                        Deconexion
+                     </span>
+                  </>
+               )}
             </div>
             <div className="subContainDivFooter">
                <span className="sousTitreFooter" style={{ fontWeight: "bold" }}>
