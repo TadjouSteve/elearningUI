@@ -40,6 +40,12 @@
 .mediablocArticleSurTitreDiv{
     width: 100%;
     height: 7%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    /*-webkit-line-clamp: 3; /* Nombre de lignes avant le tronquage */
+    -webkit-box-orient: vertical;
+    white-space: normal; /* Permet
     /* background-color: #27f056; */
 }
 

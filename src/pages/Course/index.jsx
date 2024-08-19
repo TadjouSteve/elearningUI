@@ -561,7 +561,7 @@ const DisplayQRO = ({ qro, index, formLinksQRO, setFormLinksQRO, update }) => {
       null,
       update
    );
-   console.log("data qroEtudiant 02 == ", data);
+   ///console.log("data qroEtudiant 02 == ", data);
    const setresponseToQro = (event) => {
       let newFormLinksQRO = [...formLinksQRO];
       let qroIsRegister = false;

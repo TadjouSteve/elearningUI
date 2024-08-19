@@ -32,8 +32,9 @@ export default function SaveComponent({
       isMultipart
    );
    const navigation = useNavigate();
-   console.log("donner retour == ", data);
-   console.log("isRedirected? == ", redirected);
+   console.log("donner envoyer en body == ", requestBody);
+   //console.log("donner retour == ", data);
+   //console.log("isRedirected? == ", redirected);
    if (isLoading) {
       return (
          <div style={{ marginLeft: "40%" }}>
@@ -68,7 +69,7 @@ export default function SaveComponent({
          setSave(false);
       } else {
          if (redirected === true) {
-            console.log("Redirected url == ", data.url);
+            //console.log("Redirected url == ", data.url);
             navigation(data.url);
          } else {
             if (functionToExcecuteAfterGoodOperation) {

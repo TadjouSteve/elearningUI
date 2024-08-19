@@ -228,8 +228,8 @@ const HeaderComponent = () => {
                            style={{ textAlign: "center", minHeight: "40px", marginBottom: 10 }}
                            onChange={handleLanguageChange}
                         >
-                           <option value="EN">{"Francais"}</option>
-                           <option value="FR">{"English"}</option>
+                           <option value="EN">{"English"}</option>
+                           <option value="FR">{"Francais"}</option>
                         </select>
 
                         <Button

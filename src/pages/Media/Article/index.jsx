@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./articleCSS.css";
 import Header from "../../../composants/Header";
 import { Col, Container, Row } from "react-bootstrap";
@@ -162,6 +162,12 @@ export default function ArticlePublic() {
 }
 
 export const DisplayFullBodyArticle = ({ article }) => {
+   const mainTitreRef = useRef(null);
+
+   useEffect(() => {
+      mainTitreRef.current.scrollIntoView({ behavior: "smooth" });
+   }, []);
+
    return (
       <div
          style={{
@@ -174,7 +180,7 @@ export const DisplayFullBodyArticle = ({ article }) => {
             alignItems: "center",
          }}
       >
-         <article className="corpsArticle">
+         <article ref={mainTitreRef} className="corpsArticle">
             {article.surTitre && (
                <div name="surTitre" className="surTitreDiv">
                   <span className="surTitreTexte">{article.surTitre}</span>
@@ -203,7 +209,7 @@ export const DisplayFullBodyArticle = ({ article }) => {
             <div className="blocImageArticle">
                {article.imageArticles && article.imageArticles.length > 0 ? (
                   <>
-                     <div className="imageArticle@1">
+                     <div className="imageArticle01">
                         <DisplayImage idArticle={article.id} idImage={article.imageArticles[0].id} />
                      </div>
                      <div className="titreImage">

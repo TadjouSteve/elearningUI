@@ -123,7 +123,7 @@
 /* Styles pour les smartphones */
 @media (max-width: 768px) {
     .corpsArticle{
-        min-width: 300px;
+        max-width: 90vw;
         /* max-width: 450px; */
     }
 
@@ -136,11 +136,15 @@
     .surTitreDiv{
         min-width: 120px;
         min-height: 30px;
-        max-width: 100%;
+        max-width: 90vw;
     }
 
     .surTitreTexte{
         font-size: 1rem;
+    }
+
+    .imageArticle01{
+        max-width: 90vw;
     }
 }
 

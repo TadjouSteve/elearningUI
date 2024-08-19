@@ -17,6 +17,9 @@ import zIndex from "@mui/material/styles/zIndex";
 const etoileSpanRed = <span style={{ color: "red" }}> *</span>;
 
 export default function SignInSignUp({ signIn, variantButton, classButtom, justTexte, fullWidth }) {
+   const { language } = useContext(AppContext);
+   let isFrench = language === "FR";
+
    const [isSignIn, setIsSignIn] = useState(signIn);
    const [open, setOpen] = useState(false);
    const [formSignIn, setFormSignIn] = useState({});
@@ -44,7 +47,7 @@ export default function SignInSignUp({ signIn, variantButton, classButtom, justT
       <>
          {justTexte ? (
             <span onClick={handleClickOpenForm} className="justTexte" style={{ cursor: "pointer" }}>
-               {!signIn ? "S'inscrire" : "Se connecter"}{" "}
+               {!signIn ? (isFrench ? "S'inscrire" : "Register ") : isFrench ? "Se connecter" : "Sign in"}{" "}
             </span>
          ) : (
             <Button
@@ -54,7 +57,7 @@ export default function SignInSignUp({ signIn, variantButton, classButtom, justT
                color="error"
                fullWidth={fullWidth ? true : false}
             >
-               {!signIn ? "S'inscrire" : "Se connecter"}
+               {!signIn ? (isFrench ? "S'inscrire" : "Register ") : isFrench ? "Se connecter" : "Sign in"}
             </Button>
          )}
          {/* <Dialog

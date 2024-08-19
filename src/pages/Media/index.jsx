@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../../composants/Header";
 import { Col, Container, Row } from "react-bootstrap";
 import Footer from "../../composants/Footer";
@@ -28,6 +28,12 @@ export default function Media({ defaultIdSelectedRubrique }) {
       setIdSelectedRubrique(rubrique.id);
       //setUpdate((prevUp) => !prevUp);
    };
+
+   const mainTitreRef = useRef(null);
+
+   useEffect(() => {
+      mainTitreRef.current.scrollIntoView({ behavior: "smooth" });
+   }, [idSelectedRubrique]);
    return (
       <>
          <Container fluid style={{ width: "100vw", margin: 0, padding: 0 }}>
@@ -37,6 +43,7 @@ export default function Media({ defaultIdSelectedRubrique }) {
                <Row>
                   <Col>
                      <div
+                        ref={mainTitreRef}
                         style={{
                            backgroundColor: "white",
                            display: "flex",

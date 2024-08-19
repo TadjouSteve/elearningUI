@@ -4,6 +4,12 @@ li {
     text-align: justify;
 }
 
+.mainDivHome001{
+width: 70%;
+/* background-color: red; */
+z-index: 2;
+}
+
 @media (min-width: 769px) {
 
     /* Styles pour les tablettes */
@@ -69,7 +75,10 @@ li {
 @media (max-width: 768px) {
 
     /* Styles pour les smartphones */
-
+.mainDivHome001{
+    width: 100%;
+    z-index: 0;
+}
     .divTitre {
         width: 100%;
     }

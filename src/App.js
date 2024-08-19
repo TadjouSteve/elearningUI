@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
-import Home from './pages/Home';
+
 import Course from './pages/Course';
 import Dashboard from './pages/Dashboard';
 import { AppContext } from './context';
@@ -43,6 +43,11 @@ import CourAdmin from './pages/AdminPages/ContenuFormation/CourAdmin';
 import ShowCourAdmin from './pages/AdminPages/ContenuFormation/CourAdmin/ShowCourAdmin';
 import CreateCourAdmin from './pages/AdminPages/ContenuFormation/CourAdmin/CreateCourAdmin';
 import AlterCourAdmin from './pages/AdminPages/ContenuFormation/CourAdmin/AletrCourAdmin';
+import Inscription002 from './pages/Inscription/inscrption002';
+import ValidationInscription from './pages/ValidationPages/ValidationInscription';
+import ControlValidationCompteEtudiant from './pages/ValidationPages/ControlValidationCompteEtudiant';
+import Home from './pages/Home';
+import Apropos02 from './pages/Apropos/Apropos02';
 //import AlterRubrique from './pages/AdminPages/Media/Rubrique/AlterRubrique';
 
 //const AppContext = createContext();
@@ -52,8 +57,8 @@ function App() {
   const [language, setLanguage] = useState('FR');
   const [user, setUser] = useState(null)
   const [large, setLarge] = useState(false);
-  //const serveurURL = "https://api.programmeleadership.net/elearningapi"; // before build
-  const serveurURL = "http://localhost:9006/elearningapi";
+  const serveurURL = "https://api.programmeleadership.net/elearningapi"; // before build
+  //const serveurURL = "http://localhost:9006/elearningapi";
 
   useEffect(() => {
       const intervalId = setInterval(checkUserOnCookies(user, setUser), 4000);
@@ -76,14 +81,21 @@ function App() {
 
             <Route path="/" element={<Home />}></Route>
             <Route path="/home" element={<Home />}></Route>
-            <Route path="/inscription" element={<Inscription />}></Route>
-            <Route path="/registration" element={<Inscription />}></Route>
-            <Route path="/signup" element={<Inscription />}></Route>
+            <Route path="/home02" element={<Home />}></Route>
+            <Route path="/inscription" element={<Inscription002 />}></Route>
+            <Route path="/inscriptiontest031" element={<Inscription002 />}></Route>
+            <Route path="/registration" element={<Inscription002 />}></Route>
+            
+            <Route path="/signup" element={<Inscription002 />}></Route>
             <Route path="/connexion" element={<Connexion />}></Route>
             <Route path="/signin" element={<Connexion />}></Route>
 
-            <Route path="/apropos" element={<Apropos />}></Route>
-            <Route path="/about" element={<Apropos />}></Route>
+            <Route path="/validationcompte/:lienConfirmation" element={<ValidationInscription />}></Route>
+            <Route path="/controlevalidationcompte/:matricule" element={<ControlValidationCompteEtudiant />}></Route>
+
+            <Route path="/apropos" element={<Apropos02 />}></Route>
+            <Route path="/apropos02" element={<Apropos02 />}></Route>
+            <Route path="/about" element={<Apropos02 />}></Route>
             <Route path="/transition" element={<Transition />}></Route>
 
 

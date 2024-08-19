@@ -9,6 +9,10 @@ import { AppContext } from "../../context";
 import Cookies from "js-cookie";
 import { Button } from "@mui/material";
 import { MessageErrorServeur } from "../../composants/MessageComponent";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
+import { userProfile } from "../../utils/data";
 
 export default function Connexion() {
    const { isOnline, language, setUser } = useContext(AppContext);
@@ -28,10 +32,19 @@ export default function Connexion() {
    };
 
    const apresEnregistrement = (data) => {
-      Cookies.set("user", JSON.stringify(data));
-      setUser(data);
-      // console.log("cookie save == ", JSON.parse(Cookies.get("user")));
-      navigation("/dashboard"); //dashboard
+      // Cookies.set("user", JSON.stringify(data));
+      // setUser(data);
+      // // console.log("cookie save == ", JSON.parse(Cookies.get("user")));
+      // navigation("/dashboard");
+      //console.log("data user get == ", data);
+      if (data.openDashboard) {
+         Cookies.set("user", JSON.stringify(data));
+         setUser(data);
+         // console.log("cookie save == ", JSON.parse(Cookies.get("user")));
+         navigation("/dashboard"); //dashboard
+      } else {
+         navigation("/controlevalidationcompte/" + data.matricule); //dashboard
+      }
    };
 
    const handleKeyPress = (event) => {
@@ -93,6 +106,7 @@ const FormConnexion = ({
    errorServeur,
    actionSendformConnexion,
 }) => {
+   const [showPassWord, setShowPassWord] = useState(false);
    return (
       <>
          <div
@@ -116,37 +130,59 @@ const FormConnexion = ({
 
                <div name="password" className="divChamp">
                   <div className="subDivChamp">
-                     <label className="labelSignIn">Téléphone ou Email </label>
-                     <input
-                        maxLength={50}
-                        name="email  telephone"
-                        className="inputSignIn"
-                        type="text"
-                        required
-                        placeholder=""
-                        value={formConnexion.emailOrPhone}
-                        onChange={(event) =>
-                           setFormConnexion((prevForm) => ({ ...prevForm, login: event.target.value }))
-                        }
-                     />
+                     <label name="label_for_email_or_phone" className="labelSignIn">
+                        Téléphone ou Email{" "}
+                     </label>
+                     <div style={{ width: "100%", display: "flex", alignItems: "center", gap: 10 }}>
+                        <input
+                           maxLength={50}
+                           style={{ width: "100%" }}
+                           name="email_phone"
+                           className="inputSignIn"
+                           type="text"
+                           required
+                           placeholder=""
+                           value={formConnexion.emailOrPhone}
+                           onChange={(event) =>
+                              setFormConnexion((prevForm) => ({ ...prevForm, login: event.target.value }))
+                           }
+                        />
+                        <PermIdentityOutlinedIcon />
+                     </div>
                   </div>
                </div>
 
                <div name="confirmPassword" className="divChamp">
                   <div className="subDivChamp">
                      <label className="labelSignIn">Mot de passe </label>
-                     <input
-                        maxLength={50}
-                        className="inputSignIn"
-                        name="password"
-                        type="password"
-                        required
-                        placeholder=""
-                        value={formConnexion.password}
-                        onChange={(event) =>
-                           setFormConnexion((prevForm) => ({ ...prevForm, password: event.target.value }))
-                        }
-                     />
+                     <div style={{ width: "100%", display: "flex", alignItems: "center", gap: 10 }}>
+                        <input
+                           maxLength={50}
+                           className="inputSignIn"
+                           style={{ width: "100%" }}
+                           name="password"
+                           type={showPassWord ? "text" : "password"}
+                           required
+                           placeholder=""
+                           value={formConnexion.password}
+                           onChange={(event) =>
+                              setFormConnexion((prevForm) => ({ ...prevForm, password: event.target.value }))
+                           }
+                        />
+                        {showPassWord ? (
+                           <VisibilityOffOutlinedIcon
+                              onClick={() => {
+                                 setShowPassWord(false);
+                              }}
+                           />
+                        ) : (
+                           <VisibilityOutlinedIcon
+                              onClick={() => {
+                                 setShowPassWord(true);
+                              }}
+                           />
+                        )}
+                     </div>
                   </div>
                </div>
 
