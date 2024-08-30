@@ -12,9 +12,15 @@ export default function DescriptionProfil({ nom, description, gammeEtudiant, set
    };
    return (
       <>
-         <Button variant="contained" color="error" onClick={handleClickOpen} size="small">
+         <div
+            className="buttonDescriptionProfil"
+            variant="contained"
+            color="error"
+            onClick={handleClickOpen}
+            size="small"
+         >
             Description
-         </Button>
+         </div>
          <Dialog
             open={open}
             onClose={handleClose}

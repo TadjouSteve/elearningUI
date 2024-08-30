@@ -56,9 +56,19 @@ export default function Connexion() {
    };
    return (
       <>
-         <Container fluid style={{ padding: 0, backgroundColor: "white" }}>
+         <Container
+            fluid
+            style={{
+               padding: 0,
+               backgroundColor: "white",
+               backgroundImage:
+                  "linear-gradient(270deg, rgba(250, 250, 250, 0.471) 63.5%, rgba(250, 250, 250, 0) 100%),url(/images/toto6.jpg)",
+               backgroundSize: "cover",
+               backgroundPosition: "center",
+            }}
+         >
             <Header />
-            <Row style={{ justifyContent: "center" }}>
+            <Row style={{ justifyContent: "center", minHeight: "80vh" }}>
                <div className="mainDivConnexion">
                   <FormConnexion
                      error={error}
@@ -120,7 +130,7 @@ const FormConnexion = ({
                </span>
             </div>
 
-            <fieldset>
+            <fieldset style={{}}>
                <legend>
                   Informations de <span style={{ color: "red", fontWeight: "bold" }}> Connexion</span>
                </legend>

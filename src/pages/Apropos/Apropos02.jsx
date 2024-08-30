@@ -27,16 +27,16 @@ export default function Apropos02() {
             </div>
             <div className="aboutResumetexteDiv">
                <span name="resume" className="aboutResumetexte">
-                  L’Institut de Recherche en Intelligences (IRI) est une Société à responsabilité limitée. Créée en 2016
-                  avec pour siège Yaoundé au lieudit Avenue Rosa Park Golf, et dont le capital est 10 Millions de FCFA.
-                  Spécialisée dans la conception et la mise en œuvre des programmes de compétitivité, elle accompagne le
-                  gouvernement du Cameroun dans le déploiement de ces politiques en faveur de la croissance et du
-                  développement, tout en intégrant une forte participation du capital humain. C’est dans cet optique
-                  qu’en 2016 elle a conçu le Programme LEADERSHIP, qui a pour but de capaciter en Leadership,
-                  entrepreneuriat et compétences professionnelles pratiques locales, le capital humain bénéficiaire de
-                  la Stratégie Nationale de Développement dans les secteurs de l’auto employabilité, de la bonne
-                  gouvernance et de l’éducation. Le groupe IRI c’est également plusieurs secteurs d’activités existants,
-                  parmi lesquels l’agro-industrie et la transformation minérale.
+                  L’Institut de Recherche en Intelligences (IRI) est une société à responsabilité limitée. Créée en 2016
+                  avec pour siège Yaoundé, au lieudit Avenue Rosa Park Golf, et dont le capital est de 10 millions de
+                  FCFA. Spécialisée dans la conception et la mise en œuvre des programmes de compétitivité, elle
+                  accompagne le gouvernement du Cameroun dans le déploiement de ses politiques en faveur de la
+                  croissance et du développement, tout en intégrant une forte participation du capital humain. C’est
+                  dans cette optique qu’en 2016, elle a conçu le programme LEADERSHIP, qui a pour but de renforcer en
+                  leadership, entrepreneuriat et compétences professionnelles pratiques locales, le capital humain
+                  bénéficiaire de la Stratégie Nationale de Développement dans les secteurs de l’auto-employabilité, de
+                  la bonne gouvernance et de l’éducation. Le groupe IRI, c’est également plusieurs secteurs d’activités
+                  existants, parmi lesquels l’agro-industrie et la transformation minérale.
                </span>
             </div>
          </div>
@@ -53,7 +53,7 @@ export default function Apropos02() {
             <span className="aboutAgendaItem">Salon entrepreneurial 30 SEPTEMBRE AU 02 OCTOBRE 2024 </span>
             <span className="aboutAgendaItem">Clôture de la formation 02 OCTOBRE 2024</span>
             <span className="aboutAgendaItem">
-               Suivi opérationnel et Structurel des projets portés par les entrepreneurs 02 OCTOBRE AU 02 MARS 2024
+               Suivi opérationnel et Structurel des projets portés par les entrepreneurs 02 OCTOBRE 2024 AU 02 MARS 2025
             </span>
          </div>
 

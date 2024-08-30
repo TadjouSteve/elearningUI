@@ -1,18 +1,18 @@
 .itemListDiv:hover {
-    background-color: #f1524f;
+    background-color: #18932aa0;
     color: white;
     transition: 0.5s;
 
 }
 
 .itemListDiv:active {
-    background-color: #1008f3;
+    background-color: #f1524f;
     color: white;
     transition: 0.5s;
 }
 
 .activeItemMenu {
-    background-color: #f7221f;
+    background-color: #18932b;
     color: white;
 }
 
@@ -33,9 +33,10 @@
 }
 
 
+
 @media (min-width: 769px) {
     .mainDivHeader {
-        height: 60px;
+        /* margin-bottom: 80px; */
         font-size: 0.8rem;
     }
 
@@ -50,7 +51,7 @@
     }
 
     .logo {
-        width: 100px
+        height: 100px;
     }
 
     .smallScreanList {
@@ -63,6 +64,7 @@
         justify-content: space-between;
         align-items: center;
         cursor: default;
+       
     }
 }
 
@@ -129,6 +131,7 @@
 
 @media (min-width: 1000px) {
     .mainDivHeader {
+        /* margin-bottom: 80px; */
         font-size: 1.1rem;
     }
 }

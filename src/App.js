@@ -48,6 +48,12 @@ import ValidationInscription from './pages/ValidationPages/ValidationInscription
 import ControlValidationCompteEtudiant from './pages/ValidationPages/ControlValidationCompteEtudiant';
 import Home from './pages/Home';
 import Apropos02 from './pages/Apropos/Apropos02';
+import CreateQCM from './pages/AdminPages/ContenuFormation/CourAdmin/Qcm/CreateQCM';
+import ShowQCM from './pages/AdminPages/ContenuFormation/CourAdmin/Qcm/ShowQCM';
+import AlterQCM from './pages/AdminPages/ContenuFormation/CourAdmin/Qcm/AlterQCM';
+import Mail from './pages/Mail';
+import SuccessMailSend from './pages/Mail/SuccessMailSend';
+import Header from './composants/Header';
 //import AlterRubrique from './pages/AdminPages/Media/Rubrique/AlterRubrique';
 
 //const AppContext = createContext();
@@ -57,8 +63,8 @@ function App() {
   const [language, setLanguage] = useState('FR');
   const [user, setUser] = useState(null)
   const [large, setLarge] = useState(false);
-  const serveurURL = "https://api.programmeleadership.net/elearningapi"; // before build
-  //const serveurURL = "http://localhost:9006/elearningapi";
+  //const serveurURL = "https://api.programmeleadership.net/elearningapi"; // before build
+  const serveurURL = "http://localhost:9006/elearningapi";
 
   useEffect(() => {
       const intervalId = setInterval(checkUserOnCookies(user, setUser), 4000);
@@ -76,6 +82,7 @@ function App() {
           <Sidebar large={large} setLarge={setLarge} />
         }
         <div className={(large) ? "mainDiv large" : (!user || (user.profil === userProfile.ETUDIANT_USER) ? "mainDiv large" : "mainDiv")}>
+          
           <Routes>
 
 
@@ -83,7 +90,7 @@ function App() {
             <Route path="/home" element={<Home />}></Route>
             <Route path="/home02" element={<Home />}></Route>
             <Route path="/inscription" element={<Inscription002 />}></Route>
-            <Route path="/inscriptiontest031" element={<Inscription002 />}></Route>
+            
             <Route path="/registration" element={<Inscription002 />}></Route>
             
             <Route path="/signup" element={<Inscription002 />}></Route>
@@ -152,6 +159,11 @@ function App() {
                 <Route path="/cour/:idChapitre" element={<ShowCourAdmin />}></Route>
 
 
+                <Route path="/qcm/ajouter/:idChapitre" element={<CreateQCM />}></Route>
+                <Route path="/qcm/alter/:idChapitre/:idQcm" element={<AlterQCM />}></Route>
+                <Route path="/qcm/:idChapitre/:idQcm" element={<ShowQCM />}></Route>
+
+
                 <Route path="/rubrique/" element={<Rubrique />}></Route>
                 <Route path="/rubrique/creer" element={<CreateRubrique />}></Route>
                 <Route path="/rubrique/alter/:idRubrique" element={<AlterRubrique />}></Route>
@@ -161,6 +173,10 @@ function App() {
                 <Route path="/article/creer" element={<CreateArticle />}></Route>
                 <Route path="/article/alter/:idArticle" element={<AlterArticle />}></Route>
                 <Route path="/article/:idArticle" element={<ShowArticle />}></Route>
+
+
+                <Route path="/mail/" element={<Mail />}></Route>
+                <Route path="/mail/success/" element={<SuccessMailSend />}></Route>
 
               </>
             }

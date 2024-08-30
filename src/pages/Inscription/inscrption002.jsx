@@ -18,6 +18,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AppContext } from "../../context";
 import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import DescriptionProfil from "./DescriptionProfil";
 
 const etoileSpanRed = <span style={{ color: "red" }}> *</span>;
@@ -59,10 +60,25 @@ export default function Inscription002() {
    };
    return (
       <>
-         <Container fluid style={{ padding: 0, backgroundColor: "white" }}>
+         <Container
+            fluid
+            style={{
+               padding: 0,
+               backgroundColor: "white",
+               backgroundImage:
+                  "linear-gradient(270deg, rgba(250, 250, 250, 0.471) 63.5%, rgba(250, 250, 250, 0) 100%),url(/images/toto6.jpg)",
+               backgroundSize: "cover",
+               backgroundPosition: "center",
+            }}
+         >
             <Header />
-            <Row style={{ justifyContent: "center" }}>
-               <div className="mainDivInscription">
+            <Row
+               style={{
+                  justifyContent: "center",
+                  minHeight: "80vh",
+               }}
+            >
+               <div className="mainDivInscription" style={{}}>
                   <FormInscription
                      error={error}
                      formInscription={formInscription}
@@ -161,7 +177,7 @@ function FormInscription({
       setActiveStep((prevActiveStep) => prevActiveStep + 1);
       setSkipped(newSkipped);
       handleResetFocus();
-      if (activeStep == 3) {
+      if (activeStep === 3) {
          linkInformationToFormInscription();
       }
    };
@@ -300,11 +316,11 @@ function FormInscription({
 
    return (
       <>
-         <div style={{ textAlign: "center", marginTop: 20 }} ref={mainTitreRef}>
-            <span className="signInTitle">Inscription au programme leadership</span>
+         <div style={{ textAlign: "center", marginTop: 0 }} ref={mainTitreRef}>
+            <span className="signInTitle">Inscription</span>
          </div>
-         <div style={{ marginTop: 20, marginBottom: 20 }}>
-            {activeStep !== -1 && (
+         {activeStep !== -1 && (
+            <div style={{ marginTop: 20, marginBottom: 20 }}>
                <Stepper activeStep={activeStep}>
                   {steps.map((label, index) => {
                      const stepProps = {};
@@ -323,10 +339,10 @@ function FormInscription({
                      );
                   })}
                </Stepper>
-            )}
-         </div>
+            </div>
+         )}
          {activeStep === -1 && (
-            <fieldset>
+            <fieldset style={{ border: "0px" }}>
                <legend ref={inputRef}>
                   Selectionez votre <span style={{ color: "green" }}>profil de formation</span>
                </legend>
@@ -343,7 +359,14 @@ function FormInscription({
                   ) : (
                      fetchMetaData.data.gammeEtudiants.map((item, index) => (
                         <div key={item.id} className="bodyProfilEtudiant">
-                           <div className="bodyProfilEtudiantImage" onClick={(e) => setProfileStudent(item)}>
+                           <div
+                              className="bodyProfilEtudiantImage"
+                              onClick={(e) => setProfileStudent(item)}
+                              style={{ backgroundImage: "url(/images/profil0" + (index + 1) + ".png)" }}
+                           >
+                              {/* <PersonOutlineOutlinedIcon fontSize="large" sx={{ color: "red", width: "50px" }} /> */}
+                           </div>
+                           <div className="nomProfileEtudiantDiv" onClick={(e) => setProfileStudent(item)}>
                               <span className="nomProfileEtudiantSpan" style={{ cursor: "pointer" }}>
                                  {item.nom}
                               </span>

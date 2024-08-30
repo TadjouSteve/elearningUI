@@ -43,3 +43,25 @@ export const getFullUrlWithSuffix = (suffix) => {
     const url = new URL(currentUrl);
     return `${url.protocol}//${url.host}${suffix}`;
 };
+
+
+
+
+export const calculateTimeLeft = () => {
+    const targetDate = new Date('2024-09-02T00:00:00'); // Date de début de la formation
+    const now = new Date();
+    const difference = targetDate - now;
+
+    let timeLeft = {};
+
+    if (difference > 0) {
+      timeLeft = {
+        jours: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        heures: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((difference / 1000 / 60) % 60),
+        secondes: Math.floor((difference / 1000) % 60),
+      };
+    }
+
+    return timeLeft;
+  };

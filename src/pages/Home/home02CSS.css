@@ -1,4 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Digital-7&display=swap');
 
+.btn{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 27px;
+    fill: #18932b;
+    color: #18932b;
+    background-color: #fff;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #18932b;
+    border-radius: 5px;
+    padding: 12px 33px;
+  }
+  .btn:hover{
+    background:#18932b;
+    border-color:#18932b;
+    color:#ffffff;
+  }
+
+  .btn-insc{
+	background:#0877bf;
+	border-color:#0877bf;
+	color:#ffffff;
+}
+.btn-login{
+	background:#fa9401;
+	border-color:#fa9401;
+	color:#ffffff;
+}
 
 .homeHeroDiv{
     /* background: linear-gradient(270deg, rgba(2, 44, 16, 0.65) 63.5%, rgba(196, 196, 196, 0) 100%); */
@@ -8,7 +38,11 @@
     padding: 50px;
     color: white;
     display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; 
     align-items: center;
+    gap: 15px;
+    padding-bottom: 70px;
 }
 
 .homeHeroMainDivTexte{
@@ -18,6 +52,32 @@
     max-width: 50%;
     margin-left:5%;
 
+}
+
+
+.homeHeroMainDivChronoDivText{
+    font-size: 22px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.homeHeroMainDivChronoDivTimer{
+    font-size: 28px;
+    font-weight: 800;
+    color: #733c93;
+    font-family: cursive;
+    font-style: italic;
+}
+
+.homeHeroMainDivChrono{
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    padding: 2.5%;
+    margin-right: 5%;
+    background-color: #ffffff7b;
+    min-width: 30%;
+    min-height: max-content
 }
 
 .homeHeroMainH1Texte{
@@ -40,8 +100,90 @@
     line-height: 20px;
 }
 
+.programmeMainDiv{
+    position: relative;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding: 5%;
+    padding-top: 60px;
+    padding-bottom: 40px;
+    align-items: center;
+    background-color: #FFFBEB;
+    min-height: 300px;
+    
+}
+
+.programmeTitreDiv{
+    position: absolute;
+    left: 0;
+    top: -37px;
+    min-width: 50vw;
+    height: 75px;
+    background: #FFC700;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 5%;
+    align-items: center;
+    font-size: 2.8rem;
+    border-radius: 0px 60px 60px 00px;
+
+    color: #0E8135; 
+    font-weight: 800;
+   
+}
+
+.programmeTexte01{
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.programmeSubdivison{
+    width: 100%;
+    padding-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 5%;
+    padding-right: 5%;
+    justify-content: space-between;
+}
+
+.programmeFormat{
+    width:45% ;
+}
+
+.titreSubdivision{
+    display: flex;
+    justify-content: center;
+    width: max-content;
+    justify-content: center;
+    align-items: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 40px;
+    background-color: #0E8135;
+    border-radius: 20px;
+    margin-bottom: 10px;
+
+    color: white;
+    font-weight: 700;
+    font-size: 20px
+}
+
+.texteProgramme01{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.sousTexteSpetialProgramme{
+    font-weight: 700;
+    font-size: 19px;
+}
+
 .contextMainDiv{
     padding-top: 20px;
+    padding-bottom: 20px;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -72,7 +214,7 @@
 .contextTexteViewSmall{
     transition: 250ms;
     position: relative;
-    max-height: 300px;
+    max-height: 180px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -429,7 +571,27 @@ text-align: left;
 }
 
 .homeHeroMainDivTexte{
+    min-width: 80%;
     max-width: 90%;
+}
+
+.homeHeroMainDivChrono{
+    width: 75vw;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.homeHeroMainDivChronoDivTimer{
+    font-size:1.1rem;
+    text-align: center;
+}
+
+.homeHeroMainDivChronoDivText{
+    font-size: 14px;
+}
+
+.homeHeroMainDivChrono{
+    height: max-content;
 }
 
 .homeHeroMainH1Texte{
@@ -546,4 +708,30 @@ text-align: left;
     height: 22px;
 }
 
+.programmeTitreDiv{
+    font-size: 20px;
+    height: 50px;
+    top: -15px;
+    padding-right: 10px;
+}
+.programmeTexte01{
+    font-size: 20px;
+}
+
+
+.programmeFormat{
+    width:80vw ;
+}
+
+}
+
+
+
+@media (max-width: 376px) {
+    .homeHeroMainDivChronoDivTimer{
+        font-size:1.1rem;
+        color: green;
+        text-align: center;
+    }
+    
 }

@@ -176,11 +176,11 @@ export default function Dashboard() {
                                           color="success"
                                           sx={{ width: "100%", height: "100%", borderRadius: 0 }}
                                        >
-                                          Commencer avec ce module
+                                          {isfrench ? "Accède à ce module" : "Access this module"}
                                        </Button>
                                     ) : (
                                        <Button variant="contained" color="error" sx={{ width: "100%", height: "100%" }}>
-                                          Module Verrouiller
+                                          {isfrench ? "Module verrouillé" : "Locked module"}
                                        </Button>
                                     )}
                                  </div>

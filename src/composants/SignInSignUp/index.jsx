@@ -54,7 +54,7 @@ export default function SignInSignUp({ signIn, variantButton, classButtom, justT
                className={classButtom ? classButtom : "boutton01"}
                variant={variantButton ? variantButton : "contained"}
                onClick={handleClickOpenForm}
-               color="error"
+               color="info"
                fullWidth={fullWidth ? true : false}
             >
                {!signIn ? (isFrench ? "S'inscrire" : "Register ") : isFrench ? "Se connecter" : "Sign in"}

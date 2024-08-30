@@ -6,6 +6,7 @@ import * as MDicons from "react-icons/md";
 import * as GIicons from "react-icons/gi";
 import SchoolIcon from "@mui/icons-material/School";
 import colors from "../../utils/style/colors";
+import EmailIcon from "@mui/icons-material/Email";
 //import colors from "../../util/style/colors";
 
 export const SidebarDatas = [
@@ -148,11 +149,21 @@ export const SidebarDatas = [
    },
 
    {
-      order: 6,
+      order: 7,
       userLevel: 0,
       title: "Parametre",
       path: "/setting",
       icon: <HIcons.HiOutlineUserGroup size={25} />,
+      cName: "nav-text",
+      color: colors.vente,
+   },
+
+   {
+      order: 8,
+      userLevel: 0,
+      title: "Mails",
+      path: "/mail",
+      icon: <EmailIcon fontSize="large" sx={{ color: "#fff" }} />,
       cName: "nav-text",
       color: colors.vente,
    },

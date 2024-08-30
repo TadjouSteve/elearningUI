@@ -79,7 +79,7 @@ export default function ShowCourAdmin() {
                <>
                   <InformationGeneral formChapitre={data} />
                   <ListBlock chapitre={data?.chapitre} />
-                  <ListQCM listQcm={data?.chapitre.qcms} />
+                  <ListQCM listQcm={data?.chapitre.qcms} idChapitre={idChapitre} />
                   <ListQRO listQRO={data?.chapitre.qros} setUpdate={setUpdate} formChapitre={data} />
                </>
             )}
@@ -268,7 +268,8 @@ const ListBlock = ({ chapitre }) => {
    );
 };
 
-const ListQCM = ({ listQcm }) => {
+const ListQCM = ({ listQcm, idChapitre }) => {
+   const navigation = useNavigate();
    listQcm = listQcm ? listQcm : [];
    return (
       <Row style={{ margin: 10, padding: 5 }}>
@@ -283,7 +284,17 @@ const ListQCM = ({ listQcm }) => {
                padding: 5,
             }}
          >
-            <h3>liste des QCM presents dans ce chapitre</h3>
+            <h3>
+               liste des QCM presents dans ce chapitre{" "}
+               <Button
+                  variant="contained"
+                  onClick={() => {
+                     navigation("/qcm/ajouter/" + idChapitre);
+                  }}
+               >
+                  Ajout d'un QCM
+               </Button>
+            </h3>
             {listQcm?.length === 0 ? (
                <span style={{ fontSize: 17 }}>Ce cours ne contient aucun QCM...!</span>
             ) : (
@@ -336,7 +347,15 @@ const ListQCM = ({ listQcm }) => {
                            </td>
                            <td>
                               <div style={{ display: "flex", flexDirection: "row", gap: 5 }}>
-                                 <Button variant="outlined" size="small" color="info" sx={{ fontSize: 10 }}>
+                                 <Button
+                                    variant="outlined"
+                                    size="small"
+                                    color="info"
+                                    onClick={() => {
+                                       navigation("/qcm/" + idChapitre + "/" + qcm.id);
+                                    }}
+                                    sx={{ fontSize: 10 }}
+                                 >
                                     Voir plus
                                  </Button>
                               </div>
@@ -353,7 +372,7 @@ const ListQCM = ({ listQcm }) => {
 
 const ListQRO = ({ listQRO, setUpdate, formChapitre }) => {
    let chapitre = formChapitre ? formChapitre.chapitre : {};
-   console.log("listQRO == ", listQRO);
+   //console.log("listQRO == ", listQRO);
 
    listQRO = listQRO ? listQRO : [];
    return (
