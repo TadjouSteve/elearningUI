@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./connexionCSS.css";
 import SaveComponent from "../../composants/SaveComponent";
 import Footer from "../../composants/Footer";
@@ -31,12 +31,18 @@ export default function Connexion() {
       setSave(true);
    };
 
+   const mainTitreRef = useRef(null);
+
+   useEffect(() => {
+      mainTitreRef.current.scrollIntoView({ behavior: "smooth" });
+   }, []);
+
    const apresEnregistrement = (data) => {
       // Cookies.set("user", JSON.stringify(data));
       // setUser(data);
       // // console.log("cookie save == ", JSON.parse(Cookies.get("user")));
       // navigation("/dashboard");
-      //console.log("data user get == ", data);
+      console.log("data user get after reset == ", data);
       if (data.openDashboard) {
          Cookies.set("user", JSON.stringify(data));
          setUser(data);
@@ -69,7 +75,7 @@ export default function Connexion() {
          >
             <Header />
             <Row style={{ justifyContent: "center", minHeight: "80vh" }}>
-               <div className="mainDivConnexion">
+               <div ref={mainTitreRef} className="mainDivConnexion">
                   <FormConnexion
                      error={error}
                      formConnexion={formConnexion}
@@ -116,7 +122,11 @@ const FormConnexion = ({
    errorServeur,
    actionSendformConnexion,
 }) => {
+   const navigation = useNavigate();
    const [showPassWord, setShowPassWord] = useState(false);
+   const { language, setLanguage, setUser, user } = useContext(AppContext);
+   let isFrench = language === "FR";
+
    return (
       <>
          <div
@@ -138,7 +148,7 @@ const FormConnexion = ({
                   <span style={{ color: "red", fontWeight: 700, fontSize: 17 }}>{error.textError}</span>
                )}
 
-               <div name="password" className="divChamp">
+               <div name="login" className="divChamp">
                   <div className="subDivChamp">
                      <label name="label_for_email_or_phone" className="labelSignIn">
                         Téléphone ou Email{" "}
@@ -162,7 +172,7 @@ const FormConnexion = ({
                   </div>
                </div>
 
-               <div name="confirmPassword" className="divChamp">
+               <div name="password" className="divChamp" style={{ display: "none" }}>
                   <div className="subDivChamp">
                      <label className="labelSignIn">Mot de passe </label>
                      <div style={{ width: "100%", display: "flex", alignItems: "center", gap: 10 }}>
@@ -193,6 +203,16 @@ const FormConnexion = ({
                            />
                         )}
                      </div>
+                     <div style={{ marginTop: "10px", display: "none" }}>
+                        <span
+                           style={{ color: "red", fontSize: "13px", fontStyle: "italic", cursor: "pointer" }}
+                           onClick={() => {
+                              navigation("/resetpassword");
+                           }}
+                        >
+                           {isFrench ? "Mot de passe oublié…?" : "Forgot your password…?"}
+                        </span>
+                     </div>
                   </div>
                </div>
 
@@ -214,7 +234,9 @@ const FormConnexion = ({
                <span>
                   Vous n'avez pas de compte?{" "}
                   <Link to={"/inscription"} style={{ textDecoration: "none" }}>
-                     <span style={{ color: "green", fontWeight: "bold" }}>Créer votre compte</span>
+                     <span style={{ color: "green", fontWeight: "bold" }}>
+                        {isFrench ? "Créez votre compte" : "Create your account"}
+                     </span>
                   </Link>
                </span>
             </div>

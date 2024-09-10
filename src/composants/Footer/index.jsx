@@ -19,6 +19,8 @@ function Footer() {
       navigation("/");
    };
 
+   const listNumeroWhatSapp = ["", "", "", ""];
+
    return (
       // <>
       //    <footer class="footer">
@@ -117,7 +119,7 @@ function Footer() {
                   <a
                      className="lienc1"
                      style={{ color: "white" }}
-                     href="https:api.whatsapp.com/send?phone=237695835877&text=Hi%20Programme%20Leadership"
+                     href="https://chat.whatsapp.com/HZvUzVRNNHFFZNyden9NEi"
                      target="_blank"
                      rel="noopener noreferrer"
                   >
@@ -155,7 +157,7 @@ function Footer() {
                      <a
                         className="lienc1"
                         style={{ color: "white" }}
-                        href="https:api.whatsapp.com/send?phone=237695835877&text=Hi%20Programme%20Leadership"
+                        href="https://chat.whatsapp.com/HZvUzVRNNHFFZNyden9NEi"
                         target="_blank"
                         rel="noopener noreferrer"
                      >

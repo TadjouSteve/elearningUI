@@ -1813,7 +1813,7 @@ function FormInscription({
             <span>
                Vous avez déja un compte?{" "}
                <Link to={"/signIn"} style={{ textDecoration: "none" }}>
-                  <span style={{ color: "green", fontWeight: "bold" }}>connectez Vous</span>
+                  <span style={{ color: "green", fontWeight: "bold" }}>{"Connectez-vous"}</span>
                </Link>
             </span>
          </div>

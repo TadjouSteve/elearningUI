@@ -33,7 +33,7 @@ export default function Module({ chapitres }) {
             {/*justifyContent: 'space-evenly', flexWrap: 'wrap' */}
             <div className="vousetesici">
                <span style={{ fontSize: 13 }}>
-                  Vous etes ici:
+                  Vous êtes ici:
                   <Link to={"/dashboard"} style={{ textDecoration: "none" }}>
                      Tableau de bord
                   </Link>
@@ -98,7 +98,7 @@ export default function Module({ chapitres }) {
                                              color={!chapitre.firstTime ? "info" : "success"}
                                              sx={{ width: "100%" }}
                                           >
-                                             {!chapitre.firstTime ? "Relire ce cour" : "Commencer le cour"}
+                                             {!chapitre.firstTime ? "Relire le cours" : "Commencez le cours"}
                                           </Button>
                                        </div>
                                     </div>

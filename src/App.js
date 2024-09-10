@@ -54,6 +54,8 @@ import AlterQCM from './pages/AdminPages/ContenuFormation/CourAdmin/Qcm/AlterQCM
 import Mail from './pages/Mail';
 import SuccessMailSend from './pages/Mail/SuccessMailSend';
 import Header from './composants/Header';
+import { ResetPasswordStepOne, ResetPasswordStepTow } from './pages/Connexion/resetPassword';
+import { height } from '@mui/system';
 //import AlterRubrique from './pages/AdminPages/Media/Rubrique/AlterRubrique';
 
 //const AppContext = createContext();
@@ -79,7 +81,7 @@ function App() {
 
       <Router>
         {(user && user.profil !== userProfile.ETUDIANT_USER) &&
-          <Sidebar large={large} setLarge={setLarge} />
+          <Sidebar large={large} setLarge={setLarge}  />
         }
         <div className={(large) ? "mainDiv large" : (!user || (user.profil === userProfile.ETUDIANT_USER) ? "mainDiv large" : "mainDiv")}>
           
@@ -96,6 +98,9 @@ function App() {
             <Route path="/signup" element={<Inscription002 />}></Route>
             <Route path="/connexion" element={<Connexion />}></Route>
             <Route path="/signin" element={<Connexion />}></Route>
+
+            <Route path="/resetpassword" element={<ResetPasswordStepOne />}></Route>
+            <Route path="/resetpassword/:codeChangePassword" element={<ResetPasswordStepTow />}></Route>
 
             <Route path="/validationcompte/:lienConfirmation" element={<ValidationInscription />}></Route>
             <Route path="/controlevalidationcompte/:matricule" element={<ControlValidationCompteEtudiant />}></Route>

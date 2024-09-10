@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import SaveComponent from "../../../../composants/SaveComponent";
-import { CircularProgress, InputLabel, FormControl, MenuItem, Select, TextField } from "@mui/material";
+import { CircularProgress, InputLabel, FormControl, MenuItem, Select, TextField, Button } from "@mui/material";
 import { useFetch } from "../../../../utils/hooks/FetchData";
 import { MessageErrorServeur } from "../../../../composants/MessageComponent";
 
 export default function FormCour({ initialForm, setErrorServeur, setError, setSave, save, requestMethode }) {
    const [filter, setFilter] = useState(null);
    const [update, setUpdate] = useState(false);
+   const [showEdit, setShowEdit] = useState(true);
+
    const { isLoading, data, error } = useFetch(`/admin/modules`, "GET", null, filter, update);
    const requestURL = "/admin/chapitre/";
    const [form, setForm] = useState(initialForm ? initialForm : {});
@@ -127,19 +129,55 @@ export default function FormCour({ initialForm, setErrorServeur, setError, setSa
                   </Row>
 
                   <Row style={{ backgroundColor: "white", borderRadius: 5, margin: 10, padding: 10 }}>
-                     <div style={{ display: "flex", flexDirection: "row", gap: 10 }}>
-                        <TextField
-                           label="Texte"
-                           placeholder="Texte du cour"
-                           multiline
-                           rows={15}
-                           fullWidth
-                           value={form.texte}
-                           onChange={(e) => {
-                              setForm({ ...form, texte: e.target.value });
-                           }}
-                        />
-                     </div>
+                     {showEdit ? (
+                        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                           <Button
+                              onClick={() => {
+                                 setShowEdit(false);
+                              }}
+                              variant="contained"
+                              color="warning"
+                           >
+                              Voir le rendu final
+                           </Button>
+                           <TextField
+                              label="Texte"
+                              placeholder="Texte du cour"
+                              multiline
+                              rows={15}
+                              fullWidth
+                              value={form.texte}
+                              onChange={(e) => {
+                                 setForm({ ...form, texte: e.target.value });
+                              }}
+                           />
+                        </div>
+                     ) : (
+                        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                           <Button
+                              onClick={() => {
+                                 setShowEdit(true);
+                              }}
+                              variant="contained"
+                              color="success"
+                           >
+                              Editer le cour
+                           </Button>
+                           <p
+                              dangerouslySetInnerHTML={{ __html: form.texte }}
+                              style={{
+                                 minHeight: "300px",
+                                 border: "2px solid gray",
+                                 padding: 5,
+                                 paddingLeft: 8,
+                                 paddingRight: 8,
+                                 minWidth: "60%",
+                                 borderRadius: 5,
+                              }}
+                              className="texteCour"
+                           ></p>
+                        </div>
+                     )}
                   </Row>
                </>
             )}

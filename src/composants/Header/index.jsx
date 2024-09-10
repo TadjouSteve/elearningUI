@@ -8,8 +8,10 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { itemData, itemDataAdmin, settingsProfil } from "./itemData";
 //import { AccountCircle } from "@mui/icons-material";
 import { userProfile } from "../../utils/data";
+import PersonIcon from "@mui/icons-material/Person";
 import Cookies from "js-cookie";
-import LanguageIcon from "@mui/icons-material/Language";
+//import LanguageIcon from "@mui/icons-material/Language";\
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 //import { removeUserCookie } from "../../utils/fonctions";
 
 export default function Header() {
@@ -144,7 +146,7 @@ const HeaderComponent = () => {
                                  }}
                                  sx={{ p: 0 }}
                               >
-                                 <Avatar alt="Remy Sharp" src="/images/avatar.png" />
+                                 <AccountCircleIcon sx={{ fontSize: "35px" }} />
                                  {/* <AccountCircle size={50} /> */}
                               </IconButton>
                            </Tooltip>

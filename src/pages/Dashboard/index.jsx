@@ -16,7 +16,7 @@ import { SceletonSmallArticleHorizontal } from "../../composants/Sceletons/index
 export default function Dashboard() {
    const { isOnline, language, setUser, user } = useContext(AppContext);
    const { isLoading, data, error } = useFetch("/etudiant/dashboard/" + (user ? user.id : 0), "GET");
-   //console.log("data dashboard", data);
+   console.log("data dashboard", data);
    const navigation = useNavigate();
    var isfrench = language === "FR";
    return (
@@ -90,51 +90,6 @@ export default function Dashboard() {
                            </div>
                         </div>
                      </div>
-
-                     <>
-                        {/* <Col style={{ margin: 10 }}>
-                        <div className="statItemDashbord" style={{ backgroundColor: "#ffeee8" }}>
-                           <div className="icnDashbord"></div>
-                           <div className="texteStatDashbord">
-                              <span className="numberStatDashboard">
-                                 {data.courLu} sur {data.chapitreTotal}
-                              </span>
-                              <span className="texteStatDashboard">Cour deja lu</span>
-                           </div>
-                        </div>
-                     </Col>
-                     <Col style={{ margin: 10 }}>
-                        <div className="statItemDashbord" style={{ backgroundColor: "#ebebff" }}>
-                           <div className="icnDashbord"></div>
-                           <div className="texteStatDashbord">
-                              <span className="numberStatDashboard">
-                                 {data.qcmvalide} sur {data.qcmTotal}
-                              </span>
-                              <span className="texteStatDashboard">QCM Validés</span>
-                           </div>
-                        </div>
-                     </Col>
-                     <Col style={{ margin: 10 }}>
-                        <div className="statItemDashbord" style={{ backgroundColor: "#e1f7e3" }}>
-                           <div className="icnDashbord"></div>
-                           <div className="texteStatDashbord">
-                              <span className="numberStatDashboard">
-                                 {data.moduleAccessible} sur {data.moduleTotal}
-                              </span>
-                              <span className="texteStatDashboard">Module accessible</span>
-                           </div>
-                        </div>
-                     </Col>
-                     <Col style={{ margin: 10 }}>
-                        <div className="statItemDashbord" style={{ backgroundColor: "#FFEEE8" }}>
-                           <div className="icnDashbord"></div>
-                           <div className="texteStatDashbord">
-                              <span className="numberStatDashboard">{data.questionPose ? data.questionPose : 0}</span>
-                              <span className="texteStatDashboard">Vos questions</span>
-                           </div>
-                        </div>
-                     </Col> */}
-                     </>
                   </Row>
 
                   <Row style={{ borderRadius: 5, margin: 20, marginTop: 30, padding: 10, justifyContent: "center" }}>
@@ -176,7 +131,7 @@ export default function Dashboard() {
                                           color="success"
                                           sx={{ width: "100%", height: "100%", borderRadius: 0 }}
                                        >
-                                          {isfrench ? "Accède à ce module" : "Access this module"}
+                                          {isfrench ? "Accédez à ce module" : "Access this module"}
                                        </Button>
                                     ) : (
                                        <Button variant="contained" color="error" sx={{ width: "100%", height: "100%" }}>

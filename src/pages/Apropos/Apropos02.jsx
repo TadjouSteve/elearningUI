@@ -41,19 +41,34 @@ export default function Apropos02() {
             </div>
          </div>
 
-         <div className="aboutAgendaDiv">
+         <div
+            className="aboutAgendaDiv"
+            style={{ display: "flex", flexDirection: "column", alignContent: "flex-start", justifyContent: "center" }}
+         >
             <span className="aboutAgendaTitre">Agenda du programme 1000 Entrepreneurs jeunes</span>
 
-            <span className="aboutAgendaItem">Point de presse 19 AOUT 2024</span>
-            <span className="aboutAgendaItem">Conférence débat 26 AOUT 2024</span>
-            <span className="aboutAgendaItem">Début des formations en présentiel 02 SEPTEMBRE 2024</span>
             <span className="aboutAgendaItem">
-               Cérémonie de lancement 04 SEPTEMBRE 2024 Début de la formation en ligne 08 SEPTEMBRE 2024
+               <b>Du 02 au 13 Septembre 2024 :</b> Premières Sessions d’initiation aux fondements du Leadership en Ligne
             </span>
-            <span className="aboutAgendaItem">Salon entrepreneurial 30 SEPTEMBRE AU 02 OCTOBRE 2024 </span>
-            <span className="aboutAgendaItem">Clôture de la formation 02 OCTOBRE 2024</span>
             <span className="aboutAgendaItem">
-               Suivi opérationnel et Structurel des projets portés par les entrepreneurs 02 OCTOBRE 2024 AU 02 MARS 2025
+               <b>11 septembre 2024:</b> cérémonie protocolaire de lancement du programme de formation des 1000 jeunes
+               entrepreneurs
+            </span>
+
+            <span className="aboutAgendaItem">
+               <b>Du 16 au 28 Septembre 2024 :</b> Sessions présentielles et pratiques sur le terrain dans les régions
+            </span>
+            <span className="aboutAgendaItem">
+               26 Septembre 2024 : Évaluation des 100 Meilleurs projets Nationaux.{" "}
+            </span>
+
+            <span className="aboutAgendaItem">
+               <b>Du 27 Septembre au 02 Octobre 2024 :</b> Exposition des 100 Entrepreneurs Nationaux au salon de
+               l’entrepreneuriat
+            </span>
+
+            <span className="aboutAgendaItem">
+               <b>02 Octobre 2024:</b> Cérémonie Nationale de clôture et de remise des attestations.
             </span>
          </div>
 

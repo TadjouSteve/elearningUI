@@ -52,7 +52,7 @@ function HeaderContent() {
                      }}
                      className={"itemNavigationHeaderContent" + (selectedNav === 2 ? " selectedNav" : "")}
                   >
-                     <span>PARAMETRE</span>
+                     <span>PARAMÈTRES</span>
                   </div>
                </div>
             </div>

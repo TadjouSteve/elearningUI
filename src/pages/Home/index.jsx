@@ -52,19 +52,49 @@ export default function Home() {
                               d’entreprise : entreprises locales à fort potentiel d’import substitution
                            </h2>
                            <p class="text-white">
-                              Plus de 1000 jeunes formés aux notions élémentaires de l'entreprenariat, de la gestion
-                              d'entreprise et de l'auto rentabilité.
+                              Plus de 1000 jeunes formés aux notions de l'entreprenariat, de la gestion d'entreprise et
+                              de l'auto rentabilité.
                            </p>
-                           <a class="rm" href="#">
+                           <a class="rm" href="/apropos">
                               En savoir plus
                            </a>
                            <div class="lien-connexion mt-20 ">
-                              <Link to="/inscription" class="btn btn-insc">
-                                 S'inscrire
-                              </Link>
-                              <Link to="/connexion" class="btn btn-login text-white" style={{ marginLeft: 15 }}>
-                                 Se connecter
-                              </Link>
+                              {!user ? (
+                                 <>
+                                    <Link
+                                       to="/inscription"
+                                       class="btn btn-insc"
+                                       style={{ marginLeft: 15, marginTop: 15 }}
+                                    >
+                                       {isFrench ? "S'inscrire" : "Register "}
+                                    </Link>
+                                    <Link
+                                       to="/connexion"
+                                       class="btn btn-login text-white"
+                                       style={{ marginLeft: 15, marginTop: 15 }}
+                                    >
+                                       {isFrench ? "Se connecter" : "Sign in"}
+                                    </Link>
+                                 </>
+                              ) : (
+                                 <>
+                                    <Link
+                                       to="/dashboard"
+                                       class="btn btn-insc"
+                                       style={{ marginLeft: 15, marginTop: 15 }}
+                                    >
+                                       {isFrench ? "Tableau de bord" : "Dashboard"}
+                                    </Link>
+                                    <span
+                                       to="#"
+                                       onClick={() => deconnexion()}
+                                       class="btn btn-login text-white"
+                                       style={{ marginLeft: 15, marginTop: 15, background: "red" }}
+                                    >
+                                       {isFrench ? "Deconnexion" : "LogOut"}
+                                    </span>
+                                 </>
+                              )}
                            </div>
                         </div>
                      </div>
@@ -79,6 +109,15 @@ export default function Home() {
                   <div class="cat-col-100">
                      <div class="pad-cat text-center">
                         <div class="pl-title text-center m-auto">
+                           <div>
+                              <a
+                                 href={`${process.env.PUBLIC_URL}/documents/programme_formation.pdf`}
+                                 download="Chronogramme_programme_Leadership_1000_jeunes.pdf"
+                                 className="download-button02"
+                              >
+                                 Télécharger le Programme de formation
+                              </a>
+                           </div>
                            <div class="pl-title-subtitle text-center">
                               <span>Le contexte</span>
                            </div>

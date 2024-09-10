@@ -83,6 +83,8 @@ export default function Mail() {
 
 const FormMAil = ({ setErrorServeur, setError, setSave, save, requestMethode }) => {
    const [update, setUpdate] = useState(false);
+   const [showEdit, setShowEdit] = useState(true);
+
    const requestURL = "/admin/sendmail/";
    const [form, setForm] = useState({});
    return (
@@ -103,19 +105,55 @@ const FormMAil = ({ setErrorServeur, setError, setSave, save, requestMethode }) 
                </div>
             </Row>
             <Row style={{ backgroundColor: "white", borderRadius: 5, margin: 10, padding: 10 }}>
-               <div style={{ display: "flex", flexDirection: "row", gap: 10 }}>
-                  <TextField
-                     label="Corp du Mail (html format)"
-                     placeholder="Texte du mail au format html, tout dans une div"
-                     multiline
-                     rows={15}
-                     fullWidth
-                     value={form.bodyHtml}
-                     onChange={(e) => {
-                        setForm({ ...form, bodyHtml: e.target.value });
-                     }}
-                  />
-               </div>
+               {showEdit ? (
+                  <div style={{ display: "flex", flexDirection: "row", gap: 10 }}>
+                     <Button
+                        onClick={() => {
+                           setShowEdit(false);
+                        }}
+                        variant="contained"
+                        color="warning"
+                     >
+                        Voir le rendu final
+                     </Button>
+                     <TextField
+                        label="Corp du Mail (html format)"
+                        placeholder="Texte du mail au format html, tout dans une div"
+                        multiline
+                        rows={15}
+                        fullWidth
+                        value={form.bodyHtml}
+                        onChange={(e) => {
+                           setForm({ ...form, bodyHtml: e.target.value });
+                        }}
+                     />
+                  </div>
+               ) : (
+                  <div style={{ display: "flex", flexDirection: "row", gap: 10 }}>
+                     <Button
+                        onClick={() => {
+                           setShowEdit(true);
+                        }}
+                        variant="contained"
+                        color="success"
+                     >
+                        Editer le mail
+                     </Button>
+                     <p
+                        dangerouslySetInnerHTML={{ __html: form.bodyHtml }}
+                        style={{
+                           minHeight: "300px",
+                           border: "2px solid gray",
+                           padding: 5,
+                           paddingLeft: 8,
+                           paddingRight: 8,
+                           minWidth: "60%",
+                           borderRadius: 5,
+                        }}
+                        className="texteCour"
+                     ></p>
+                  </div>
+               )}
             </Row>
             <Row style={{ backgroundColor: "white", borderRadius: 5, margin: 10, padding: 10 }}>
                <div style={{ display: "flex", flexDirection: "row", gap: 10 }}>

@@ -47,7 +47,7 @@ export default function Course() {
             <HeaderContent />
             <div className="vousetesici">
                <span className="vousetesiciTexte">
-                  Vous etes ici:
+                  Vous êtes ici:
                   <Link to={"/dashboard"} style={{ textDecoration: "none" }}>
                      Tableau de bord
                   </Link>
@@ -179,7 +179,12 @@ const ViewChapitreNew = ({ chapitre }) => {
                   </AccordionSummary>
                   <AccordionDetails>
                      <div className="bloc" style={{ paddingLeft: 10 }}>
-                        {bloc.texte && <p className="texteBloc">{bloc.texte}</p>}
+                        {bloc.video && <LecteurVideo urlVideo={bloc.video} />}
+                        <div className="texteChapitre" style={{ paddingLeft: 10, marginTop: 15 }}>
+                           {bloc.texte && (
+                              <p dangerouslySetInnerHTML={{ __html: bloc.texte }} className="texteBloc"></p>
+                           )}
+                        </div>
 
                         {bloc.sousBlocs &&
                            bloc.sousBlocs.map((sousBloc, indexSousBloc) => (
@@ -470,7 +475,11 @@ const SaveQcmChoice = ({ activeQCM, setReponse, idChapitre, setError, setSave, s
 
 const QROBloc = ({ chapitre }) => {
    const { language, user } = useContext(AppContext);
+   var isfrench = language === "FR";
+   //const { language, user } = useContext(AppContext);
    const [update, setUpdate] = useState(false);
+   //const [showDialogSendSucces, setShowDialogSendSucces] = useState(false);
+   const [open, setOpen] = useState(false);
    const [formLinksQRO, setFormLinksQRO] = useState([]);
    const [save, setSave] = useState(false);
    const [errorServeur, setErrorServeur] = useState(false);
@@ -486,17 +495,30 @@ const QROBloc = ({ chapitre }) => {
       setSave(true);
       //console.log("liste de reponse == ", formLinksQRO);
    };
+
+   const apresEnregistrement = () => {
+      setOpen(true);
+   };
+
+   const handleClickOpen = () => {
+      setOpen(true);
+   };
+
+   const handleClose = () => {
+      setOpen(false);
+   };
+
    return (
       <>
          {chapitre.qros && chapitre.qros.length > 0 && (
             <div className="MainBlocAllQRO">
                <div style={{ fontSize: 17, fontWeight: "bold" }}>
-                  <span>Questions a reponse ouverte...</span>
+                  <span>Questions à réponse ouverte...</span>
                </div>
                <div style={{ fontSize: 14, fontStyle: "italic", color: "gray", marginBottom: 15 }}>
                   <span>
                      Vous êtes invités à répondre à chaque question. Dans le cas des activités pratiques, faites-nous un
-                     résumé de comment vous avez procédé et quel résultat vous avez obtenu.
+                     résumé de la manière dont vous avez procédé et des résultats obtenus.
                   </span>
                </div>
                {error.textError && (
@@ -542,9 +564,41 @@ const QROBloc = ({ chapitre }) => {
                setUpdate={setUpdate}
                //redirected={true}
                //setActiveStep={setActiveStep}
-               //functionToExcecuteAfterGoodOperation={apresEnregistrement}
+               functionToExcecuteAfterGoodOperation={apresEnregistrement}
             />
          )}
+
+         <Backdrop sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }} open={open} onClick={handleClose}>
+            <Dialog
+               open={open}
+               onClose={handleClose}
+               aria-labelledby="alert-dialog-title"
+               aria-describedby="alert-dialog-description"
+            >
+               <DialogTitle id="alert-dialog-title">
+                  {isfrench ? "Validation des reponses" : "Validation of answers"}
+               </DialogTitle>
+               <DialogContent>
+                  <div style={{ fontSize: 16, fontWeight: 500 }}>
+                     <span>
+                        Vos réponses ont été enregistrées et seront évaluées par nos experts du domaine afin de vous
+                        attribuer une note.
+                     </span>
+                     <br />
+                     <br />
+                     <span>
+                        Néanmoins, vous pouvez toujours apporter des modifications à vos réponses si vous avez de
+                        nouvelles idées.
+                     </span>
+                  </div>
+               </DialogContent>
+               <DialogActions>
+                  <Button onClick={handleClose} autoFocus>
+                     {isfrench ? "Fermer" : "Close"}
+                  </Button>
+               </DialogActions>
+            </Dialog>
+         </Backdrop>
       </>
    );
 };
@@ -650,5 +704,68 @@ const DisplayQRO = ({ qro, index, formLinksQRO, setFormLinksQRO, update }) => {
             </div>
          </div>
       </div>
+   );
+};
+
+const LecteurVideo = ({ urlVideo }) => {
+   const [isLoading, setIsLoading] = useState(true);
+   const [errorVideo, setErrorVideo] = useState(false);
+
+   const handleVideoLoad = () => {
+      setIsLoading(false);
+   };
+
+   const handleVideoError = () => {
+      setErrorVideo(true);
+      setIsLoading(false);
+   };
+   return (
+      <>
+         <div
+            style={{
+               display: "flex",
+               flexDirection: "row",
+               justifyContent: "center",
+               marginTop: 5,
+               marginBottom: 5,
+            }}
+         >
+            {isLoading && (
+               <div
+                  style={{
+                     position: "absolute",
+                     display: "flex",
+                     justifyContent: "center",
+                     alignItems: "center",
+                     height: "300px",
+                  }}
+               >
+                  <CircularProgress /> {/* Remplacez par votre indicateur de progression circulaire personnalisé */}
+                  <span>Chargement de la video...</span>
+               </div>
+            )}
+            {errorVideo && (
+               <div
+                  style={{
+                     position: "absolute",
+                     display: "flex",
+                     justifyContent: "center",
+                     alignItems: "center",
+                     height: "300px",
+                  }}
+               >
+                  <span>Impossible de charger la video de cette partie du cour...! Controler votre connexion</span>
+               </div>
+            )}
+            <ReactPlayer
+               url={urlVideo}
+               className="reactplayer"
+               controls={true}
+               onReady={handleVideoLoad}
+               onError={handleVideoError}
+            />{" "}
+            {/* Replace with your video URL https://www.youtube.com/watch?v=TvgfzI7rFYU */}
+         </div>
+      </>
    );
 };

@@ -30,6 +30,31 @@
 	color:#ffffff;
 }
 
+
+.download-button02 {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 10px;
+  }
+  
+  .download-button02:hover {
+    background-color: #0056b3;
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+  }
+  
+
 .homeHeroDiv{
     /* background: linear-gradient(270deg, rgba(2, 44, 16, 0.65) 63.5%, rgba(196, 196, 196, 0) 100%); */
     background-size: cover;
