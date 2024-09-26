@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { AppContext } from "../../../context";
 //import { ServeurContext } from '../../../App';
 
-export function useFetch(url, method, body, param, update, isMultipart) {
+export function useFetch(url, method, body, param, update, isMultipart, manyFile) {
    const { serveurURL } = useContext(AppContext);
    //const serveur = "http://localhost:9006/elearningapi";
    //"https://api2.streenge.tech/elearningapi";
@@ -30,8 +30,17 @@ export function useFetch(url, method, body, param, update, isMultipart) {
       myHeaders.append("Authorization", "Basic " + base64Credentials);
 
       let formData = new FormData();
+      if (body) {
+         formData.append("image", body);
+      }
+      if (manyFile && Array.isArray(manyFile)) {
+         console.log("nous somme dans la boucle");
+         manyFile.forEach((element) => {
+            formData.append(element.nom, element.file);
+         });
+      }
+      console.log("FETCH form data 02  == ", formData);
 
-      formData.append("image", body);
       //formData.append('username', 'Chris');
 
       var myInit = {

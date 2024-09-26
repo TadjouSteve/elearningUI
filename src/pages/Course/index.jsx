@@ -546,7 +546,7 @@ const QROBloc = ({ chapitre }) => {
                      {errorServeur && <MessageErrorServeur />}
                   </div>
                   <Button variant="outlined" onClick={validationReponseQro}>
-                     Envoyer vos reponses...!
+                     {isfrench ? "Envoyez vos réponses !" : "Send your answers!"}
                   </Button>
                </div>
             </div>
@@ -581,14 +581,16 @@ const QROBloc = ({ chapitre }) => {
                <DialogContent>
                   <div style={{ fontSize: 16, fontWeight: 500 }}>
                      <span>
-                        Vos réponses ont été enregistrées et seront évaluées par nos experts du domaine afin de vous
-                        attribuer une note.
+                        {isfrench
+                           ? "Vos réponses ont été enregistrées et seront évaluées par nos experts du domaine afin de vous attribuer une note."
+                           : "Your answers have been recorded and will be evaluated by our subject matter experts to give you a score."}
                      </span>
                      <br />
-                     <br />
-                     <span>
-                        Néanmoins, vous pouvez toujours apporter des modifications à vos réponses si vous avez de
-                        nouvelles idées.
+
+                     <span style={{ display: "none" }}>
+                        {isfrench
+                           ? "Néanmoins, vous pouvez toujours apporter des modifications à vos réponses si vous avez de nouvelles idées."
+                           : "However, you can always make changes to your answers if you have new ideas."}
                      </span>
                   </div>
                </DialogContent>
@@ -666,8 +668,9 @@ const DisplayQRO = ({ qro, index, formLinksQRO, setFormLinksQRO, update }) => {
                ) : data && data.reponse && !changeReponse ? (
                   <div
                      style={{
-                        minHeight: 100,
+                        //minHeight: "40px",
                         border: "2px solid gray",
+                        backgroundColor: "rgba(176, 170, 170, 0.6)",
                         borderRadius: 5,
                         display: "flex",
                         flexDirection: "column",
@@ -675,14 +678,22 @@ const DisplayQRO = ({ qro, index, formLinksQRO, setFormLinksQRO, update }) => {
                         padding: 5,
                      }}
                   >
-                     <span style={{ fontWeight: 500, fontSize: 15, color: "gray" }}> Votre reponse:</span>
-                     <span style={{ fontWeight: 700, fontSize: 16, fontStyle: "italic" }}>{data.reponse}</span>
+                     <span
+                        style={{ fontWeight: 500, fontSize: 15, color: "rgba(9, 129, 9, 0.951)", fontStyle: "italic" }}
+                     >
+                        {isfrench
+                           ? "Vous avez déjà répondu à cette question."
+                           : "You have already answered this question."}
+                     </span>
+                     <span style={{ fontWeight: 700, fontSize: 16, fontStyle: "italic", display: "none" }}>
+                        {data.reponse}
+                     </span>
 
                      <Button
                         color="error"
                         variant="contained"
                         size="small"
-                        style={{ width: "100px", marginTop: 5 }}
+                        style={{ width: "100px", marginTop: 5, display: "none" }}
                         onClick={() => {
                            setChangeReponse(true);
                         }}

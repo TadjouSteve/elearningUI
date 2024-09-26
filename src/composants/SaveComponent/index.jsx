@@ -17,6 +17,7 @@ export default function SaveComponent({
    requestParam,
    redirected,
    isMultipart,
+   manyfilesToSend,
    functionToExcecuteAfterGoodOperation,
 }) {
    requestMethode = requestMethode ? requestMethode : "POST";
@@ -29,10 +30,12 @@ export default function SaveComponent({
       requestBody,
       requestParam,
       null,
-      isMultipart
+      isMultipart,
+      manyfilesToSend
    );
    const navigation = useNavigate();
    console.log("donner envoyer en body == ", requestBody);
+   console.log("liste de fichier envoyer == ", manyfilesToSend);
    //console.log("donner retour == ", data);
    //console.log("isRedirected? == ", redirected);
    if (isLoading) {

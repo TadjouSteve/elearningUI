@@ -41,6 +41,7 @@ export default function Home() {
    return (
       <div style={{ width: "100%" }}>
          <Header />
+
          <section class="banniere">
             <div class="wapper">
                <div class="row-col">
@@ -95,6 +96,18 @@ export default function Home() {
                                     </span>
                                  </>
                               )}
+                           </div>
+
+                           <div class="lien-connexion mt-0" style={{ padding: 0 }}>
+                              <Link
+                                 to="/candidature/salon/entrepreneur"
+                                 class="btn btn-insc"
+                                 style={{ marginLeft: 15, marginTop: 0 }}
+                              >
+                                 {isFrench
+                                    ? "Inscription au Salon de l'Entrepreneuriat"
+                                    : "Registration for the Entrepreneurship Fair "}
+                              </Link>
                            </div>
                         </div>
                      </div>
@@ -167,7 +180,7 @@ export default function Home() {
                         </div>
                         <div class="text-center">
                            <a class="contextrm" href="#">
-                              <span>Lire la suite</span>
+                              {/* <span>Lire la suite</span> */}
                               <i class="fas fa-angle-down"></i>
                            </a>
                         </div>
@@ -479,31 +492,7 @@ export default function Home() {
                </div>
             </div>
          </section>
-
-         <section class="partenaire">
-            <div class="wapper">
-               <div class="row-col">
-                  <div class="cat-col-100">
-                     <div class="pad-cat">
-                        <div class="pl-title text-center m-auto">
-                           <h3 class="">Nos partenaires</h3>
-                           <p>Nous cheminons main dans la main avec nos partenaires stratégiques </p>
-                        </div>
-                        <div class="logo-partenaire text-center">
-                           <img src="images/partenaires/activa.png" alt="" />
-                           <img src="images/partenaires/bange.png" alt="" />
-                           <img src="images/partenaires/dangote.png" alt="" />
-                           <img src="images/partenaires/boisson.png" alt="" />
-                           <img src="images/partenaires/cabinetelesyst.png" alt="" />
-                           <img src="images/partenaires/gicam.png" alt="" />
-                           <img src="images/partenaires/fiduca.png" alt="" />
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </section>
-
+         <BlocPartenaire />
          <Footer />
       </div>
    );
@@ -511,21 +500,29 @@ export default function Home() {
 
 export const BlocPartenaire = () => {
    return (
-      <div className="partenaireMainDiv">
-         <div className="partenaireTitreDiv">
-            <span>Nos partenaires</span>
+      <section class="partenaire">
+         <div class="wapper">
+            <div class="row-col">
+               <div class="cat-col-100">
+                  <div class="pad-cat">
+                     <div class="pl-title text-center m-auto">
+                        <h3 class="">Nos partenaires</h3>
+                        <p>Nous cheminons main dans la main avec nos partenaires stratégiques </p>
+                     </div>
+                     <div class="logo-partenaire text-center">
+                        <img src="images/partenaires/activa.png" alt="" />
+                        <img src="images/partenaires/bange.png" alt="" />
+                        <img src="images/partenaires/dangote.png" alt="" />
+                        <img src="images/partenaires/boisson.png" alt="" />
+                        <img src="images/partenaires/cabinetelesyst.png" alt="" />
+                        <img src="images/partenaires/gicam.png" alt="" />
+                        <img src="images/partenaires/fiduca.png" alt="" />
+                     </div>
+                  </div>
+               </div>
+            </div>
          </div>
-         <spam className="parteniareTexte">Nous cheminons main dans la main  avec nos partenaires stratégiques</spam>
-         <div className="partenaireLogoMainDiv">
-            <img className="imgageLogoPartenaire" src="/images/partenaire/activa.png" alt="logo mtn" />
-            <img className="imgageLogoPartenaire" src="/images/partenaire/bange.png" alt="logo mtn" />
-            <img className="imgageLogoPartenaire" src="/images/partenaire/boisson.png" alt="logo mtn" />
-            <img className="imgageLogoPartenaire" src="/images/partenaire/dangote.png" alt="logo mtn" />
-            <img className="imgageLogoPartenaire" src="/images/partenaire/cabinetelesyst.png" alt="logo mtn" />
-            <img className="imgageLogoPartenaire" src="/images/partenaire/gicam.png" alt="logo mtn" />
-            <img className="imgageLogoPartenaire" src="/images/partenaire/fiduca.png" alt="logo mtn" />
-         </div>
-      </div>
+      </section>
    );
 };
 

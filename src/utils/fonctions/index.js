@@ -65,3 +65,9 @@ export const calculateTimeLeft = () => {
 
     return timeLeft;
   };
+
+
+  export const truncateText = (text, maxLength) => {
+    maxLength=maxLength?maxLength:20
+    return text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+  };

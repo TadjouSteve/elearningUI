@@ -50,7 +50,7 @@ const HeaderComponent = () => {
             className="mainDivHeader"
             style={{
                width: "100%",
-               backgroundColor: isAdmin ? "#51b447" : isProf ? "#406293" : "whitesmoke",
+               backgroundColor: isAdmin ? "#51b447" : isProf ? "#5CFF5C" : "whitesmoke",
                display: "flex",
                flexDirection: "row",
                fontWeight: "bold",

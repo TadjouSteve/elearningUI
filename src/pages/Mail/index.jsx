@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { MessageErrorServeur } from "../../composants/MessageComponent";
-import { Button, TextField } from "@mui/material";
+import { Button, CircularProgress, TextField } from "@mui/material";
 import SaveComponent from "../../composants/SaveComponent";
+import { useFetch } from "../../utils/hooks/FetchData";
 
 export default function Mail() {
    const [save, setSave] = useState(false);
@@ -83,6 +84,7 @@ export default function Mail() {
 
 const FormMAil = ({ setErrorServeur, setError, setSave, save, requestMethode }) => {
    const [update, setUpdate] = useState(false);
+   const fetchMetaData = useFetch(`/metadata/inscription/`, "GET", null, null, update);
    const [showEdit, setShowEdit] = useState(true);
 
    const requestURL = "/admin/sendmail/";
@@ -168,6 +170,36 @@ const FormMAil = ({ setErrorServeur, setError, setSave, save, requestMethode }) 
                      }}
                   />
                </div>
+               {fetchMetaData.isLoading ? (
+                  <div style={{ marginLeft: "40%" }}>
+                     <CircularProgress size={40} />
+                  </div>
+               ) : fetchMetaData.error ? (
+                  <MessageErrorServeur />
+               ) : (
+                  <div name="localisation_Region" className="divChamp" style={{ marginTop: 15 }}>
+                     <div name="region" className="subDivChamp">
+                        <label className="labelSignIn">Region de reception du mail</label>
+                        <select
+                           id="region-select"
+                           className="inputSignIn"
+                           value={form.idRegion}
+                           onChange={(e) => {
+                              setForm({ ...form, idRegion: e.target.value });
+                           }}
+                        >
+                           <option value="-1">-- Toute les Regions --</option>
+                           {fetchMetaData.data &&
+                              fetchMetaData.data.regions.length &&
+                              fetchMetaData.data.regions.map((region) => (
+                                 <option key={region.id} value={region.id}>
+                                    {region.nom}
+                                 </option>
+                              ))}
+                        </select>
+                     </div>
+                  </div>
+               )}
             </Row>
          </Container>
 

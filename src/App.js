@@ -7,7 +7,7 @@ import Dashboard from './pages/Dashboard';
 import { AppContext } from './context';
 import Module from './pages/Module';
 import Apropos from './pages/Apropos';
-import Transition from './pages/Transition';
+//import Transition from './pages/Transition';
 import Cookies from "js-cookie";
 
 // import Header from './composants/Header';
@@ -56,6 +56,9 @@ import SuccessMailSend from './pages/Mail/SuccessMailSend';
 import Header from './composants/Header';
 import { ResetPasswordStepOne, ResetPasswordStepTow } from './pages/Connexion/resetPassword';
 import { height } from '@mui/system';
+import DashboardProf from './pages/ProfesseurPages/DashboardProf';
+import InscriptionSalon from './pages/Inscription/InscriptionSalon';
+import AfterSuccessCandidature from './pages/Inscription/AfterSuccessCandidature';
 //import AlterRubrique from './pages/AdminPages/Media/Rubrique/AlterRubrique';
 
 //const AppContext = createContext();
@@ -65,8 +68,8 @@ function App() {
   const [language, setLanguage] = useState('FR');
   const [user, setUser] = useState(null)
   const [large, setLarge] = useState(false);
-  //const serveurURL = "https://api.programmeleadership.net/elearningapi"; // before build
-  const serveurURL = "http://localhost:9006/elearningapi";
+  const serveurURL = "https://api.programmeleadership.net/elearningapi"; // before build
+  //const serveurURL = "http://localhost:9006/elearningapi";
 
   useEffect(() => {
       const intervalId = setInterval(checkUserOnCookies(user, setUser), 4000);
@@ -80,10 +83,10 @@ function App() {
       <CheckInternetConnection isOnline={isOnline} setIsOnline={setIsOnline} />
 
       <Router>
-        {(user && user.profil !== userProfile.ETUDIANT_USER) &&
+        {(user && user.profil === userProfile.ADMIN_USER) &&
           <Sidebar large={large} setLarge={setLarge}  />
         }
-        <div className={(large) ? "mainDiv large" : (!user || (user.profil === userProfile.ETUDIANT_USER) ? "mainDiv large" : "mainDiv")}>
+        <div className={(large) ? "mainDiv large" : (!user || (user.profil !== userProfile.ADMIN_USER) ? "mainDiv large" : "mainDiv")}>
           
           <Routes>
 
@@ -91,6 +94,8 @@ function App() {
             <Route path="/" element={<Home />}></Route>
             <Route path="/home" element={<Home />}></Route>
             <Route path="/home02" element={<Home />}></Route>
+            <Route path="/candidature/salon/entrepreneur" element={<InscriptionSalon />}></Route>
+            <Route path="/successcandidaturesalonentrepreneur/:nomEtudiant" element={<AfterSuccessCandidature />}></Route>
             <Route path="/inscription" element={<Inscription002 />}></Route>
             
             <Route path="/registration" element={<Inscription002 />}></Route>
@@ -108,7 +113,6 @@ function App() {
             <Route path="/apropos" element={<Apropos02 />}></Route>
             <Route path="/apropos02" element={<Apropos02 />}></Route>
             <Route path="/about" element={<Apropos02 />}></Route>
-            <Route path="/transition" element={<Transition />}></Route>
 
 
 
@@ -132,7 +136,7 @@ function App() {
 
             {(user && user.profil === userProfile.PROFESSEUR_USER) &&
               <>
-                <Route path="/dashboard" element={<Dashboard />}></Route>
+                <Route path="/dashboard" element={<DashboardProf />}></Route>
                 <Route path="/course/:idChapitre" element={<Course />}></Route>
                 <Route path="/module/:idModule" element={<Module />}></Route>
               </>
