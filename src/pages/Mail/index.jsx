@@ -14,7 +14,7 @@ export default function Mail() {
    });
 
    const navigation = useNavigate();
-   const ajoutRubrique = () => {
+   const sendMailAction = () => {
       setError((prev) => ({ ...prev, textError: null }));
       setErrorServeur(false);
       setSave(true);
@@ -40,7 +40,7 @@ export default function Mail() {
                </span>
             </div>
             <div style={{ display: "flex", flexDirection: "row", gap: 5 }}>
-               <Button variant="contained" onClick={() => ajoutRubrique()} color="info">
+               <Button variant="contained" onClick={() => sendMailAction()} color="info">
                   Envoyer
                </Button>
                <Button

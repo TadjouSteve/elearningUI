@@ -18,14 +18,27 @@ export default function AfterSuccessCandidature() {
                         <div class="b-formation ">
                            <div class="b-merci mb-30">
                               <h2>
-                                 Félicitations, <span style={{ color: "black" }}>{nomEtudiant}</span> ! <br />
-                                 Votre candidature au Salon de l'entrepreneuriat a été enregistrée avec succès.
+                                 Félicitations , <span style={{ color: "black" }}>{nomEtudiant}</span> ! <br />
+                                 votre candidature à l’exposition du Salon des 1000 Jeunes Entrepreneurs a été
+                                 enregistrée avec succès.
                               </h2>
                               <span>
-                                 Le Salon de l'entrepreneuriat se tiendra du 04 au 09 octobre 2024. Préparez-vous dès
-                                 maintenant pour cet événement exceptionnel !
+                                 Le salon des 1000 Jeunes Entrepreneurs se tiendra du 26 au 30 Octobre 2024 à Yaoundé.
+                                 Un Stand d’exposition vous sera gratuitement attribué pour ces 5 jours d’exposition si
+                                 à cette date vous êtes en conformité avec les informations demandées , et validez
+                                 l’ensemble de vos modules de formation en Autorentabilité et Fonctionnement durable
+                                 disponibles sur{" "}
+                                 <a href="https://programmeleadership.org">www.programmeleadership.org </a>
                               </span>
+                              <br />
+                              <br />
 
+                              <div>
+                                 <span>
+                                    Preparez vous pour cet événement National à Fort potentiel de réseautage, de fortes
+                                    ventes et de grands investissements.
+                                 </span>
+                              </div>
                               <div class="lien-connexion mt-20">
                                  <a href="/connexion" class="btn btn-insc">
                                     Se Connecter
@@ -38,7 +51,7 @@ export default function AfterSuccessCandidature() {
                   <div class="cat-col-40 cat-sm-50">
                      <div class="pad-cat">
                         <div class="img">
-                           <img src="/images/welcome.png" alt="deuxpersonne" />
+                           <img src="/images/image1045.jpg" alt="deuxpersonne" />
                         </div>
                      </div>
                   </div>

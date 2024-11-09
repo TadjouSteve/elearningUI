@@ -6,6 +6,7 @@ import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogT
 import { MessageErrorServeur } from "../../../../../composants/MessageComponent";
 import { chapitre } from "../../../../../utils/data";
 import SaveComponent from "../../../../../composants/SaveComponent";
+import { FormAddVideoCour } from "./videoCourManage";
 
 export default function ShowCourAdmin() {
    const { idChapitre } = useParams();
@@ -77,7 +78,7 @@ export default function ShowCourAdmin() {
                <MessageErrorServeur />
             ) : (
                <>
-                  <InformationGeneral formChapitre={data} />
+                  <InformationGeneral formChapitre={data} setUpdate={setUpdate} />
                   <ListBlock chapitre={data?.chapitre} />
                   <ListQCM listQcm={data?.chapitre.qcms} idChapitre={idChapitre} />
                   <ListQRO listQRO={data?.chapitre.qros} setUpdate={setUpdate} formChapitre={data} />
@@ -88,7 +89,7 @@ export default function ShowCourAdmin() {
    );
 }
 
-const InformationGeneral = ({ formChapitre }) => {
+const InformationGeneral = ({ formChapitre, setUpdate }) => {
    const navigation = useNavigate();
    //console.log("formViewChapitre == ", formChapitre);
    let chapitre = formChapitre ? formChapitre.chapitre : {};
@@ -173,6 +174,9 @@ const InformationGeneral = ({ formChapitre }) => {
                      <span style={{ fontWeight: 500 }}>lien (url) de la video de presentation : </span>
                      {chapitre.video}
                   </span>
+                  <div>
+                     <FormAddVideoCour setUpdate={setUpdate} idChapitre={chapitre.idChapitre} />
+                  </div>
                </div>
 
                <div
@@ -231,6 +235,7 @@ const ListBlock = ({ chapitre }) => {
                            position: "sticky",
                            top: 0,
                            background: "white",
+                           zIndex: 0,
                         }}
                      >
                         <tr>
@@ -305,6 +310,7 @@ const ListQCM = ({ listQcm, idChapitre }) => {
                         position: "sticky",
                         top: 0,
                         background: "white",
+                        zIndex: 0,
                      }}
                   >
                      <tr>
@@ -389,7 +395,7 @@ const ListQRO = ({ listQRO, setUpdate, formChapitre }) => {
             }}
          >
             <h3>liste des QRO (Question a Reponse Ouverte) presentes dans ce chapitre</h3>
-            <AjoutQRO chapitre={chapitre} setUpdate={setUpdate} />
+            <AjoutOrAlterQRO chapitre={chapitre} setUpdate={setUpdate} isAlter={false} />
             {listQRO?.length === 0 ? (
                <span style={{ fontSize: 17 }}>Ce cours ne contient pas de question a reponse ouverte...!</span>
             ) : (
@@ -400,9 +406,10 @@ const ListQRO = ({ listQRO, setUpdate, formChapitre }) => {
                         position: "sticky",
                         top: 0,
                         background: "white",
+                        zIndex: 0,
                      }}
                   >
-                     <tr>
+                     <tr style={{ zIndex: 0 }}>
                         <th>N°</th>
                         <th>intitule</th>
                         <th>intitule Anglais</th>
@@ -417,9 +424,7 @@ const ListQRO = ({ listQRO, setUpdate, formChapitre }) => {
                            <td>{qro.intituleEn}</td>
                            <td>
                               <div style={{ display: "flex", flexDirection: "row", gap: 5 }}>
-                                 <Button variant="outlined" size="small" color="info" sx={{ fontSize: 10 }}>
-                                    Voir plus
-                                 </Button>
+                                 <AjoutOrAlterQRO chapitre={chapitre} setUpdate={setUpdate} isAlter={true} qro={qro} />
                               </div>
                            </td>
                         </tr>
@@ -432,8 +437,8 @@ const ListQRO = ({ listQRO, setUpdate, formChapitre }) => {
    );
 };
 
-const AjoutQRO = ({ chapitre, formModule, setUpdate }) => {
-   const [formQRO, setFormQRO] = useState({});
+const AjoutOrAlterQRO = ({ chapitre, formModule, setUpdate, isAlter, qro }) => {
+   const [formQRO, setFormQRO] = useState(qro ? qro : {});
    const requestURL = "/admin/qro/";
    const [open, setOpen] = useState(false);
    //const [formLink, setFormLink] = useState([]);
@@ -458,9 +463,16 @@ const AjoutQRO = ({ chapitre, formModule, setUpdate }) => {
 
    return (
       <>
-         <Button variant="contained" onClick={handleClickOpen} color="success">
-            Ajouter une question a reponse Ouverte pour ce chapitre
-         </Button>
+         {isAlter ? (
+            <Button variant="outlined" onClick={handleClickOpen} size="small" color="error" sx={{ fontSize: 10 }}>
+               Modifier
+            </Button>
+         ) : (
+            <Button variant="contained" onClick={handleClickOpen} color="success">
+               Ajouter une question a reponse Ouverte pour ce chapitre
+            </Button>
+         )}
+
          <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title">Ajout d'un QRO au chapitre: {chapitre.titre}</DialogTitle>
             <DialogContent>

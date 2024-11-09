@@ -33,16 +33,24 @@ export default function Dashboard() {
                <div className="textePresentationDashboardDiv" style={{ fontWeight: "bold" }}>
                   {isfrench ? (
                      <span className="textePresentationDashboardspan">
-                        Explorez nos modules de formation : Plongez dans notre programme complet ! Découvrez des modules
-                        spécialement conçus pour vous aider à maîtriser les compétences essentielles en matière de
-                        rentabilité et de fonctionnement. Que vous soyez novice ou entrepreneur chevronné, ces modules
-                        vous guideront vers le succès.
+                        Très cher(e) {user ? user.nom : ""} , Parce que vous avez le devoir au quotidien de construire
+                        des entreprises productives et auto-rentables dans le système économique Africain ou mondial,
+                        nous vous proposons ces modules de capacitation spécialement conçus pour l’Entrepreneur(e)
+                        novice ou le chef d’Entreprise chevronné que vous êtes. Ces modules compris traités et validés
+                        vous guideront assurément vers le succès.
+                        <br />
+                        <br />
+                        Bienvenue dans votre univers et très bonne capacitation !
                      </span>
                   ) : (
                      <span className="textePresentationDashboardspan">
-                        Explore our training modules: Dive into our comprehensive curriculum! Discover modules
-                        specifically designed to help you master essential skills in profitability and operations.
-                        Whether you are a novice or a seasoned entrepreneur, these modules will guide you to success.
+                        Dear {user ? user.name : ""}, Because you have the daily duty to build productive and
+                        self-profitable businesses in the African or global economic system, we offer you these training
+                        modules specially designed for the novice Entrepreneur or the seasoned Business Leader that you
+                        are. These modules, included, processed and validated, will certainly guide you towards success.
+                        <br />
+                        <br />
+                        Welcome to your world and very good empowerment!{" "}
                      </span>
                   )}
                </div>

@@ -44,9 +44,12 @@ export default function Course() {
       <>
          <Container fluid style={{ width: "100%", padding: 0, margin: 0 }}>
             <Header />
-            <HeaderContent />
+            <HeaderContent
+               titre={data ? data?.titre : ""}
+               link={{ url: "/module/" + data?.module?.idModule, texte: data ? data?.module?.titre : "" }}
+            />
             <div className="vousetesici">
-               <span className="vousetesiciTexte">
+               {/* <span className="vousetesiciTexte">
                   Vous êtes ici:
                   <Link to={"/dashboard"} style={{ textDecoration: "none" }}>
                      Tableau de bord
@@ -59,7 +62,7 @@ export default function Course() {
                   <Link to={"/course/" + idChapitre} style={{ textDecoration: "none" }}>
                      {data ? data?.titre : ""}
                   </Link>
-               </span>
+               </span> */}
             </div>
             <Row fluid style={{ width: "100vw", margin: 0, padding: 0 }}>
                {isLoading ? (
@@ -513,12 +516,13 @@ const QROBloc = ({ chapitre }) => {
          {chapitre.qros && chapitre.qros.length > 0 && (
             <div className="MainBlocAllQRO">
                <div style={{ fontSize: 17, fontWeight: "bold" }}>
-                  <span>Questions à réponse ouverte...</span>
+                  <span>Questions à réponses ouvertes</span>
                </div>
                <div style={{ fontSize: 14, fontStyle: "italic", color: "gray", marginBottom: 15 }}>
                   <span>
-                     Vous êtes invités à répondre à chaque question. Dans le cas des activités pratiques, faites-nous un
-                     résumé de la manière dont vous avez procédé et des résultats obtenus.
+                     Vous êtes invité(e) à répondre à chaque question. Chaque réponse envoyée est définitive et reflète
+                     votre capacité à construire des paradigmes liés à votre leadership, à vos compétences
+                     entrepreneuriales ou à votre sens pratique de la gestion d’entreprise. Allez-y.
                   </span>
                </div>
                {error.textError && (

@@ -114,6 +114,12 @@
 }
 
 
+.titreFormSalonEntrepreneur{
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
 /* Styles pour les grand ecran desktop et laptop */
 @media (min-width: 769px) {
     .mainDivInscription{
@@ -153,6 +159,10 @@
     legend{
         font-size: 1.1rem;
     }
-
+    .titreFormSalonEntrepreneur{
+        font-size: 1.2rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
     
 }

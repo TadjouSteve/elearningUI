@@ -53,13 +53,19 @@ export default function Home() {
                               d’entreprise : entreprises locales à fort potentiel d’import substitution
                            </h2>
                            <p class="text-white">
-                              Plus de 1000 jeunes formés aux notions de l'entreprenariat, de la gestion d'entreprise et
-                              de l'auto rentabilité.
+                              Plus de 1000 Porteurs de projets/ Chefs d’entreprises formés aux notions de
+                              l’entrepreneuriat, de la gestion durable d'entreprise et de l'auto rentabilité.
+                           </p>
+
+                           <p class="text-white">
+                              Filière :Énergie - Numérique - Intelligences artificielle - Agro- industrie - Mines -
+                              Métallurgique - Sidérurgie- Hydrocarbures- Pétrochimie -Raffinage, Chimie- Pharmacie -
+                              Construction - Textile -Confection- Cuir- Forêt - Bois - Professions libérales
                            </p>
                            <a class="rm" href="/apropos">
                               En savoir plus
                            </a>
-                           <div class="lien-connexion mt-20 ">
+                           <div class="lien-connexion mt-10 ">
                               {!user ? (
                                  <>
                                     <Link
@@ -98,17 +104,17 @@ export default function Home() {
                               )}
                            </div>
 
-                           <div class="lien-connexion mt-0" style={{ padding: 0 }}>
+                           {/* <div class="lien-connexion mt-0" style={{ padding: 0 }}>
                               <Link
                                  to="/candidature/salon/entrepreneur"
                                  class="btn btn-insc"
                                  style={{ marginLeft: 15, marginTop: 0 }}
                               >
                                  {isFrench
-                                    ? "Inscription au Salon de l'Entrepreneuriat"
-                                    : "Registration for the Entrepreneurship Fair "}
+                                    ? "S'inscrire au Salon des 1000 Jeunes Entrepreneurs"
+                                    : "Register for the 1000 Young Entrepreneurs Fair "}
                               </Link>
-                           </div>
+                           </div> */}
                         </div>
                      </div>
                   </div>

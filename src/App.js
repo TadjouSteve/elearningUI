@@ -59,6 +59,9 @@ import { height } from '@mui/system';
 import DashboardProf from './pages/ProfesseurPages/DashboardProf';
 import InscriptionSalon from './pages/Inscription/InscriptionSalon';
 import AfterSuccessCandidature from './pages/Inscription/AfterSuccessCandidature';
+import Candidature from './pages/AdminPages/Etudiant/Candidature';
+import ShowCandidature from './pages/AdminPages/Etudiant/Candidature/ShowCandidature';
+import SendAttestation from './pages/SendAttestation';
 //import AlterRubrique from './pages/AdminPages/Media/Rubrique/AlterRubrique';
 
 //const AppContext = createContext();
@@ -70,7 +73,7 @@ function App() {
   const [large, setLarge] = useState(false);
   const serveurURL = "https://api.programmeleadership.net/elearningapi"; // before build
   //const serveurURL = "http://localhost:9006/elearningapi";
-
+ 
   useEffect(() => {
       const intervalId = setInterval(checkUserOnCookies(user, setUser), 4000);
       // Nettoyage de l'intervalle lorsque le composant est démonté
@@ -146,6 +149,8 @@ function App() {
               <>
                 <Route path="/dashboard" element={<AdminDashboard />}></Route>
                 <Route path="/etudiants" element={<Etudiant />}></Route>
+                <Route path="/candidaturesalon" element={<Candidature />}></Route>
+                <Route path="/candidaturesalon/:idCandidature" element={<ShowCandidature />}></Route>
                 <Route path="/statetudiant" element={<StatEtudiant />}></Route>
                 <Route path="/etudiant/:matriculeEtudiant" element={<ShowEtudiant />}></Route>
 
@@ -186,6 +191,9 @@ function App() {
 
                 <Route path="/mail/" element={<Mail />}></Route>
                 <Route path="/mail/success/" element={<SuccessMailSend />}></Route>
+
+
+                <Route path="/sendattestation/" element={<SendAttestation />}></Route>
 
               </>
             }

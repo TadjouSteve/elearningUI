@@ -130,7 +130,7 @@ export default function Apropos02() {
                         <div class="cat-col-100">
                            <div class="pad-cat">
                               <div class="row-col">
-                                 <div class="cat-col-25 cat-sm-50 des-propos-elt des-propos-elt-1 bg-theme1">
+                                 <div class="cat-col-25 cat-sm-50 des-propos-elt des-propos-elt-1">
                                     <div class="apropoimg">
                                        <div class="des-propos-elt-overlay"></div>
                                     </div>
@@ -150,7 +150,7 @@ export default function Apropos02() {
                                        </div>
                                     </div>
                                  </div>
-                                 <div class="cat-col-25 cat-sm-50 des-propos-elt des-propos-elt-2 bg-theme2">
+                                 <div class="cat-col-25 cat-sm-50 des-propos-elt des-propos-elt-2 ">
                                     <div class="apropoimg">
                                        <div class="des-propos-elt-overlay"></div>
                                     </div>
@@ -170,7 +170,7 @@ export default function Apropos02() {
                                  </div>
                               </div>
                               <div class="row-col-reverse">
-                                 <div class="cat-col-25 cat-sm-50 des-propos-elt des-propos-elt-3 bg-theme3">
+                                 <div class="cat-col-25 cat-sm-50 des-propos-elt des-propos-elt-3 ">
                                     <div class="apropoimg">
                                        <div class="des-propos-elt-overlay"></div>
                                     </div>
@@ -190,7 +190,7 @@ export default function Apropos02() {
                                        </div>
                                     </div>
                                  </div>
-                                 <div class="cat-col-25 cat-sm-50 des-propos-elt des-propos-elt-4">
+                                 <div class="cat-col-25 cat-sm-50 des-propos-elt des-propos-elt-4 ">
                                     <div class="apropoimg">
                                        <div class="des-propos-elt-overlay"></div>
                                     </div>

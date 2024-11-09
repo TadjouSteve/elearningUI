@@ -5,6 +5,7 @@ import { Col, Container, Row, Table } from "react-bootstrap";
 import { CircularProgress } from "@mui/material";
 import { MessageErrorServeur } from "../../../../composants/MessageComponent";
 import { appColor } from "../../../../utils/data";
+import SendMail from "../../../../composants/SendMail";
 
 export default function ShowEtudiant() {
    const { matriculeEtudiant } = useParams();
@@ -51,7 +52,7 @@ const InfoGeneral = ({ formEtudiant }) => {
 
    let chapitreSimpleforms = formEtudiant ? formEtudiant.chapitreSimpleforms : [];
    return (
-      <Row style={{ marginTop: 20, marginBottom: 10 }}>
+      <Row style={{ marginTop: 20, marginBottom: 10, marginLeft: 10, marginRight: 10 }}>
          <Col md={6}>
             <div
                style={{
@@ -78,6 +79,7 @@ const InfoGeneral = ({ formEtudiant }) => {
                </span>
                <span>Profession : {etudiant.profession}</span>
                <span>Région : {etudiant.region?.nom}</span>
+               <SendMail etudiant={etudiant} />
             </div>
          </Col>
          <Col md={6}>
@@ -144,7 +146,7 @@ const InfoByModule = ({ formEtudiant, module }) => {
    let totalQcm = 0;
 
    chapitreSimpleforms.forEach((element, index) => {
-      if (element.idModule == module.idModule) {
+      if (element.idModule === module.idModule) {
          //let chapitre01=element;
          etudiantChapitres.forEach((etudiantChapitre, indexEtuChap) => {
             if (etudiantChapitre.chapitre.idChapitre == element.idChapitre) {
@@ -168,7 +170,7 @@ const InfoByModule = ({ formEtudiant, module }) => {
 
    console.log("== Moduleform == ", moduleSimpleForms);
    return (
-      <Row style={{ marginTop: 20, marginBottom: 10 }}>
+      <Row style={{ marginTop: 20, marginBottom: 10, marginLeft: 10, marginRight: 10 }}>
          <Col>
             <div
                style={{

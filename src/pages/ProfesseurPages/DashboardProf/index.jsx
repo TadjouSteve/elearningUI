@@ -81,12 +81,6 @@ function SelectModuleAndChapitre({
    setIdChapitreSelected,
    setUpdate,
 }) {
-   //selectedModule(listModule[0]);
-   //setSelectedChapitre(listModule[0].chapitres[0]);
-
-   //useEffect
-
-   // Gestion du changement de module
    const handleModuleChange = (event) => {
       console.log("target value == ", event.target.value);
       const newModule = listModule.find((module) => module.idModule === event.target.value * 1);

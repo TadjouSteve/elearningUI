@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useFetch } from "../../utils/hooks/FetchData";
 import { useParams } from "react-router-dom";
 import Footer from "../../composants/Footer";
@@ -17,63 +17,72 @@ export default function ValidationInscription() {
       null,
       update
    );
+   const TopElementRef = useRef(null);
+   useEffect(() => {
+      TopElementRef.current.scrollIntoView({ behavior: "smooth" });
+   }, []);
    return (
-      <Container fluid style={{ width: "100%", padding: 0, margin: 0 }}>
+      <div style={{ width: "100%" }}>
          <Header />
-         <Row style={{ justifyContent: "center" }}>
-            <div className="mainDivConnexion">
-               <div
-                  className="divFormulaire"
-                  style={{ display: "flex", flexDirection: "column" }}
-                  //onKeyUp={(event) => handleKeyPress(event)}
-               >
-                  {isLoading ? (
-                     <Backdrop open={true} style={{ zIndex: 1000, color: "#fff" }}>
-                        <CircularProgress
-                           style={{
-                              position: "absolute",
-                              top: "50%",
-                              left: "50%",
-                              marginTop: "-20px",
-                              marginLeft: "-20px",
-                           }}
-                           color="inherit"
-                        />
-                     </Backdrop>
-                  ) : error ? (
-                     <MessageErrorServeurWithVarialbleHeight />
-                  ) : data.errorAPI ? (
-                     <div style={{ color: "red" }}>
-                        <span style={{ color: "red", fontSize: 17 }}>{data.message}</span>
+         <section ref={TopElementRef} class="merci">
+            <div class="wapper">
+               <div class="row-col">
+                  <div class="cat-col-60 cat-sm-50">
+                     <div class="pad-cat">
+                        <div class="b-formation ">
+                           <div class="b-merci mb-30">
+                              {isLoading ? (
+                                 <div style={{ marginLeft: "40%" }}>
+                                    <CircularProgress size={40} />
+                                 </div>
+                              ) : error ? (
+                                 <MessageErrorServeurWithVarialbleHeight />
+                              ) : data.errorAPI ? (
+                                 <div style={{ color: "red" }}>
+                                    <span style={{ color: "red", fontSize: 17 }}>{data.message}</span>
+                                 </div>
+                              ) : data.confirmation === -1 ? (
+                                 <>
+                                    <h2>Votre compte a bien été confirmer</h2>
+
+                                    <div>
+                                       <span>Connectez-vous pour débuter votre formation</span>
+                                    </div>
+                                    <div class="lien-connexion mt-20">
+                                       <a href="/connexion" class="btn btn-insc">
+                                          Se Connecter
+                                       </a>
+                                    </div>
+                                 </>
+                              ) : (
+                                 <>
+                                    <h2>Votre compte a bien été confirmer</h2>
+
+                                    <div>
+                                       <span>Connectez-vous pour débuter votre formation</span>
+                                    </div>
+                                    <div class="lien-connexion mt-20">
+                                       <a href="/connexion" class="btn btn-insc">
+                                          Se Connecter
+                                       </a>
+                                    </div>
+                                 </>
+                              )}
+                           </div>
+                        </div>
                      </div>
-                  ) : data.confirmation === -1 ? (
-                     <>
-                        <div>
-                           <h2>Vos données ont bien été enregistrées.</h2>
-                           <br />
-                           <h3>
-                              Pour terminer votre processus de validation, vous devez ouvrir l’e-mail qui a été envoyé à
-                              votre adresse e-mail et cliquer sur le lien de validation.
-                           </h3>
+                  </div>
+                  <div class="cat-col-40 cat-sm-50">
+                     <div class="pad-cat">
+                        <div class="img">
+                           <img src="/images/welcome.png" alt="deuxpersonne" />
                         </div>
-                     </>
-                  ) : (
-                     <>
-                        <div>
-                           <h2>Félicitations ! Votre compte est désormais valide. 😊</h2>
-                           <br />
-                           <h3>
-                              La formation commence le 2 septembre 2024. À partir de cette date, vous pourrez vous
-                              connecter à votre compte pour suivre votre formation.
-                           </h3>
-                        </div>
-                     </>
-                  )}
+                     </div>
+                  </div>
                </div>
             </div>
-         </Row>
-
+         </section>
          <Footer />
-      </Container>
+      </div>
    );
 }

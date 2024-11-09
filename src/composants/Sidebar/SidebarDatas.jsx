@@ -7,6 +7,7 @@ import * as GIicons from "react-icons/gi";
 import SchoolIcon from "@mui/icons-material/School";
 import colors from "../../utils/style/colors";
 import EmailIcon from "@mui/icons-material/Email";
+import HistoryEduIcon from "@mui/icons-material/HistoryEdu";
 //import colors from "../../util/style/colors";
 
 export const SidebarDatas = [
@@ -32,6 +33,12 @@ export const SidebarDatas = [
             userLevel: 0,
             title: "Lists Etudiants",
             path: "/etudiants",
+            cName: "submenu-text",
+         },
+         {
+            userLevel: 0,
+            title: "Canditats Salon Entrepreneur",
+            path: "/candidaturesalon",
             cName: "submenu-text",
          },
          {
@@ -164,6 +171,16 @@ export const SidebarDatas = [
       title: "Mails",
       path: "/mail",
       icon: <EmailIcon fontSize="large" sx={{ color: "#fff" }} />,
+      cName: "nav-text",
+      color: colors.vente,
+   },
+
+   {
+      order: 9,
+      userLevel: 0,
+      title: "Envoi des Attestations",
+      path: "/sendattestation",
+      icon: <HistoryEduIcon fontSize="large" sx={{ color: "#fff" }} />,
       cName: "nav-text",
       color: colors.vente,
    },

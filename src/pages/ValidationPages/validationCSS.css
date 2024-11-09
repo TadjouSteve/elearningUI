@@ -1,0 +1,33 @@
+/* Merci */
+.fixed .merci {
+    margin-top: 70px;
+  }
+  .merci {
+    padding: 10px 0 10px;
+  }
+  .btn {
+    padding: 10px 25px;
+    display: inline-block;
+    margin: 0 10px 15px 0;
+  }
+  .btn-login {
+    background: #fa9401;
+    border-color: #fa9401;
+    color: #ffffff;
+  }
+  .btn-insc {
+    background: #0877bf;
+    border-color: #0877bf;
+    color: #ffffff;
+  }
+  @media (max-width: 993px) {
+      .fixed .merci {
+        margin-top: 0px;
+      }
+      .merci {
+        padding: 40px 0 30px;
+      }
+  }
+  
+  
+  /* Merci */

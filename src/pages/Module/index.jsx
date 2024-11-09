@@ -29,7 +29,7 @@ export default function Module({ chapitres }) {
       <>
          <Header />
          <Container fluid style={{ width: "100vw", margin: 0, padding: 0 }}>
-            <HeaderContent />
+            <HeaderContent titre={data && data.length > 0 ? data[0].titreModule : ""} />
             {/*justifyContent: 'space-evenly', flexWrap: 'wrap' */}
             <div className="vousetesici">
                <span style={{ fontSize: 13 }}>

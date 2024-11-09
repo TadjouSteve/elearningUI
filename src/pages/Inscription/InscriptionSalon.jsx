@@ -165,21 +165,32 @@ const FirstStep = ({
          // onKeyUp={(event) => handleKeyPress(event)}
       >
          <div style={{ textAlign: "center", marginTop: 10, marginBottom: 10 }}>
-            <span className="" style={{ fontSize: "1.8rem", fontWeight: 700 }}>
-               Formulaire de Candidature pour une Place au Salon de l'Entrepreneuriat
+            <span className="titreFormSalonEntrepreneur">
+               Formulaire de Candidature à l’exposition au salon des 1000 Jeunes Entrepreneurs.{" "}
             </span>
          </div>
+
          <div style={{ marginTop: 10, marginBottom: 18, color: "green", fontWeight: "500" }}>
             <div>
-               <strong>NB Avant de commencer :</strong>
+               <strong>Bienvenue Cher(e) candidat, avant de démarrer votre inscription :</strong>
                <ul style={{ fontSize: 13, listStyleType: "disc", paddingLeft: "20px" }}>
                   <li>
                      Préparez une courte vidéo présentant votre prototype ou votre entreprise. Celle-ci vous sera
-                     demandée à la suite de ce formulaire.
+                     demandée à la fin du formulaire.
                   </li>
-                  <li>Préparez le document contenant votre business plan.</li>
-                  <li>Si vous en avez, préparez votre certificat de conformité.</li>
-                  <li>Si possible, la dernière facture conforme payée par un de vos clients.</li>
+                  <li>Préparez un document contenant votre business plan.</li>
+                  <li>
+                     Préparez votre politique d’autosuffisance et de fonctionnement durable, qui sera mise en évidence
+                     après avoir suivi les cours disponibles sur{" "}
+                     <a href="https://www.programmeleadership.org" target="_blank">
+                        www.programmeleadership.org
+                     </a>
+                     .
+                  </li>
+                  <li>Si vous en avez, préparez votre dossier fiscal.</li>
+                  <li>
+                     Si possible, préparez des factures payées par vos clients, prouvant votre présence sur le marché.
+                  </li>
                </ul>
             </div>
          </div>
@@ -208,7 +219,7 @@ const FirstStep = ({
             </div>
 
             <div className="subDivChamp">
-               <label className="labelSignIn">Nom de votre entrepise / projet{etoileSpanRed}</label>
+               <label className="labelSignIn">Nom de votre Entreprise / projet{etoileSpanRed}</label>
                <input
                   className="inputSignIn"
                   type="text"
@@ -427,7 +438,7 @@ const FirstStep = ({
 
             <div className="subDivChamp">
                <label>
-                  A une échèle de 1 à 10 combien pouvez-vous notez votre entreprise sur l’atteinte des objectifs de
+                  Sur une échèle de 1 à 10 combien pouvez-vous notez votre entreprise sur l’atteinte des objectifs de
                   notoriété et de rentabilité depuis la création ?{etoileSpanRed}
                </label>
                <input
@@ -485,6 +496,7 @@ const FirstStep = ({
                   value={canditature.rencontreInvestisseur}
                   onChange={handleChange}
                >
+                  <option value="">--Choisir une option--</option>
                   <option value="oui">Oui</option>
                   <option value="non">Non</option>
                </select>
@@ -499,6 +511,7 @@ const FirstStep = ({
                   value={canditature.typeInvestissement}
                   onChange={handleChange}
                >
+                  <option value="">--Choisir une option--</option>
                   <option value="subventions">Subventions</option>
                   <option value="prets">Prêts</option>
                   <option value="apport_capital">Apport de capital</option>

@@ -65,6 +65,7 @@ export default function CourAdmin() {
                                  <th>Titre</th>
                                  <th>Titre anglais</th>
                                  <th>Module</th>
+                                 <th>Nbrs QRO</th>
                                  <th>Nbrs QCM</th>
                                  <th>Etat</th>
                                  <th>Actions</th>
@@ -84,6 +85,11 @@ export default function CourAdmin() {
                                     <td className="body_tr">{chapitre.titreEn}</td>
                                     <td className="body_tr">
                                        <span style={{ fontWeight: 500 }}>{chapitre.titreModule}</span>
+                                    </td>
+                                    <td className="body_tr">
+                                       <span style={{ color: chapitre.totalQRO > 0 ? "green" : "red" }}>
+                                          {chapitre.totalQRO}
+                                       </span>
                                     </td>
                                     <td className="body_tr">
                                        <span style={{ color: chapitre.totalQcm > 0 ? "green" : "red" }}>

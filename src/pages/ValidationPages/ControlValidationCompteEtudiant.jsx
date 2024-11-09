@@ -6,6 +6,7 @@ import { useFetch } from "../../utils/hooks/FetchData";
 import Footer from "../../composants/Footer";
 import { CircularProgress } from "@mui/material";
 import { MessageErrorServeurWithVarialbleHeight } from "../../composants/MessageComponent";
+import "./validationCSS.css";
 
 export default function ControlValidationCompteEtudiant() {
    const { matricule } = useParams();
@@ -38,57 +39,69 @@ export default function ControlValidationCompteEtudiant() {
    }, []);
 
    return (
-      <Container ref={TopElementRef} fluid style={{ width: "100%", padding: 0, margin: 0 }}>
-         <Header />
-         <Row style={{ justifyContent: "center" }}>
-            <div className="mainDivConnexion">
-               <div
-                  className="divFormulaire"
-                  style={{ display: "flex", flexDirection: "column" }}
-                  //onKeyUp={(event) => handleKeyPress(event)}
-               >
-                  {isLoading && !done ? (
-                     <div style={{ marginLeft: "40%" }}>
-                        <CircularProgress size={40} />
-                     </div>
-                  ) : error ? (
-                     <MessageErrorServeurWithVarialbleHeight />
-                  ) : data.errorAPI ? (
-                     <div style={{ color: "red" }}>
-                        <span style={{ color: "red", fontSize: 17 }}>{data.message}</span>
-                     </div>
-                  ) : data.confirmation === -1 ? (
-                     <>
-                        <div>
-                           <h2>Vos données ont bien été enregistrées.</h2>
-                           <br />
-                           <h5>
-                              Pour finaliser le processus d'inscription, vous devez ouvrir l’e-mail qui a été envoyé à
-                              votre adresse e-mail et cliquer sur le lien de validation.
-                           </h5>
-                           <span style={{ fontSize: 13 }}>
-                              Si vous ne retrouvez pas l’e-mail dans votre boîte de messagerie, vérifiez dans les
-                              dossiers <spam style={{ color: "red", fontSize: 14 }}>spam</spam> de votre boite mail...
-                           </span>
-                        </div>
-                     </>
-                  ) : (
-                     <>
-                        <div>
-                           <h2>Félicitations ! Votre compte est désormais valide. 😊</h2>
-                           <br />
-                           <h3>
-                              La formation commence le 2 septembre 2024. À partir de cette date, vous pourrez vous
-                              connecter à votre compte pour suivre votre formation.
-                           </h3>
-                        </div>
-                     </>
-                  )}
-               </div>
-            </div>
-         </Row>
+      <>
+         <div style={{ width: "100%" }}>
+            <Header />
+            <section ref={TopElementRef} class="merci">
+               <div class="wapper">
+                  <div class="row-col">
+                     <div class="cat-col-60 cat-sm-50">
+                        <div class="pad-cat">
+                           <div class="b-formation ">
+                              <div class="b-merci mb-30">
+                                 {isLoading && !done ? (
+                                    <div style={{ marginLeft: "40%" }}>
+                                       <CircularProgress size={40} />
+                                    </div>
+                                 ) : error ? (
+                                    <MessageErrorServeurWithVarialbleHeight />
+                                 ) : data.errorAPI ? (
+                                    <div style={{ color: "red" }}>
+                                       <span style={{ color: "red", fontSize: 17 }}>{data.message}</span>
+                                    </div>
+                                 ) : data.confirmation === -1 ? (
+                                    <>
+                                       <h2>Félicitations ! Votre compte est désormais valide.</h2>
 
-         <Footer />
-      </Container>
+                                       <div>
+                                          <span>Connectez-vous pour débuter votre formation</span>
+                                       </div>
+                                       <div class="lien-connexion mt-20">
+                                          <a href="/connexion" class="btn btn-insc">
+                                             Se Connecter
+                                          </a>
+                                       </div>
+                                    </>
+                                 ) : (
+                                    <>
+                                       <h2>Félicitations ! Votre compte est désormais valide.</h2>
+
+                                       <div>
+                                          <span>Connectez-vous pour débuter votre formation</span>
+                                       </div>
+                                       <div class="lien-connexion mt-20">
+                                          <a href="/connexion" class="btn btn-insc">
+                                             Se Connecter
+                                          </a>
+                                       </div>
+                                    </>
+                                 )}
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="cat-col-40 cat-sm-50">
+                        <div class="pad-cat">
+                           <div class="img">
+                              <img src="/images/welcome.png" alt="deuxpersonne" />
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+            <Footer />
+         </div>
+      </>
    );
 }
